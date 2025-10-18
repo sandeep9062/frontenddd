@@ -21,7 +21,7 @@ const FindTopDental: React.FC<FindTopDentalProps> = ({
   const { data: clinics = [], error, isLoading } = useGetClinicsQuery();
 
   const filteredClinics = useMemo(() => {
-    return clinics.filter((c) => {
+    return clinics.filter((c: Clinic) => {
       const searchLower = search.toLowerCase();
       const stateLower = selectedState.toLowerCase();
       const nameMatch = c.name?.toLowerCase().includes(searchLower) || false;
