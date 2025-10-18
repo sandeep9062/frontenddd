@@ -23,7 +23,7 @@ const ConsultNowPage: React.FC = () => {
     if (!id) return;
 
     const fetchDentist = async () => {
-      const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
       if (!apiUrl) {
         console.error("NEXT_PUBLIC_API_BASE_URL is not set.");
         setError("Application is not configured correctly.");
