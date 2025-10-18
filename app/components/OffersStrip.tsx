@@ -24,40 +24,39 @@ const OffersStrip: React.FC = () => {
             Latest Offers:
           </span>
 
-          {/* Marquee Content */}
-          <marquee
-            behavior="scroll"
-            direction="left"
-            scrollamount="8"
-            className="w-full text-sm font-semibold text-white sm:text-lg"
-            style={{ whiteSpace: "nowrap" }}
-          >
-            <span
-              className="inline-block mr-10"
-              style={{ animation: "pulseOffer 1.2s infinite alternate" }}
+          {/* Scrolling Text Content */}
+          <div className="w-full overflow-hidden">
+            <div
+              className="text-sm font-semibold text-white sm:text-lg whitespace-nowrap"
+              style={{ animation: "scrollText 20s linear infinite" }}
             >
-              <span className="text-[#F4A300] mr-1">★</span>
-              <span className="text-white">10% off on first visit</span>
-            </span>
-
-            <span
-              className="inline-block mr-10"
-              style={{ animation: "pulseOffer 1.2s infinite alternate" }}
-            >
-              <span className="text-[#F4A300] mr-1">★</span>
-              <span className="text-white">
-                Free consultation for new patients
+              <span
+                className="inline-block mr-10"
+                style={{ animation: "pulseOffer 1.2s infinite alternate" }}
+              >
+                <span className="text-[#F4A300] mr-1">★</span>
+                <span className="text-white">10% off on first visit</span>
               </span>
-            </span>
 
-            <span
-              className="inline-block mr-10"
-              style={{ animation: "pulseOffer 1.2s infinite alternate" }}
-            >
-              <span className="text-[#F4A300] mr-1">★</span>
-              <span className="text-white">Complimentary dental checkup</span>
-            </span>
-          </marquee>
+              <span
+                className="inline-block mr-10"
+                style={{ animation: "pulseOffer 1.2s infinite alternate" }}
+              >
+                <span className="text-[#F4A300] mr-1">★</span>
+                <span className="text-white">
+                  Free consultation for new patients
+                </span>
+              </span>
+
+              <span
+                className="inline-block mr-10"
+                style={{ animation: "pulseOffer 1.2s infinite alternate" }}
+              >
+                <span className="text-[#F4A300] mr-1">★</span>
+                <span className="text-white">Complimentary dental checkup</span>
+              </span>
+            </div>
+          </div>
         </div>
 
         {/* Download App Button */}
@@ -82,8 +81,16 @@ const OffersStrip: React.FC = () => {
         </div>
       </div>
 
-      {/* CSS for pulse animation */}
+      {/* CSS for animations */}
       <style jsx>{`
+        @keyframes scrollText {
+          0% {
+            transform: translateX(100%);
+          }
+          100% {
+            transform: translateX(-100%);
+          }
+        }
         @keyframes pulseOffer {
           0% {
             opacity: 1;

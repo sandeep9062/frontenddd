@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 
-const servicesLinks = () => {
-
-
-
+const ServicesLinks = () => {
+  const [active, setActive] = useState("All");
 
   const handleServiceChange = (cat: string) => {
-   
+    setActive(cat);
   };
 
 
@@ -32,7 +30,7 @@ const services = [
 
 
   return (
-    <div className="flex justify-center gap-4 flex-wrap mb-12">
+    <div className="flex flex-wrap justify-center gap-4 mb-12">
       {services.map((cat) => (
         <button
           key={cat}
@@ -50,4 +48,4 @@ const services = [
   );
 };
 
-export default servicesLinks;
+export default ServicesLinks;

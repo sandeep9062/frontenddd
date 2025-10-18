@@ -2,7 +2,7 @@
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { ArrowLeft, ExternalLink } from "lucide-react"; // Imported ArrowLeft
 //import { useGetProjectByIdQuery } from "../../../../services/projectsApi";
 import {useGetProjectBySlugQuery} from "../../../services/projectsApi";
@@ -77,7 +77,7 @@ export default function ProjectDetailPage() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,

@@ -26,7 +26,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "types/**/*.ts",
+    "types/jsx.d.ts",
     ".next/types/**/*.ts",
     "app/components/ContactPage"
   ],

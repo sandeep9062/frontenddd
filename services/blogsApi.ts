@@ -92,7 +92,7 @@ export const blogsApi = createApi({
         method: "PUT",
         body: formData,
       }),
-      invalidatesTags: ["Blogs", (result, error, { id }) => ({ type: "Blog", id })],
+      invalidatesTags: (result, error, { id }) => ["Blogs", { type: "Blog", id }],
     }),
 
     // ✅ DELETE blog
