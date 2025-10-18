@@ -85,7 +85,7 @@ const HowItWorks: Step[] = [
 function useCountUp(end: number, duration = 600, trigger = true): number {
   const [count, setCount] = useState(0);
   const start = 0;
-  const frame = useRef<number>();
+  const frame = useRef<number | null>(null);
 
   useEffect(() => {
     if (!trigger) return;
