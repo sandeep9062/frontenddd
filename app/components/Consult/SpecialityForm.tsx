@@ -44,9 +44,9 @@ const SpecialityForm: React.FC = () => {
         return;
       }
 
-      const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
       if (!apiUrl) {
-        console.error("❌ Critical Error: NEXT_PUBLIC_API_BASE_URL is not set.");
+        console.error("❌ Critical Error: NEXT_PUBLIC_API_URL is not set.");
         setError("Configuration error: Unable to fetch dentists.");
         return;
       }

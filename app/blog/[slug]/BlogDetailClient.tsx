@@ -27,9 +27,7 @@ const itemVariants: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
-export default function BlogDetailPage({ params }: any) {
-  const { slug } = params;
-
+export default function BlogDetailClient({ slug }: { slug: string }) {
   const {
     data: blog,
     isLoading,

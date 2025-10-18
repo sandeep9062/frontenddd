@@ -6,7 +6,7 @@ import { Clinic } from "../types/clinic";
 const getToken = () =>
   typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
-const baseUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/clinics`;
+const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/clinics`;
 
 const prepareHeaders = (headers: Headers) => {
   const token = getToken();
