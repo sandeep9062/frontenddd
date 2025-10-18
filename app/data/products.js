@@ -5,7 +5,7 @@ const products = [
     name: "Kids Toothpaste – Bubblegum Blast",
     description: "Fluoride-free, bubblegum flavor, safe for kids.",
     price: "₹199",
-    image: require("../assets/Tooth Paste.png"),
+    image: "/Tooth Paste.png",
     category: "Toothpaste",
     buyLinks: [
       { name: "Amazon", url: "https://www.amazon.in/dp/B0CXYZ123" },
@@ -22,7 +22,7 @@ const products = [
     name: "Herbal Mouthwash",
     description: "Alcohol-free, herbal formula for gum care.",
     price: "₹120",
-    image: require("../assets/Mouth Wash.png"),
+    image: "/Mouth Wash.png",
     category: "MouthWash",
     buyLinks: [
       { name: "Amazon", url: "https://www.amazon.in/dp/B0CXYZ456" },
@@ -37,7 +37,7 @@ const products = [
     name: "Kids Toothbrush",
     description: "Soft bristles, safe for ages 3+.",
     price: "₹60",
-    image: require("../assets/Children’s Dentistry.png"),
+    image: "/Children’s Dentistry.png",
     category: "ToothBrushes",
     buyLinks: [
       { name: "Amazon", url: "https://www.amazon.in/dp/B0CXYZ789" }
@@ -51,7 +51,7 @@ const products = [
     name: "Charcoal Powder",
     description: "Natural whitening, herbal ingredients.",
     price: "₹250",
-    image: require("../assets/Ayurvedic Dental.png"),
+    image: "/Ayurvedic Dental.png",
     category: "Toothpaste",
     buyLinks: [
       { name: "Amazon", url: "https://www.amazon.in/dp/B0CXYZ101" }

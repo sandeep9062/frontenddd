@@ -12,7 +12,7 @@ import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 
 // Import your services data
-import { services } from "../services/services-data";
+import services from "../data/products";
 
 const Quote = () => {
   const [formData, setFormData] = useState({
@@ -86,20 +86,20 @@ const Quote = () => {
   ];
 
   return (
-    <div className="bg-white mt-10 pb-20 dark:bg-darkbg1 text-gray-900 dark:text-gray-100 min-h-screen transition-colors duration-300">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen pb-20 mt-10 text-gray-900 transition-colors duration-300 bg-white dark:bg-darkbg1 dark:text-gray-100">
+      <div className="container px-4 py-8 mx-auto">
         {/* Page Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12 mt-20"
+          className="mt-20 mb-12 text-center"
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <h1 className="mb-4 text-4xl font-bold md:text-5xl">
             Get Your{" "}
             <span className="text-gradient">Custom Quote</span>
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="max-w-2xl mx-auto text-xl text-gray-600 dark:text-gray-400">
             Tell us about your project and we'll provide you with a detailed quote tailored to your specific needs and budget.
           </p>
         </motion.div>
@@ -109,11 +109,11 @@ const Quote = () => {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 lg:grid-cols-3 gap-12"
+          className="grid grid-cols-1 gap-12 lg:grid-cols-3"
         >
           {/* Quote Form */}
           <motion.div variants={itemVariants} className="lg:col-span-2">
-            <Card className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800 transition-colors duration-300">
+            <Card className="transition-colors duration-300 bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-800">
               <CardHeader>
                 <CardTitle className="text-2xl">Project Details</CardTitle>
                 <CardDescription className="text-gray-500 dark:text-gray-400">
@@ -123,7 +123,7 @@ const Quote = () => {
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Contact Information */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div className="space-y-2">
                       <Label htmlFor="name">Full Name *</Label>
                       <Input
@@ -132,7 +132,7 @@ const Quote = () => {
                         onChange={(e) => handleInputChange("name", e.target.value)}
                         required
                         placeholder="Your full name"
-                        className="bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 focus-visible:ring-primary"
+                        className="bg-gray-100 border-gray-300 dark:bg-gray-800 dark:border-gray-700 focus-visible:ring-primary"
                       />
                     </div>
                     <div className="space-y-2 ">
@@ -144,7 +144,7 @@ const Quote = () => {
                         onChange={(e) => handleInputChange("email", e.target.value)}
                         required
                         placeholder="your@email.com"
-                        className="bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 focus-visible:ring-primary"
+                        className="bg-gray-100 border-gray-300 dark:bg-gray-800 dark:border-gray-700 focus-visible:ring-primary"
                       />
                     </div>
                   </div>
@@ -157,7 +157,7 @@ const Quote = () => {
                       value={formData.phone}
                       onChange={(e) => handleInputChange("phone", e.target.value)}
                       placeholder="+1 (555) 123-4567"
-                      className="bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 focus-visible:ring-primary"
+                      className="bg-gray-100 border-gray-300 dark:bg-gray-800 dark:border-gray-700 focus-visible:ring-primary"
                     />
                   </div>
 
@@ -169,13 +169,13 @@ const Quote = () => {
                       onValueChange={(value) => handleInputChange("projectType", value)}
                       required
                     >
-                      <SelectTrigger className="bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 focus-visible:ring-primary">
+                      <SelectTrigger className="bg-gray-100 border-gray-300 dark:bg-gray-800 dark:border-gray-700 focus-visible:ring-primary">
                         <SelectValue placeholder="Select project type" />
                       </SelectTrigger>
-                      <SelectContent className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100">
-                        {services.map((service) => (
-                          <SelectItem key={service.slug} value={service.slug}>
-                            {service.title}
+                      <SelectContent className="text-gray-900 bg-white border-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100">
+                        {services.map((service: { id: number; name: string }) => (
+                          <SelectItem key={service.id} value={service.name}>
+                            {service.name}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -191,21 +191,21 @@ const Quote = () => {
                       required
                       rows={4}
                       placeholder="Please describe your project, including technologies, goals, and any specific requirements."
-                      className="bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 focus-visible:ring-primary"
+                      className="bg-gray-100 border-gray-300 dark:bg-gray-800 dark:border-gray-700 focus-visible:ring-primary"
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div className="space-y-2">
                       <Label htmlFor="budget">Budget Range (Optional)</Label>
                       <Select
                         value={formData.budget}
                         onValueChange={(value) => handleInputChange("budget", value)}
                       >
-                        <SelectTrigger className="bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 focus-visible:ring-primary">
+                        <SelectTrigger className="bg-gray-100 border-gray-300 dark:bg-gray-800 dark:border-gray-700 focus-visible:ring-primary">
                           <SelectValue placeholder="Select budget range" />
                         </SelectTrigger>
-                        <SelectContent className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100">
+                        <SelectContent className="text-gray-900 bg-white border-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100">
                           {budgetOptions.map((option) => (
                             <SelectItem key={option.value} value={option.value}>
                               {option.label}
@@ -222,10 +222,10 @@ const Quote = () => {
                         onValueChange={(value) => handleInputChange("timeline", value)}
                         required
                       >
-                        <SelectTrigger className="bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 focus-visible:ring-primary">
+                        <SelectTrigger className="bg-gray-100 border-gray-300 dark:bg-gray-800 dark:border-gray-700 focus-visible:ring-primary">
                           <SelectValue placeholder="When do you need this?" />
                         </SelectTrigger>
-                        <SelectContent className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100">
+                        <SelectContent className="text-gray-900 bg-white border-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100">
                           <SelectItem value="rush">Rush (1-2 weeks)</SelectItem>
                           <SelectItem value="standard">Standard (1-2 months)</SelectItem>
                           <SelectItem value="flexible">Flexible (2-3 months)</SelectItem>
@@ -238,12 +238,12 @@ const Quote = () => {
                   {/* File Upload */}
                   <div className="space-y-2">
                     <Label htmlFor="files">Upload Reference Files (Optional)</Label>
-                    <div className="border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg p-6 text-center">
-                      <Upload className="h-8 w-8 text-gray-400 dark:text-gray-600 mx-auto mb-2" />
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                    <div className="p-6 text-center border-2 border-gray-300 border-dashed rounded-lg dark:border-gray-700">
+                      <Upload className="w-8 h-8 mx-auto mb-2 text-gray-400 dark:text-gray-600" />
+                      <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
                         Upload wireframes, design mockups, or project briefs.
                       </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-500 mb-4">
+                      <p className="mb-4 text-xs text-gray-500 dark:text-gray-500">
                         Supported formats: PDF, ZIP, JPG, PNG, AI, Sketch (Max 25MB total)
                       </p>
                       <Input
@@ -258,7 +258,7 @@ const Quote = () => {
                         type="button"
                         variant="outline"
                         onClick={() => document.getElementById("files")?.click()}
-                        className="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
+                        className="text-gray-900 bg-white border-gray-300 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
                       >
                         Choose Files
                       </Button>
@@ -266,7 +266,7 @@ const Quote = () => {
                     {formData.files && formData.files.length > 0 && (
                       <div className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                         <p className="font-semibold">Selected file(s):</p>
-                        <ul className="list-disc list-inside space-y-1">
+                        <ul className="space-y-1 list-disc list-inside">
                           {Array.from(formData.files).map((file, index) => (
                             <li key={index} className="truncate">{file.name}</li>
                           ))}
@@ -275,7 +275,7 @@ const Quote = () => {
                     )}
                   </div>
 
-                  <Button type="submit" size="lg" className="w-full bg-gold text-black hover:bg-gold/80 dark:bg-gold dark:text-black dark:hover:bg-gold/80">
+                  <Button type="submit" size="lg" className="w-full text-black bg-gold hover:bg-gold/80 dark:bg-gold dark:text-black dark:hover:bg-gold/80">
                     Submit Quote Request
                   </Button>
                 </form>
@@ -287,10 +287,10 @@ const Quote = () => {
           <motion.div variants={itemVariants} className="space-y-6">
             {/* What You Get */}
             <motion.div variants={itemVariants}>
-              <Card className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800 transition-colors duration-300">
+              <Card className="transition-colors duration-300 bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-800">
                 <CardHeader>
                   <CardTitle className="flex items-center">
-                    <CheckCircle className="h-5 w-5 mr-2 text-gold" />
+                    <CheckCircle className="w-5 h-5 mr-2 text-gold" />
                     What You Get
                   </CardTitle>
                 </CardHeader>
@@ -298,7 +298,7 @@ const Quote = () => {
                   <ul className="space-y-2">
                     {benefits.map((benefit, index) => (
                       <li key={index} className="flex items-center text-sm text-gray-700 dark:text-gray-300">
-                        <CheckCircle className="h-4 w-4 text-gold mr-2 flex-shrink-0" />
+                        <CheckCircle className="flex-shrink-0 w-4 h-4 mr-2 text-gold" />
                         {benefit}
                       </li>
                     ))}
@@ -309,12 +309,12 @@ const Quote = () => {
 
             {/* Response Time */}
             <motion.div variants={itemVariants}>
-              <Card className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800 transition-colors duration-300">
+              <Card className="transition-colors duration-300 bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-800">
                 <CardHeader>
                   <CardTitle>Quick Response</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+                  <p className="mb-4 text-sm text-gray-500 dark:text-gray-400">
                     We typically respond to quote requests within **24 hours** during business days.
                   </p>
                   <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -326,20 +326,20 @@ const Quote = () => {
 
             {/* Contact Info */}
             <motion.div variants={itemVariants}>
-              <Card className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800 transition-colors duration-300">
+              <Card className="transition-colors duration-300 bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-800">
                 <CardHeader>
                   <CardTitle>Need Help?</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-center space-x-3">
-                    <Phone className="h-5 w-5 text-gold" />
+                    <Phone className="w-5 h-5 text-gold" />
                     <div>
                       <p className="font-medium text-gray-800 dark:text-gray-200">Call Us</p>
                       <p className="text-sm text-gray-500 dark:text-gray-400">+1 (555) 123-4567</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Mail className="h-5 w-5 text-gold" />
+                    <Mail className="w-5 h-5 text-gold" />
                     <div>
                       <p className="font-medium text-gray-800 dark:text-gray-200">Email Us</p>
                       <p className="text-sm text-gray-500 dark:text-gray-400">info@ignit.com</p>
@@ -348,9 +348,9 @@ const Quote = () => {
                   <div className="pt-4">
                     <Button
                       variant="outline"
-                      className="w-full bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      className="w-full text-gray-900 bg-white border-gray-300 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
                     >
-                      <FileText className="h-4 w-4 text-gold mr-2" />
+                      <FileText className="w-4 h-4 mr-2 text-gold" />
                       Download Project Brief
                     </Button>
                   </div>

@@ -13,7 +13,6 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import BottomCTA from "@/app/services/BottomCTA/BottomCTA";
 
 export default function ProjectDetailPage() {
   const {slug } = useParams();
@@ -30,9 +29,9 @@ export default function ProjectDetailPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-xl text-gray-500 dark:text-gray-400">
+      <div className="flex items-center justify-center min-h-screen text-xl text-gray-500 dark:text-gray-400">
         <svg
-          className="animate-spin -ml-1 mr-3 h-5 w-5 text-gray-400"
+          className="w-5 h-5 mr-3 -ml-1 text-gray-400 animate-spin"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
@@ -58,8 +57,8 @@ export default function ProjectDetailPage() {
 
   if (isError || !project) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-center px-6">
-        <p className="text-xl text-red-500 dark:text-red-400 font-semibold">
+      <div className="flex items-center justify-center min-h-screen px-6 text-center">
+        <p className="text-xl font-semibold text-red-500 dark:text-red-400">
           Error: Project could not be loaded or was not found.
         </p>
       </div>
@@ -83,7 +82,7 @@ export default function ProjectDetailPage() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
+      transition: { duration: 0.5, ease: "easeInOut" },
     },
   };
   // --------------------------
@@ -97,14 +96,14 @@ export default function ProjectDetailPage() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="min-h-screen mt-5 bg-white dark:bg-darkbg1 py-16 sm:py-24 px-4 md:px-8"
+        className="min-h-screen px-4 py-16 mt-5 bg-white dark:bg-darkbg1 sm:py-24 md:px-8"
       >
         <div className="max-w-6xl mx-auto">
           {/* Back to Portfolio Button */}
           <motion.div variants={itemVariants} className="mb-8">
             <Link
               href="/portfolio"
-              className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 text-gray-600 transition-colors dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
             >
               <ArrowLeft size={20} />
               <span className="font-medium">Back to Portfolio</span>
@@ -112,10 +111,10 @@ export default function ProjectDetailPage() {
           </motion.div>
 
           {/* Title & Type */}
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 sm:mb-12">
+          <div className="flex flex-col items-start justify-between mb-8 sm:flex-row sm:items-center sm:mb-12">
             <motion.h1
               variants={itemVariants}
-              className="text-4xl md:text-5xl font-extrabold text-gray-800 dark:text-white mb-4 sm:mb-0"
+              className="mb-4 text-4xl font-extrabold text-gray-800 md:text-5xl dark:text-white sm:mb-0"
             >
               {project.title}
             </motion.h1>
@@ -141,7 +140,7 @@ export default function ProjectDetailPage() {
                 autoplay={{ delay: 4000, disableOnInteraction: false }}
                 loop
                 // Use a group class to enable group-hover effects for navigation
-                className="rounded-xl shadow-2xl overflow-hidden swiper-container-custom group"
+                className="overflow-hidden shadow-2xl rounded-xl swiper-container-custom group"
               >
                 {project.image.map((img: string, i: number) => (
                   <SwiperSlide key={i}>
@@ -165,7 +164,7 @@ export default function ProjectDetailPage() {
           {project.description && (
             <motion.p
               variants={itemVariants}
-              className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-12 border-l-4 border-gold pl-4 py-2 italic"
+              className="py-2 pl-4 mb-12 text-xl italic leading-relaxed text-gray-600 border-l-4 dark:text-gray-300 border-gold"
             >
               {project.description}
             </motion.p>
@@ -173,12 +172,12 @@ export default function ProjectDetailPage() {
 
           {/* Details & Info Section */}
           <motion.div variants={containerVariants} className="mb-12">
-            <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white border-b border-gray-200 dark:border-gray-700 pb-2">
+            <h2 className="pb-2 mb-4 text-2xl font-bold text-gray-800 border-b border-gray-200 dark:text-white dark:border-gray-700">
               Project Overview
             </h2>
             <motion.div
               variants={itemVariants}
-              className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-gray-700 dark:text-gray-300"
+              className="grid gap-6 text-gray-700 sm:grid-cols-2 lg:grid-cols-3 dark:text-gray-300"
             >
               {project.clientName && (
                 <p>
@@ -216,14 +215,14 @@ export default function ProjectDetailPage() {
           {/* Technologies */}
           {project.technologiesUsed?.length > 0 && (
             <motion.div variants={containerVariants} className="mb-12">
-              <h3 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">
+              <h3 className="mb-4 text-2xl font-bold text-gray-800 dark:text-white">
                 Core Technologies
               </h3>
               <motion.ul variants={itemVariants} className="flex flex-wrap gap-3">
                 {project.technologiesUsed.map((tech: string, i: number) => (
                   <li
                     key={i}
-                    className="px-4 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm font-medium border border-gray-200 dark:border-gray-600 shadow-sm"
+                    className="px-4 py-1 text-sm font-medium bg-gray-100 border border-gray-200 rounded-full shadow-sm dark:bg-gray-700 dark:border-gray-600"
                   >
                     {tech}
                   </li>
@@ -235,19 +234,19 @@ export default function ProjectDetailPage() {
           {/* Features */}
           {project.features?.length > 0 && (
             <motion.div variants={containerVariants} className="mb-12">
-              <h3 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">
+              <h3 className="mb-4 text-2xl font-bold text-gray-800 dark:text-white">
                 Key Features
               </h3>
               <motion.ul
                 variants={itemVariants}
-                className="list-none pl-0 space-y-3"
+                className="pl-0 space-y-3 list-none"
               >
                 {project.features.map((f: string, i: number) => (
                   <li
                     key={i}
                     className="flex items-start text-gray-700 dark:text-gray-300"
                   >
-                    <span className="text-gold mr-3 mt-1 text-lg">
+                    <span className="mt-1 mr-3 text-lg text-gold">
                       &bull;
                     </span>
                     {f}
@@ -267,7 +266,7 @@ export default function ProjectDetailPage() {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-3 bg-gray-800 text-white rounded-lg font-medium transition duration-300 hover:bg-yellow-500 hover:text-gray-900 shadow-md"
+                className="flex items-center gap-2 px-6 py-3 font-medium text-white transition duration-300 bg-gray-800 rounded-lg shadow-md hover:bg-yellow-500 hover:text-gray-900"
               >
                 <span className="truncate">View Code on GitHub</span>{" "}
                 <ExternalLink size={18} />
@@ -279,7 +278,7 @@ export default function ProjectDetailPage() {
                 href={project.live}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-3 border border-yellow-500 text-yellow-500 rounded-lg font-medium transition duration-300 hover:bg-yellow-500 hover:text-gray-900 shadow-md"
+                className="flex items-center gap-2 px-6 py-3 font-medium text-yellow-500 transition duration-300 border border-yellow-500 rounded-lg shadow-md hover:bg-yellow-500 hover:text-gray-900"
               >
                 <span className="truncate">Live Demo</span>{" "}
                 <ExternalLink size={18} />
@@ -291,7 +290,7 @@ export default function ProjectDetailPage() {
                 href={project.deployment}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-medium transition duration-300 hover:bg-gray-100 dark:hover:bg-gray-700 shadow-sm"
+                className="flex items-center gap-2 px-6 py-3 font-medium text-gray-700 transition duration-300 border border-gray-300 rounded-lg shadow-sm dark:border-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <span className="truncate">Deployment Details</span>{" "}
                 <ExternalLink size={18} />
@@ -300,8 +299,6 @@ export default function ProjectDetailPage() {
           </motion.div>
         </div>
       </motion.section>
-
-      <BottomCTA />
     </>
   );
 }
