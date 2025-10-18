@@ -31,7 +31,7 @@ const BloodTestLabList: React.FC = () => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/diagnostic-labs`
+          `${process.env.NEXT_PUBLIC_API_URL}/api/diagnostic-labs`
         );
         if (res.data.success) {
           setLabs(res.data.data);

@@ -5,7 +5,7 @@ const getToken = () => localStorage.getItem("token");
 export const siteSettingsApi = createApi({
   reducerPath: "siteSettingsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/site-settings`,
+    baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/api/v1/site-settings`,
     prepareHeaders: (headers) => {
       const token = getToken();
       if (token) {

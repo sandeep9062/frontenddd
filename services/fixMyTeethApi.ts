@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
-  ? `${process.env.NEXT_PUBLIC_API_URL}/v1`
+  ? `${process.env.NEXT_PUBLIC_API_URL}/api/v1`
   : "http://localhost:9000/api/v1";
 
 const getToken = () =>

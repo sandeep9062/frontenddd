@@ -4,6 +4,6 @@ export interface CbctOpgLab {
   location: string;
   rating: number;
   specialty: string;
-  image: string;
+  img: string;
   state: string;
 }

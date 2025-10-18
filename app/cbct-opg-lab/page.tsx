@@ -96,7 +96,7 @@ const CbctOpgLabList: React.FC = () => {
             className="border border-gray-200 rounded-2xl shadow-lg bg-white flex flex-col justify-between transition hover:shadow-2xl hover:scale-[1.02] duration-200"
           >
             <Image
-              src={lab.image}
+              src={lab.img}
               alt={lab.name}
               width={192}
               height={192}

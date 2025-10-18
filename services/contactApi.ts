@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const getToken = () =>
   typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
-const baseUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/contacts`;
+const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/contacts`;
 
 const prepareHeaders = (headers: Headers) => {
   const token = getToken();

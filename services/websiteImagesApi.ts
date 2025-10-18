@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 // Helper to get token from localStorage
 const getToken = () => localStorage.getItem("token");
 
-const baseUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/website-images`;
+const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/website-images`;
 const prepareHeaders = (headers: Headers) => {
   const token = getToken();
   if (token) {
