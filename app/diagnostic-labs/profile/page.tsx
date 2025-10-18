@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-const page = () => {
+const DiagnosticLabsProfilePage = () => {
   const router = useRouter();
 
   const handleLogout = () => {
@@ -41,4 +41,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default DiagnosticLabsProfilePage;

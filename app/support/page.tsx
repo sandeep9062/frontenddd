@@ -54,8 +54,9 @@ const HelpSupport: React.FC = () => {
       } else {
         throw new Error(response.message || "An unknown error occurred.");
       }
-    } catch (err: any) {
-      toast.error(err.message || "Failed to send message. Please try again.", {
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Failed to send message. Please try again.";
+      toast.error(message, {
         id: toastId,
       });
     } finally {

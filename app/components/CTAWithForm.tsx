@@ -66,9 +66,9 @@ const CTAWithForm = () => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="max-w-4xl mx-auto px-4"
+        className="max-w-4xl px-4 mx-auto"
       >
-        <h2 className="text-2xl md:text-4xl font-semibold">
+        <h2 className="text-2xl font-semibold md:text-4xl">
           Let’s Build Something Golden
         </h2>
         <p className="mt-2 text-gray-800">
@@ -82,7 +82,7 @@ const CTAWithForm = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
-              className="mt-6 text-navy bg-white p-4 rounded-md shadow-md"
+              className="p-4 mt-6 bg-white rounded-md shadow-md text-navy"
             >
               Thank you! Your message has been sent.
             </motion.div>
@@ -96,7 +96,7 @@ const CTAWithForm = () => {
               transition={{ type: "spring", stiffness: 200, damping: 20 }}
               className="mt-8 space-y-4 text-left"
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <input
                   type="text"
                   name="name"
@@ -104,7 +104,7 @@ const CTAWithForm = () => {
                   onChange={handleChange}
                   placeholder="Your Name"
                   required
-                  className="w-full px-4 py-3 rounded-md bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black"
+                  className="w-full px-4 py-3 text-black placeholder-gray-500 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-black"
                 />
                 <input
                   type="email"
@@ -113,11 +113,11 @@ const CTAWithForm = () => {
                   onChange={handleChange}
                   placeholder="Your Email"
                   required
-                  className="w-full px-4 py-3 rounded-md bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black"
+                  className="w-full px-4 py-3 text-black placeholder-gray-500 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-black"
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <input
                   type="tel"
                   name="phone"
@@ -125,7 +125,7 @@ const CTAWithForm = () => {
                   onChange={handleChange}
                   placeholder="Phone Number"
                   required
-                  className="w-full px-4 py-3 rounded-md bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black"
+                  className="w-full px-4 py-3 text-black placeholder-gray-500 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-black"
                 />
                 <input
                   type="text"
@@ -134,7 +134,7 @@ const CTAWithForm = () => {
                   onChange={handleChange}
                   placeholder="Subject"
                   required
-                  className="w-full px-4 py-3 rounded-md bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black"
+                  className="w-full px-4 py-3 text-black placeholder-gray-500 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-black"
                 />
               </div>
 
@@ -145,7 +145,7 @@ const CTAWithForm = () => {
                 placeholder="Your Message"
                 required
                 rows={4}
-                className="w-full px-4 py-3 rounded-md bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-black"
+                className="w-full px-4 py-3 text-black placeholder-gray-500 bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-black"
               ></textarea>
 
               <div className="mt-4">
@@ -164,7 +164,7 @@ const CTAWithForm = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   disabled={isLoading}
-                  className="bg-darkbg1 text-white px-6 py-3 rounded hover:bg-darkbg2 transition disabled:opacity-50"
+                  className="px-6 py-3 text-white transition rounded bg-darkbg1 hover:bg-darkbg2 disabled:opacity-50"
                 >
                   {isLoading ? "Sending..." : "Send Message"}
                 </motion.button>

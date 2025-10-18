@@ -12,7 +12,7 @@ export default function ResetPassword() {
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
 
-  const handleReset = async (e: any) => {
+  const handleReset = async (e: React.FormEvent) => {
     e.preventDefault();
     const res = await axios.post(`/auth/reset/${token}`, { password });
     setMsg(res.data.message);
@@ -20,8 +20,8 @@ export default function ResetPassword() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-16 p-6 bg-white rounded-xl shadow">
-      <h2 className="text-xl font-bold mb-4 text-center">Reset Password</h2>
+    <div className="max-w-md p-6 mx-auto mt-16 bg-white shadow rounded-xl">
+      <h2 className="mb-4 text-xl font-bold text-center">Reset Password</h2>
       <form onSubmit={handleReset} className="space-y-4">
         <Input
           type="password"
@@ -32,7 +32,7 @@ export default function ResetPassword() {
         <Button type="submit" className="w-full">
           Reset Password
         </Button>
-        {msg && <p className="text-green-600 text-sm">{msg}</p>}
+        {msg && <p className="text-sm text-green-600">{msg}</p>}
       </form>
     </div>
   );

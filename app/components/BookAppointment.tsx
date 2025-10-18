@@ -136,9 +136,13 @@ const BookAppointment: React.FC<BookAppointmentProps> = ({ clinic: clinicProp })
       } else {
         toast.error(response.data.message);
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Error booking appointment:", error);
-      toast.error(error.response?.data?.message || "Something went wrong.");
+      if (axios.isAxiosError(error)) {
+        toast.error(error.response?.data?.message || "Something went wrong.");
+      } else {
+        toast.error("An unexpected error occurred.");
+      }
     }
   };
 

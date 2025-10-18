@@ -3,8 +3,12 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
-import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
-import axios from "axios";
+import {
+  GoogleLogin,
+  GoogleOAuthProvider,
+  CredentialResponse,
+} from "@react-oauth/google";
+import axios, { AxiosError } from "axios";
 
 interface RegisterResponse {
   message: string;
@@ -34,12 +38,19 @@ const Register: React.FC = () => {
       );
       toast.success(data.message || "Registration successful!");
       router.push("/login");
-    } catch (error: any) {
-      toast.error(error.response?.data?.message || "Registration failed");
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const axiosError = error as AxiosError<{ message: string }>;
+        toast.error(
+          axiosError.response?.data?.message || "Registration failed"
+        );
+      } else {
+        toast.error("An unexpected error occurred during registration.");
+      }
     }
   };
 
-  const responseGoogle = async (response: any) => {
+  const responseGoogle = async (response: CredentialResponse) => {
     try {
       const { data } = await axios.post<RegisterResponse>(
         "/api/patient/google-login",
@@ -52,8 +63,13 @@ const Register: React.FC = () => {
         localStorage.setItem("token", data.token);
       }
       router.push("/");
-    } catch (error: any) {
-      toast.error(error.response?.data?.message || "Google login failed");
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const axiosError = error as AxiosError<{ message: string }>;
+        toast.error(axiosError.response?.data?.message || "Google login failed");
+      } else {
+        toast.error("An unexpected error occurred during Google login.");
+      }
     }
   };
 

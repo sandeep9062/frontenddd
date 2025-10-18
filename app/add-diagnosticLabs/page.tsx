@@ -63,7 +63,7 @@ const AddDiagnosticLab: React.FC = () => {
 
       const body = new FormData();
       Object.entries(formData).forEach(([key, value]) => {
-        if (value !== null) body.append(key, value as any);
+        if (value !== null) body.append(key, value);
       });
 
       const res = await fetch(
