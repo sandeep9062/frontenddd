@@ -28,7 +28,7 @@ const PortfolioPreview = () => {
     data: projects = [],
     isLoading,
     isError,
-  } = useGetProjectsQuery<Project[]>();
+  } = useGetProjectsQuery();
 
   if (isLoading) {
     return (
@@ -57,7 +57,7 @@ const PortfolioPreview = () => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true, amount: 0.1 }}
-        className="max-w-6xl mx-auto px-4"
+        className="max-w-6xl px-4 mx-auto"
       >
         {/* Heading */}
         <motion.h2
@@ -70,7 +70,7 @@ const PortfolioPreview = () => {
           Recent Work
         </motion.h2>
         <motion.p
-          className="text-center text-gray-600 dark:text-gray-400 mt-2 mb-12"
+          className="mt-2 mb-12 text-center text-gray-600 dark:text-gray-400"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.5 }}
@@ -80,7 +80,7 @@ const PortfolioPreview = () => {
         </motion.p>
 
         {/* Projects Grid */}
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {[...projects]
             .sort(
               (a, b) =>
@@ -107,7 +107,7 @@ const PortfolioPreview = () => {
                   {/* Type badge */}
                   {project.type && (
                     <span
-                      className="absolute top-4 right-4 text-xs font-bold uppercase px-3 py-1 rounded-full z-10"
+                      className="absolute z-10 px-3 py-1 text-xs font-bold uppercase rounded-full top-4 right-4"
                       style={{ backgroundColor: ACCENT_GOLD, color: "#000" }}
                     >
                       {project.type}
@@ -115,7 +115,7 @@ const PortfolioPreview = () => {
                   )}
 
                   {/* Image */}
-                  <div className="relative h-52 w-full">
+                  <div className="relative w-full h-52">
                     <Link href={`/projects/${project.slug}`}>
                       <Image
                         height={400}
@@ -138,7 +138,7 @@ const PortfolioPreview = () => {
                         {project.title}
                       </h3>
 
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 line-clamp-3">
+                      <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 line-clamp-3">
                         {project.description}
                       </p>
 
@@ -147,7 +147,7 @@ const PortfolioPreview = () => {
                         <Link
                           href={`/projects/${project.slug}`}
                           aria-label={`View details for ${project.title}`}
-                          className="text-gray-700 dark:text-gray-300 transition hover:text-gold"
+                          className="text-gray-700 transition dark:text-gray-300 hover:text-gold"
                           style={{ transition: "color 0.3s ease" }}
                         >
                           <ExternalLink size={20} />
@@ -170,7 +170,7 @@ const PortfolioPreview = () => {
         >
           <Link
             href="/portfolio"
-            className="inline-block px-8 py-3 rounded font-semibold transition"
+            className="inline-block px-8 py-3 font-semibold transition rounded"
             style={{ backgroundColor: ACCENT_GOLD, color: "#000" }}
           >
             Explore More Projects
