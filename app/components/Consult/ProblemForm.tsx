@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, FormEvent } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import axios from "axios";
@@ -23,7 +23,6 @@ const ProblemForm: React.FC = () => {
   const [problem, setProblem] = useState<string>("");
   const [otherProblem, setOtherProblem] = useState<string>("");
   const [error, setError] = useState<string>("");
-  const [dentists, setDentists] = useState<Dentist[]>([]);
   const [filteredDentists, setFilteredDentists] = useState<Dentist[]>([]);
   const [showSpecialistCard, setShowSpecialistCard] = useState<boolean>(false);
 

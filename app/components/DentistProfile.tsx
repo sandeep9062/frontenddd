@@ -227,7 +227,7 @@ export default function DentistProfilePage() {
           hasClinic: profile?.hasClinic || false,
           agreeDisclaimer: profile?.agreeDisclaimer || false,
         });
-      } catch (error) {
+      } catch {
         toast.error("Failed to load profile");
       } finally {
         setLoading(false);
