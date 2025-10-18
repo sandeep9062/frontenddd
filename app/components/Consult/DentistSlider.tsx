@@ -46,11 +46,20 @@ const DentistSlider: React.FC = () => {
   const slides = useResponsiveChunk(dentists, 3, 1);
   const [current, setCurrent] = useState<number>(0);
   const router = useRouter();
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     const fetchDentists = async () => {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+      if (!apiUrl) {
+        console.error("NEXT_PUBLIC_API_URL is not set.");
+        setError("Application is not configured correctly.");
+        return;
+      }
+
       try {
-        const response = await axios.get("http://localhost:9000/api/v1/dentists");
+        const response = await axios.get(`${apiUrl}/api/v1/dentists`);
         setDentists(response.data);
       } catch (error) {
         console.error("Error fetching dentists:", error);
