@@ -14,13 +14,6 @@ import { useGetBlogBySlugQuery } from "../../../services/blogsApi";
 import Newsletter from "@/app/components/NewsLetter";
 import { Spin } from "antd";
 
-interface Comment {
-  name: string;
-  email: string;
-  comment: string;
-  createdAt: string;
-}
-
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {

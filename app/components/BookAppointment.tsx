@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -27,17 +27,6 @@ interface Clinic {
   DoctorImage?: string;
   Services?: string;
   Specialty?: string;
-}
-
-interface Story {
-  recommend: boolean | null;
-  problem: string;
-  waitTime: string;
-  improvements: string[];
-  experience: string;
-  name: string;
-  phone: string;
-  anonymous: boolean;
 }
 
 // Default time slots
@@ -80,22 +69,8 @@ interface BookAppointmentProps {
 
 const BookAppointment: React.FC<BookAppointmentProps> = ({ clinic: clinicProp }) => {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const [clinic] = useState<Clinic>(clinicProp || ({} as Clinic));
 
-  const [activeTab, setActiveTab] = useState<"info" | "profile" | "services" | "consult" | "healthfeed">("info");
-  const [showStoryModal, setShowStoryModal] = useState(false);
-  const [story, setStory] = useState<Story>({
-    recommend: null,
-    problem: "",
-    waitTime: "",
-    improvements: [],
-    experience: "",
-    name: "",
-    phone: "",
-    anonymous: false,
-  });
-  const [stories, setStories] = useState<Story[]>([]);
   const [selectedSlot, setSelectedSlot] = useState<string>("");
   const [selectedDate, setSelectedDate] = useState<string>(allDays[0].value);
   const [patientName, setPatientName] = useState<string>("");
@@ -144,31 +119,6 @@ const BookAppointment: React.FC<BookAppointmentProps> = ({ clinic: clinicProp })
         toast.error("An unexpected error occurred.");
       }
     }
-  };
-
-  const handleStorySubmit = () => {
-    if (
-      story.recommend === null ||
-      !story.problem ||
-      !story.waitTime ||
-      !story.improvements.length ||
-      !story.experience
-    ) {
-      toast.error("Please fill all required fields.");
-      return;
-    }
-    setStories([...stories, story]);
-    setShowStoryModal(false);
-    setStory({
-      recommend: null,
-      problem: "",
-      waitTime: "",
-      improvements: [],
-      experience: "",
-      name: "",
-      phone: "",
-      anonymous: false,
-    });
   };
 
   return (

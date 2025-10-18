@@ -54,8 +54,9 @@ const CTAWithForm = () => {
       });
       setVerified(false);
       setRecaptchaToken(null);
-    } catch (error: any) {
-      toast.error(error?.data?.message || "Something went wrong!");
+    } catch (error) {
+      const apiError = error as { data?: { message?: string } };
+      toast.error(apiError?.data?.message || "Something went wrong!");
     }
   };
 

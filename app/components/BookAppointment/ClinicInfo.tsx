@@ -1,13 +1,16 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import { Clinic } from "./types";
 
 const ClinicInfo: React.FC<{ clinic: Clinic }> = ({ clinic }) => {
   return (
     <div className="flex flex-col items-center flex-1 p-8 bg-white shadow-xl rounded-2xl">
-      <img
+      <Image
         src={clinic.Image || clinic.image || "/placeholder-clinic.png"}
         alt={clinic.Name || clinic.name || "Clinic"}
+        width={128}
+        height={128}
         className="h-32 w-32 object-cover rounded-full border-4 border-[#2C73D2] shadow-lg mb-4"
       />
       <div className="font-bold text-2xl mb-1 text-[#2056AE]">
