@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useCallback } from "react";
+import Image from "next/image";
 import { useDropzone } from "react-dropzone";
 import { toast } from "react-hot-toast";
 import { useAddClinicMutation } from "@/services/clinicApi";
@@ -129,9 +130,11 @@ const AddClinicPage = () => {
             >
               <input {...getInputProps()} />
               {preview ? (
-                <img
+                <Image
                   src={preview}
                   alt="Uploaded clinic"
+                  width={192}
+                  height={192}
                   className="object-cover w-48 h-48 rounded-md"
                 />
               ) : (

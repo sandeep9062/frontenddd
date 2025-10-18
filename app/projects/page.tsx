@@ -6,16 +6,6 @@ import { useState } from "react";
 import { ExternalLink } from "lucide-react";
 import { useGetProjectsQuery } from "../../services/projectsApi";
 
-// ✅ Define project type with image as array
-interface Project {
-  _id: string;
-  slug: string;
-  title: string;
-  description: string;
-  type: string;
-  image: string[]; // ✅ array of images
-}
-
 // ✅ Corrected category names to match database format
 const categories = [
   "All",
@@ -50,12 +40,12 @@ const PortfolioPage = () => {
   );
 
   if (isLoading) {
-    return <div className="text-center py-20">Loading...</div>;
+    return <div className="py-20 text-center">Loading...</div>;
   }
 
   if (isError) {
     return (
-      <div className="text-center py-20 text-red-500">
+      <div className="py-20 text-center text-red-500">
         Error fetching projects.
       </div>
     );
@@ -67,20 +57,20 @@ const PortfolioPage = () => {
   };
 
   return (
-    <section className="min-h-screen bg-white dark:bg-darkbg1 py-20 px-6 md:px-10">
-      <div className="max-w-7xl mx-auto">
+    <section className="min-h-screen px-6 py-20 bg-white dark:bg-darkbg1 md:px-10">
+      <div className="mx-auto max-w-7xl">
         {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-4xl font-bold text-center text-navy dark:text-white mb-10"
+          className="mb-10 text-4xl font-bold text-center text-navy dark:text-white"
         >
           Featured Projects
         </motion.h2>
 
         {/* Category Filters */}
-        <div className="flex justify-center gap-4 flex-wrap mb-12">
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -97,7 +87,7 @@ const PortfolioPage = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {paginatedProjects.map((project, index) => {
             const coverImage =
               project.image && project.image.length > 0
@@ -121,7 +111,7 @@ const PortfolioPage = () => {
                     alt={project.title || "Project image"}
                     width={600}
                     height={400}
-                    className="h-52 w-full object-cover"
+                    className="object-cover w-full h-52"
                   />
                 </Link>
 
@@ -132,7 +122,7 @@ const PortfolioPage = () => {
                     <h3 className="text-xl font-semibold text-navy dark:text-white">
                       {project.title}
                     </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 line-clamp-3">
+                    <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 line-clamp-3">
                       {project.description}
                     </p>
 
@@ -155,14 +145,14 @@ const PortfolioPage = () => {
 
         {/* No Projects Found */}
         {filtered.length === 0 && (
-          <p className="text-center text-gray-500 dark:text-gray-400 mt-10">
+          <p className="mt-10 text-center text-gray-500 dark:text-gray-400">
             No projects found for “{active}”
           </p>
         )}
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex justify-center items-center gap-2 mt-12">
+          <div className="flex items-center justify-center gap-2 mt-12">
             {Array.from({ length: totalPages }, (_, i) => (
               <button
                 key={i}

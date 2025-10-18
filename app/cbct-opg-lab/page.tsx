@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useGetCbctOpgLabsQuery } from "@/services/cbctOpgLabs";
 import allStatesAndUTs from "@/app/data/allStatesAndUTs";
@@ -94,9 +95,11 @@ const CbctOpgLabList: React.FC = () => {
             key={lab.id}
             className="border border-gray-200 rounded-2xl shadow-lg bg-white flex flex-col justify-between transition hover:shadow-2xl hover:scale-[1.02] duration-200"
           >
-            <img
-              src={lab.img}
+            <Image
+              src={lab.image}
               alt={lab.name}
+              width={192}
+              height={192}
               className="object-cover w-full h-48 rounded-t-2xl"
             />
             <div className="flex flex-col gap-2 p-6">

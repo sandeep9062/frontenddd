@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { CalendarDays, User, ArrowRight } from "lucide-react";
+import { CalendarDays, User } from "lucide-react";
 
 import { useGetBlogsQuery } from "../../services/blogsApi";
 import Newsletter from "../components/NewsLetter";

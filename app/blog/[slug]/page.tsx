@@ -21,30 +21,6 @@ interface Comment {
   createdAt: string;
 }
 
-interface Blog {
-  _id: string;
-  title: string;
-  slug: string;
-  desc: string;
-  content: string;
-  image?: string;
-  category: string;
-  tags: string[];
-  author: string;
-  authorImage?: string;
-  date: string;
-  readTime: number;
-  views: number;
-  likes: number;
-  isFeatured: boolean;
-  seoMetaTitle?: string;
-  seoMetaDescription?: string;
-  status: "draft" | "published" | "archived";
-  comments: Comment[];
-  createdAt: string;
-  updatedAt: string;
-}
-
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
@@ -73,7 +49,7 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-xl text-gray-500 dark:text-gray-400">
+      <div className="flex items-center justify-center min-h-screen text-xl text-gray-500 dark:text-gray-400">
         <Spin size="large" tip="Loading blog..." />
       </div>
     );
@@ -81,8 +57,8 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
 
   if (isError || !blog) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-center px-6">
-        <p className="text-xl text-red-500 dark:text-red-400 font-semibold">
+      <div className="flex items-center justify-center min-h-screen px-6 text-center">
+        <p className="text-xl font-semibold text-red-500 dark:text-red-400">
           Error: Blog not found.
         </p>
       </div>
@@ -118,7 +94,7 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
           <motion.div variants={itemVariants} className="mb-6">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 text-gray-600 transition-colors dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
             >
               <ArrowLeft size={20} />
               <span className="font-medium">Back to Blog List</span>
@@ -128,7 +104,7 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
           {/* Title */}
           <motion.h1
             variants={itemVariants}
-            className="text-4xl md:text-5xl font-extrabold text-gray-800 dark:text-white mb-6"
+            className="mb-6 text-4xl font-extrabold text-gray-800 md:text-5xl dark:text-white"
           >
             {title}
           </motion.h1>
@@ -136,7 +112,7 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
           {/* Meta Info */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-wrap gap-4 items-center text-sm text-gray-600 dark:text-gray-400 mb-8"
+            className="flex flex-wrap items-center gap-4 mb-8 text-sm text-gray-600 dark:text-gray-400"
           >
             <span className="flex items-center gap-1 font-semibold text-gray-800 dark:text-white">
               {authorImage && (
@@ -145,7 +121,7 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
                   alt={author}
                   width={40}
                   height={40}
-                  className="rounded-full mr-2 object-cover"
+                  className="object-cover mr-2 rounded-full"
                 />
               )}
               <User size={16} /> {author}
@@ -194,7 +170,7 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
           {desc && (
             <motion.p
               variants={itemVariants}
-              className="text-lg text-gray-700 dark:text-gray-300 mb-8 italic border-l-4 border-yellow-500 pl-4"
+              className="pl-4 mb-8 text-lg italic text-gray-700 border-l-4 border-yellow-500 dark:text-gray-300"
             >
               {desc}
             </motion.p>
@@ -214,14 +190,14 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
           {/* Tags */}
           {tags?.length > 0 && (
             <motion.div variants={itemVariants} className="mt-10">
-              <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white">
+              <h3 className="mb-3 text-xl font-semibold text-gray-800 dark:text-white">
                 Tags
               </h3>
               <div className="flex flex-wrap gap-2">
                 {tags.map((tag: string, i: number) => (
                   <span
                     key={i}
-                    className="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-sm font-medium"
+                    className="px-3 py-1 text-sm font-medium bg-gray-200 rounded-full dark:bg-gray-700"
                   >
                     #{tag}
                   </span>
@@ -233,7 +209,7 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
           {/* Comments Section */}
           {comments?.length > 0 && (
             <motion.div variants={containerVariants} className="mt-12">
-              <h3 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">
+              <h3 className="mb-4 text-2xl font-bold text-gray-800 dark:text-white">
                 Comments ({comments.length})
               </h3>
               <div className="space-y-4">
@@ -245,7 +221,7 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
                     <motion.div
                       key={i}
                       variants={itemVariants}
-                      className="p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800"
+                      className="p-4 border border-gray-200 rounded-lg dark:border-gray-700 bg-gray-50 dark:bg-gray-800"
                     >
                       <p className="font-semibold text-gray-800 dark:text-white">
                         {c.name}

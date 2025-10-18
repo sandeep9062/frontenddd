@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import allStatesAndUTs from "../data/allStatesAndUTs";
 import axios from "axios";
@@ -112,9 +113,11 @@ const BloodTestLabList: React.FC = () => {
             key={lab._id}
             className="flex flex-col justify-between p-6 bg-white border rounded-lg shadow"
           >
-            <img
+            <Image
               src={lab.img}
               alt={lab.name}
+              width={160}
+              height={160}
               className="object-cover w-full h-40 mb-4 rounded"
             />
             <div>

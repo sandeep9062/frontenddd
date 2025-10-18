@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
@@ -199,10 +200,12 @@ const AddCbctOpgLabs: React.FC = () => {
             className="col-span-2 border-2 border-dashed border-[#6548ee] p-6 text-center rounded-lg hover:bg-[#f9f6ff] cursor-pointer"
           >
             {preview ? (
-              <img
+              <Image
                 src={preview}
                 alt="Preview"
-                className="object-cover h-40 mx-auto rounded-lg"
+                width={160}
+                height={160}
+                className="object-cover w-auto h-40 mx-auto rounded-lg"
               />
             ) : (
               <div>

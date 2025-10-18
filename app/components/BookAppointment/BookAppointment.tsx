@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -15,7 +16,6 @@ const BookAppointment: React.FC<{ initialClinic?: Clinic }> = ({
   initialClinic,
 }) => {
   const router = useRouter();
-  const params = useSearchParams();
   // If you pass clinic via search params as JSON (not recommended), parse it; else use initialClinic or a placeholder
   const clinicFromParams = null;
 
@@ -240,9 +240,11 @@ const BookAppointment: React.FC<{ initialClinic?: Clinic }> = ({
               Dentist Profile
             </h3>
             <div className="flex items-center gap-6">
-              <img
+              <Image
                 src={clinic.DoctorImage || "/doctor1.png"}
                 alt="Dentist"
+                width={80}
+                height={80}
                 className="h-20 w-20 object-cover rounded-full border-2 border-[#2C73D2] shadow"
               />
               <div>

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import toast, { Toaster } from "react-hot-toast";
 import allStatesAndUTs from "../data/allStatesAndUTs";
 
@@ -256,9 +257,11 @@ const AddDiagnosticLab: React.FC = () => {
               required
             />
             {preview && (
-              <img
+              <Image
                 src={preview}
                 alt="Preview"
+                width={128}
+                height={128}
                 className="object-cover w-32 h-32 mt-3 border rounded"
               />
             )}

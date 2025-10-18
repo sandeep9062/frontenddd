@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 import instagramIcon from "@/public/instagram.png";
 import youtubeIcon from "@/public/youtube.png";
@@ -107,7 +106,6 @@ const featuresList = [
 
 const PricingPlansPage: React.FC = () => {
   const [billing, setBilling] = useState<"month" | "year">("month");
-  const router = useRouter();
 
   const getPrice = (plan: Plan) =>
     billing === "month"
@@ -131,7 +129,7 @@ const PricingPlansPage: React.FC = () => {
             Pricing on your terms
           </h1>
           <p className="text-lg text-[#15396A] mb-2">
-            Whichever plan you pick, it's free until you love your listing. That’s
+            Whichever plan you pick, it's free until you love your listing. That's
             our promise.
           </p>
         </div>

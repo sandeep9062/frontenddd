@@ -93,20 +93,9 @@ const PharmaBrandsRegistrationForm: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string>("");
   const [successMsg, setSuccessMsg] = useState<string>("");
-  const [brands, setBrands] = useState<PharmaBrand[]>([]);
 
   useEffect(() => {
-    fetchBrands();
   }, []);
-
-  const fetchBrands = async () => {
-    const res = await fetchPharmaBrands();
-    if (res.success && Array.isArray(res.brands)) {
-      setBrands(res.brands);
-    } else {
-      setBrands([]);
-    }
-  };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -159,7 +148,6 @@ const PharmaBrandsRegistrationForm: React.FC = () => {
     if (res.success) {
       setSubmitted(true);
       setSuccessMsg(res.message || "Pharma brand created successfully");
-      fetchBrands();
     } else {
       setError(res.message || "Registration failed");
     }
