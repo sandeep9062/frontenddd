@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
-import { registerPharmaBrand, fetchPharmaBrands } from "@/services/pharmaBrands";
-import { PharmaBrand } from "@/types";
+import { registerPharmaBrand } from "@/services/pharmaBrands";
 
 interface PlanFeature {
   label: string;
