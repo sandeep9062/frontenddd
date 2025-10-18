@@ -119,13 +119,13 @@ export const loadProductsFromCSV = async (csvFilePath) => {
                 // Use category-based fallback images
                 const category = (product.category || product.collection || '').toLowerCase();
                 if (category.includes('toothpaste')) {
-                  imageUrl = require('../assets/Tooth Whitening.png');
+                  imageUrl = import('../assets/Tooth Whitening.png');
                 } else if (category.includes('mouthwash')) {
-                  imageUrl = require('../assets/Mouth Wash.png');
+                  imageUrl = import('../assets/Mouth Wash.png');
                 } else if (category.includes('brush')) {
-                  imageUrl = require('../assets/Kids Dentistry.png');
+                  imageUrl = import('../assets/Kids Dentistry.png');
                 } else {
-                  imageUrl = require('../assets/Ayurvedic Dental.png');
+                  imageUrl = import('../assets/Ayurvedic Dental.png');
                 }
               }
 

@@ -694,7 +694,7 @@ const FixMyTeeth = () => {
                 </div>
               </div>
               <div className="pt-6 mt-6 border-t border-gray-200 sm:mt-8 sm:pt-8">
-                <h3 className="px-2 mb-4 text-xl font-bold text-center text-gray-800 sm:text-2xl sm:mb-6 sm:text-left">
+                  <h3 className="px-2 mb-4 text-xl font-bold text-center text-gray-800 sm:text-2xl sm:mb-6 sm:text-left">
                   Tell Us What Dental Problems You're Facing
                 </h3>
 

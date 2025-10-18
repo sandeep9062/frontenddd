@@ -3,7 +3,7 @@ const specialists = [
   {
     id: 1,
     name: "General Dentist",
-    img: require('../assets/General Dentist.png'),
+    img: import('../assets/General Dentist.png'),
     desc: "Comprehensive oral care, restorative & cosmetic procedures, patient education & prevention.",
     points: [
       "Tooth cavities.",
@@ -18,7 +18,7 @@ const specialists = [
   {
     id: 2,
     name: "Periodontist",
-    img: require('../assets/Periodontist.png'),
+    img: import('../assets/Periodontist.png'),
     desc: "Treats gum disease, saves teeth by improving gum & bone health, dental implants & surgery.",
     points: [
       "Gum surgery.",
@@ -35,7 +35,7 @@ const specialists = [
   {
     id: 3,
     name: "Prosthodontist",
-    img: require('../assets/Prosthodontist.png'),
+    img: import('../assets/Prosthodontist.png'),
     desc: "Fix broken/missing teeth with natural-looking caps, dental implant caps specialists, denture specialists.",
     points: [
       "Wearing down of teeth.",
@@ -52,7 +52,7 @@ const specialists = [
   {
     id: 4,
     name: "Orthodontist",
-    img: require('../assets/Orthodontist.png'),
+    img: import('../assets/Orthodontist.png'),
     desc: "Straightens crooked teeth, uses braces & aligners to correct teeth, corrects problems like overbites, underbites & crossbites for better function.",
     points: [
       "Invisible braces.",
@@ -69,7 +69,7 @@ const specialists = [
   {
     id: 5,
     name: "Endodontist",
-    img: require('../assets/Endodontist.png'),
+    img: import('../assets/Endodontist.png'),
     desc: "Specializes in saving teeth, performs root canal treatments, handles complex dental pain.",
     points: [
       "Root canal treatment.",
@@ -84,7 +84,7 @@ const specialists = [
   {
     id: 6,
     name: "Cosmetic Dentist",
-    img: require('../assets/Cosmetic Dentist.png'),
+    img: import('../assets/Cosmetic Dentist.png'),
     desc: "Enhances smile, fixes chips, cracks, & other imperfections for a flawless look, customizes smile makeovers.",
     points: [
       "Tooth crown.",
@@ -101,7 +101,7 @@ const specialists = [
   {
     id: 7,
     name: "Pediatric Dentist",
-    img: require('../assets/Children\'s Dentistry.png'),
+    img: import('../assets/Children\'s Dentistry.png'),
     desc: "Cares for children's teeth, specializes in the dental needs of kids from babies to teens, helps children develop healthy brushing & flossing routines.",
     points: [
       "Teeth present at birth.",
@@ -118,7 +118,7 @@ const specialists = [
   {
     id: 8,
     name: "Oral and Maxillofacial Surgeon",
-    img: require('../assets/Oral Surgeon.png'),
+    img: import('../assets/Oral Surgeon.png'),
     desc: "Wisdom tooth removal, fixes jaw issues & facial injuries through advanced surgery, places dental implants.",
     points: [
       "Adding bone to the socket.",
@@ -132,7 +132,7 @@ const specialists = [
   {
     id: 9,
     name: "Holistic Dentist",
-    img: require('../assets/Holistic Dentist.png'),
+    img: import('../assets/Holistic Dentist.png'),
     desc: "Natural dental care, uses biocompatible materials & treatments that support overall health, focuses on whole-body wellness.",
     points: [
       "Tooth cavities.",
@@ -147,7 +147,7 @@ const specialists = [
   {
     id: 10,
     name: "TMJ Wellness Expert",
-    img: require('../assets/TMJ Wellness Expert.png'),
+    img: import('../assets/TMJ Wellness Expert.png'),
     desc: "Treats jaw pain & discomfort, specializes in diagnosing & treating TMJ disorders, helps alleviate headaches & muscle tension related to jaw issues.",
     points: [
       "Pain in the jaw joint.",
@@ -164,7 +164,7 @@ const specialists = [
   {
     id: 11,
     name: "Oral Medicine Specialist",
-    img: require('../assets/Oral Medicine Specialist.png'),
+    img: import('../assets/Oral Medicine Specialist.png'),
     desc: "Diagnoses oral health disorders, specializes in identifying conditions that affect the mouth, jaw & related areas, manages chronic oral conditions.",
     points: [
       "Diagnosis & treating mouth problems that aren't caused by teeth.",
@@ -179,7 +179,7 @@ const specialists = [
   {
     id: 12,
     name: "Dental Implant Specialist",
-    img: require('../assets/Dental Implant Specialist.png'),
+    img: import('../assets/Dental Implant Specialist.png'),
     desc: "Specializes in placing dental implants, restores function & aesthetics, improves both the look & function of smile with implants.",
     points: [
       "Adding bone to the socket.",
@@ -195,7 +195,7 @@ const specialists = [
   {
     id: 13,
     name: "Oral Radiologist",
-    img: require('../assets/Oral Radiologist.png'),
+    img: import('../assets/Oral Radiologist.png'),
     desc: "Dental imaging expert, helps with accurate diagnosis, guides safe treatment planning.",
     points: [
       "CBCT expert.",
@@ -210,7 +210,7 @@ const specialists = [
   {
     id: 14,
     name: "Biomimetic Dentist",
-    img: require('../assets/Biomimetic Dentist.png'),
+    img: import('../assets/Biomimetic Dentist.png'),
     desc: "Mimics natural tooth function, uses advanced materials, techniques to restore teeth that look & function like natural ones.",
     points: [
       "Deep tooth cavities.",
