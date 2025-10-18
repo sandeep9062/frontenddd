@@ -96,16 +96,13 @@ const problemOptions = [
   "Wisdom Tooth Swelling",
 ];
 const ClinicList: React.FC<ClinicListProps> = ({ type = "clinic" }) => {
-  const { data: clinics, error, isLoading } = useGetClinicsQuery();
+  const { data: clinics, isLoading } = useGetClinicsQuery();
   const [search, setSearch] = useState("");
   const [selectedProblem, setSelectedProblem] = useState("");
   const [selectedState, setSelectedState] = useState("");
   const [stateSearch, setStateSearch] = useState("");
-  const [city, setCity] = useState("");
   const [showProblemDropdown, setShowProblemDropdown] = useState(false);
   const [showStateDropdown, setShowStateDropdown] = useState(false);
-
-  const router = useRouter();
 
   const filteredClinics = useMemo(() => {
     if (!clinics) return [];
@@ -207,7 +204,7 @@ const ClinicList: React.FC<ClinicListProps> = ({ type = "clinic" }) => {
             </li>
           ) : (
             filteredClinics?.map((clinic: Clinic, idx: number) => (
-              <ClinicCard key={clinic._id || idx} clinic={clinic} type={type} />
+              <ClinicCard key={clinic._id || idx} clinic={clinic} />
             ))
           )}
         </ul>

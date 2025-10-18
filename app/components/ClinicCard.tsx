@@ -3,13 +3,13 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Clinic } from "@/types/clinic";
+import Image from "next/image";
 
 interface ClinicCardProps {
   clinic: Clinic;
-  type?: string;
 }
 
-const ClinicCard: React.FC<ClinicCardProps> = ({ clinic, type = "clinic" }) => {
+const ClinicCard: React.FC<ClinicCardProps> = ({ clinic }) => {
   const router = useRouter();
   const [showContact, setShowContact] = useState(false);
 
@@ -27,9 +27,11 @@ const ClinicCard: React.FC<ClinicCardProps> = ({ clinic, type = "clinic" }) => {
   return (
     <li className="flex flex-col overflow-hidden transition-transform duration-300 transform bg-white rounded-lg shadow-lg hover:scale-105">
       <div className="relative">
-        <img
+        <Image
           src={image}
           alt={name}
+          width={400}
+          height={192}
           className="object-cover w-full h-48"
         />
         <div className="absolute top-2 right-2 bg-white rounded-full px-3 py-1 text-sm font-semibold text-[#2C73D2]">
@@ -39,9 +41,11 @@ const ClinicCard: React.FC<ClinicCardProps> = ({ clinic, type = "clinic" }) => {
       <div className="flex flex-col flex-1 p-6">
         <h3 className="text-2xl font-bold text-[#2056AE] mb-2 truncate">{name}</h3>
         <div className="flex items-center mb-4 text-gray-600">
-          <img
+          <Image
             src="/location.png"
             alt="Location"
+            width={20}
+            height={20}
             className="w-5 h-5 mr-2"
           />
           <span className="font-semibold text-[#2056AE]">{location}</span>
@@ -68,17 +72,17 @@ const ClinicCard: React.FC<ClinicCardProps> = ({ clinic, type = "clinic" }) => {
             <div className="flex justify-center gap-4 mt-3">
               {whatsapp && (
                 <a href={whatsapp} target="_blank" rel="noopener noreferrer">
-                  <img src="/whatsapp_icon.png" alt="WhatsApp" className="w-8 h-8" />
+                  <Image src="/whatsapp_icon.png" alt="WhatsApp" width={32} height={32} className="w-8 h-8" />
                 </a>
               )}
               {mapUrl && (
                 <a href={mapUrl} target="_blank" rel="noopener noreferrer">
-                  <img src="/location.png" alt="Directions" className="w-8 h-8" />
+                  <Image src="/location.png" alt="Directions" width={32} height={32} className="w-8 h-8" />
                 </a>
               )}
               {website && (
                 <a href={website} target="_blank" rel="noopener noreferrer">
-                  <img src="/website_icon.png" alt="Website" className="w-8 h-8" />
+                  <Image src="/website_icon.png" alt="Website" width={32} height={32} className="w-8 h-8" />
                 </a>
               )}
             </div>
