@@ -2,12 +2,24 @@
 import React from "react";
 import { useCookies } from "../hooks/useCookies";
 
+type CookieSettings = {
+  analytics: boolean;
+  marketing: boolean;
+  preferences: boolean;
+};
+
+type CookieSetting = keyof CookieSettings;
+
 const CookiePolicy = () => {
-  const { cookieSettings, updateCookieSettings } = useCookies();
+  const {
+    cookieSettings,
+    updateCookieSettings,
+  }: {
+    cookieSettings: CookieSettings;
+    updateCookieSettings: (newSettings: CookieSettings) => void;
+  } = useCookies();
 
-  const toggleSetting = (setting) => {
-    if (setting === "essential") return; // Essential cookies cannot be disabled
-
+  const toggleSetting = (setting: CookieSetting) => {
     const newSettings = {
       ...cookieSettings,
       [setting]: !cookieSettings[setting],
@@ -253,7 +265,8 @@ const CookiePolicy = () => {
             <p className="mb-4 text-gray-700">
               We may update this Cookie Policy from time to time. We will notify
               you of any changes by posting the new Cookie Policy on this page
-              and updating the "Last updated" date at the top of this policy.
+              and updating the "Last updated" date at the top of this
+              policy.
             </p>
           </section>
         </div>
