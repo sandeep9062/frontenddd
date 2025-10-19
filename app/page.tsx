@@ -16,6 +16,7 @@ export default function Home() {
     <>
       <section className="pt-20 ">
         <Hero />
+
         <WhyIndia />
 
         <Features />

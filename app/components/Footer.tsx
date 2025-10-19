@@ -131,7 +131,7 @@ const Footer: React.FC = () => {
             <Link href="/privacy-policy" className={linkClass}>
               Privacy Policy
             </Link>
-            <Link href="#" className={linkClass}>
+            <Link href="cookie-policy" className={linkClass}>
               Cookie Policy
             </Link>
             <Link href="/terms" className={linkClass}>
@@ -140,8 +140,8 @@ const Footer: React.FC = () => {
             <Link href="/contact" className={linkClass}>
               Contact Us
             </Link>
-            <Link href="/articles" className={linkClass}>
-              Articles
+            <Link href="/blog" className={linkClass}>
+              Blogs
             </Link>
           </div>
 
@@ -211,18 +211,6 @@ const Footer: React.FC = () => {
               and we recommend verifying credentials and facilities before
               proceeding with any dental treatment.
             </p>
-          </div>
-
-          {/* Admin Link */}
-          <div className="mt-4 transition-opacity duration-500 opacity-20 hover:opacity-100">
-            <Link
-              href="/admin/login"
-              className="text-[8px] tracking-widest transition-colors duration-300"
-              style={{ color: "#ffffff30" }}
-              title="Admin Access"
-            >
-              ADMIN ACCESS
-            </Link>
           </div>
         </div>
       </div>
