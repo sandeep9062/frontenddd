@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   description:
     "Dental Tourism specializes in crafting scalable software and digital products for startups and enterprises. We offer full-stack development (Next.js, MERN), UI/UX design, AI integration, and growth-focused digital marketing to help your business innovate and grow.",
-  keywords: ["marketing", "SEO services", "startup tech partner"],
+  keywords: ["startup tech partner"],
   authors: [{ name: "Dental Tourism Team" }],
   openGraph: {
     title: "Dental Tourism | Full-Stack Development, AI, and Digital Solutions",
