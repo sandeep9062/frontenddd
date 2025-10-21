@@ -3,14 +3,11 @@ import React from 'react';
 
 // Define metadata for the Blog section
 export const metadata: Metadata = {
-  title: 'Maldonite Blog | Insights on SaaS, AI, Web Dev & Marketing',
-  description: 'Explore the Maldonite blog for deep dives, expert insights, and articles on SaaS development, AI integration, UI/UX design, web development trends, SEO strategies, and startup growth.',
+  title: 'Dental Tourism Blog | Insights on SaaS, AI, Web Dev & Marketing',
+  description: 'Explore the Dental Tourism blog for deep dives, expert insights, and articles on SaaS development, AI integration, UI/UX design, web development trends, SEO strategies, and startup growth.',
   keywords: [
-    'Maldonite blog',
-    'tech insights',
-    'SaaS articles',
-    'AI development blog',
-    'web development blog',
+    'Dental Tourism blog',
+    
     'UI/UX trends',
     'SEO strategies',
     'digital marketing insights',
@@ -21,16 +18,16 @@ export const metadata: Metadata = {
     'case studies'
   ],
   openGraph: {
-    title: 'Maldonite Blog | Insights on SaaS, AI, Web Dev & Marketing',
-    description: 'Explore the Maldonite blog for deep dives, expert insights, and articles on SaaS development, AI integration, UI/UX design, web development trends, SEO strategies, and startup growth.',
-    url: 'https://www.maldonite.com/blog',
-    siteName: 'Maldonite Blog',
+    title: 'Dental Tourism Blog | Insights on SaaS, AI, Web Dev & Marketing',
+    description: 'Explore the Dental Tourism blog for deep dives, expert insights, and articles on SaaS development, AI integration, UI/UX design, web development trends, SEO strategies, and startup growth.',
+    url: 'https://www.dentaltourism.com/blog',
+    siteName: 'Dental Tourism Blog',
     images: [
       {
-        url: 'https://www.maldonite.com/images/og-image-blog.jpg', // A generic, eye-catching image for the blog home page
+        url: 'https://www.dentaltourism.com/images/og-image-blog.jpg', // A generic, eye-catching image for the blog home page
         width: 1200,
         height: 630,
-        alt: 'Maldonite Blog - Latest Tech Insights',
+        alt: 'Dental Tourism Blog - Latest Tech Insights',
       },
     ],
     locale: 'en_US',
@@ -38,9 +35,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Maldonite Blog | Insights on SaaS, AI, Web Dev & Marketing',
-    description: 'Explore the Maldonite blog for deep dives, expert insights, and articles on SaaS development, AI integration, UI/UX design, web development trends, SEO strategies, and startup growth.',
-    images: ['https://www.maldonite.com/images/twitter-card-blog.jpg'], // A generic image for Twitter shares
+    title: 'Dental Tourism Blog | Insights on SaaS, AI, Web Dev & Marketing',
+    description: 'Explore the Dental Tourism blog for deep dives, expert insights, and articles on SaaS development, AI integration, UI/UX design, web development trends, SEO strategies, and startup growth.',
+    images: ['https://www.dentaltourism.com/images/twitter-card-blog.jpg'], // A generic image for Twitter shares
   },
 };
 

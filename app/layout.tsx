@@ -24,30 +24,30 @@ export const metadata: Metadata = {
   title: {
     default:
       "Dental Tourism | Full-Stack Development, AI, and Digital Solutions",
-    template: "%s | Maldonite",
+    template: "%s | Dental Tourism",
   },
   description:
-    "Maldonite specializes in crafting scalable software and digital products for startups and enterprises. We offer full-stack development (Next.js, MERN), UI/UX design, AI integration, and growth-focused digital marketing to help your business innovate and grow.",
+    "Dental Tourism specializes in crafting scalable software and digital products for startups and enterprises. We offer full-stack development (Next.js, MERN), UI/UX design, AI integration, and growth-focused digital marketing to help your business innovate and grow.",
   keywords: ["marketing", "SEO services", "startup tech partner"],
-  authors: [{ name: "Maldonite Team" }],
+  authors: [{ name: "Dental Tourism Team" }],
   openGraph: {
-    title: "Maldonite | Full-Stack Development, AI, and Digital Solutions",
+    title: "Dental Tourism | Full-Stack Development, AI, and Digital Solutions",
     description:
-      "Maldonite specializes in crafting scalable software and digital products for startups and enterprises. We offer full-stack development (Next.js, MERN), UI/UX design, AI integration, and growth-focused digital marketing.",
-    url: "https://www.maldonite.com",
-    siteName: "Maldonite",
+      "Dental Tourism specializes in crafting scalable software and digital products for startups and enterprises. We offer full-stack development (Next.js, MERN), UI/UX design, AI integration, and growth-focused digital marketing.",
+    url: "https://www.dentaltourism.com",
+    siteName: "Dental Tourism",
     images: [
       {
-        url: "https://www.maldonite.com/images/og-image.jpg", // A visually appealing image,image display when somebody share link on social media
+        url: "https://www.dentaltourism.com/images/og-image.jpg", // A visually appealing image,image display when somebody share link on social media
         width: 1200,
         height: 630,
-        alt: "Maldonite | Igniting Innovation with Scalable Code",
+        alt: "Dental Tourism | Igniting Innovation with Scalable Code",
       },
       {
-        url: "https://www.maldonite.com/images/og-image-alt.jpg",
+        url: "https://www.dentaltourism.com/images/og-image-alt.jpg",
         width: 1080,
         height: 1080,
-        alt: "Maldonite - Building the Future of Web",
+        alt: "Dental Tourism - Building the Future of Web",
       },
     ],
     locale: "en_US",
@@ -55,12 +55,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@maldoniteHQ", // if you have a Twitter handle
-    creator: "@maldoniteHQ",
-    title: "Maldonite | Full-Stack Development, AI, and Digital Solutions",
+    site: "@dentaltourismHQ", // if you have a Twitter handle
+    creator: "@dentaltourismHQ",
+    title: "Dental Tourism | Full-Stack Development, AI, and Digital Solutions",
     description:
-      "Maldonite specializes in crafting scalable software and digital products for startups and enterprises. We offer full-stack development (Next.js, MERN), UI/UX design, AI integration, and growth-focused digital marketing.",
-    images: ["https://www.maldonite.com/images/twitter-card.jpg"],
+      "Dental Tourism specializes in crafting scalable software and digital products for startups and enterprises. We offer full-stack development (Next.js, MERN), UI/UX design, AI integration, and growth-focused digital marketing.",
+    images: ["https://www.dentaltourism.com/images/twitter-card.jpg"],
   },
   robots: {
     index: true,
@@ -83,12 +83,12 @@ export default function RootLayout({
   const schema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Maldonite",
-    url: "https://www.maldonite.com",
-    logo: "https://www.maldonite.com/images/logo.png",
+    name: "Dental Tourism",
+    url: "https://www.dentaltourism.com",
+    logo: "https://www.dentaltourism.com/images/logo.png",
     sameAs: [
-      "https://twitter.com/maldoniteHQ", // Replace with your social profiles
-      "https://www.linkedin.com/company/maldonite",
+      "https://twitter.com/dentaltourismHQ", // Replace with your social profiles
+      "https://www.linkedin.com/company/dentaltourism",
       // ... more social links
     ],
     contactPoint: {

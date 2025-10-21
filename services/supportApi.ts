@@ -1,4 +1,5 @@
-import axios, { AxiosError } from "axios";
+import api from "../lib/axios";
+import { AxiosError } from "axios";
 
 interface ContactForm {
   name: string;
@@ -17,11 +18,12 @@ export const submitContactUs = async (
   formData: ContactForm
 ): Promise<ApiResponse> => {
   try {
-    const response = await axios.post("/api/v1/support/contact-us", formData);
+    const response = await api.post("/v1/support/contact-us", formData);
     return response.data;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      const serverError = error.response?.data as { message?: string };
+    const axiosError = error as AxiosError;
+    if (axiosError.isAxiosError) {
+      const serverError = axiosError.response?.data as { message?: string };
       return {
         success: false,
         message: serverError?.message || "An unknown server error occurred.",

@@ -4,4 +4,4 @@ User-agent: *
 Allow: /
 
 # Specify the location of your sitemap
-Sitemap: https://www.maldonite.com/sitemap.xml
+Sitemap: https://www.dentaltourism.com/sitemap.xml
