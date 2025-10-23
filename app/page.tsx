@@ -14,7 +14,7 @@ import ExploreDentalEssential from "./components/home/ExploreDentalEssential";
 export default function Home() {
   return (
     <>
-      <section className="pt-20 ">
+      <section>
         <Hero />
 
         <WhyIndia />

@@ -6,10 +6,10 @@ import React from "react";
 
 const Hero: React.FC = () => {
   return (
-    <section className="flex flex-col items-center justify-center w-full px-2 py-2 bg-white md:flex-row md:px-8 md:py-6 md:gap-10">
+    <section className="flex flex-col items-center justify-center w-full px-2 mt-12 bg-white md:flex-row md:px-8 md:gap-10">
       {/* Left: Text Content */}
       <div className="flex flex-col items-start justify-center flex-1 order-2 max-w-lg md:order-1 md:pr-4">
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-[#2563d6] mb-2 leading-tight">
+        <h1 className="text-3xl sm:text-5xl font-extrabold text-[#2563d6] mb-2 leading-tight mt-[-40px]">
           Smile Confidently with India’s Top
           <br className="hidden sm:block" /> Dental Tourism Clinics
         </h1>
