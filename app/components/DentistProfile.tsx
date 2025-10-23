@@ -17,6 +17,13 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import Select from "react-select";
 
+interface Clinic {
+  _id: string;
+  name: string;
+  location: string;
+  state: string;
+}
+
 export default function DentistProfilePage() {
   const states = [
     "Andhra Pradesh",
@@ -192,18 +199,17 @@ export default function DentistProfilePage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [clinics, setClinics] = useState<Clinic[]>([]);
 
   useEffect(() => {
-    const fetchProfile = async () => {
+    const fetchProfileAndClinics = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("/v1/dentists/profile", {
+        const profileRes = await axios.get("/api/v1/dentists/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        const { user, profile } = res.data;
-
-        console.log(res.data, "profile-data");
+        const { user, profile } = profileRes.data;
 
         setForm({
           name: user?.name || "",
@@ -227,14 +233,19 @@ export default function DentistProfilePage() {
           hasClinic: profile?.hasClinic || false,
           agreeDisclaimer: profile?.agreeDisclaimer || false,
         });
+
+        const clinicsRes = await axios.get("/api/v1/clinics/user", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setClinics(clinicsRes.data.data);
       } catch {
-        toast.error("Failed to load profile");
+        toast.error("Failed to load profile or clinics");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchProfile();
+    fetchProfileAndClinics();
   }, []);
 
   const handleChange = (
@@ -291,7 +302,7 @@ export default function DentistProfilePage() {
 
     try {
       const token = localStorage.getItem("token");
-      await axios.put("/v1/dentists/profile", formData, {
+      await axios.put("/api/v1/dentists/profile", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
@@ -528,6 +539,29 @@ export default function DentistProfilePage() {
           </form>
         </CardContent>
       </Card>
+
+      <div className="max-w-3xl p-6 mx-auto mt-10">
+        <Card className="border border-gray-200 shadow-lg rounded-2xl">
+          <CardHeader className="flex flex-col items-center space-y-2">
+            <h2 className="text-2xl font-bold text-gray-800">My Clinics</h2>
+          </CardHeader>
+          <CardContent>
+            {clinics.length > 0 ? (
+              <ul className="space-y-4">
+                {clinics.map((clinic) => (
+                  <li key={clinic._id} className="p-4 border rounded-lg">
+                    <h3 className="text-lg font-semibold">{clinic.name}</h3>
+                    <p>{clinic.location}</p>
+                    <p>{clinic.state}</p>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>No clinics found.</p>
+            )}
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }

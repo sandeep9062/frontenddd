@@ -1,11 +1,8 @@
-// app/clinics/page.tsx
-"use client";
 
-import React from "react";
-import ClinicList from "../components/ClinicList";
+import ClinicsPageClient from "./ClinicsPageClient";
 
 const ClinicsPage = () => {
-  return <ClinicList type="clinic" />;
+  return <ClinicsPageClient />;
 };
 
 export default ClinicsPage;

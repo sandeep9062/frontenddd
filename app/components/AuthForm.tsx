@@ -38,7 +38,8 @@ export default function AuthForm({ type }: { type: "login" | "register" }) {
     setLoading(true);
 
     try {
-      const endpoint = type === "login" ? "/auth/login" : "/auth/register";
+      const endpoint =
+        type === "login" ? "/api/auth/login" : "/api/auth/register";
       const res = await axios.post(endpoint, form);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));

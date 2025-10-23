@@ -1,3 +1,5 @@
+
+
 "use client";
 import DentistProfile from "@/app/components/DentistProfile";
 import React from "react";
@@ -23,14 +25,14 @@ const DentistProfilePage = () => {
           Add a Clinic
         </button>
         <button
-          onClick={() => router.push("/pricing-plans")}
+          onClick={() => router.push("/plans/clinics/")}
           className="px-4 py-2 font-bold text-white bg-green-500 rounded hover:bg-green-700"
         >
           Choose Clinic Registration Plan
         </button>
 
         <button
-          onClick={() => router.push("/pricing-plans")}
+          onClick={() => router.push("/plans/dentist/")}
           className="px-4 py-2 font-bold text-white bg-green-500 rounded hover:bg-green-700"
         >
           Choose Online Consultation Plan

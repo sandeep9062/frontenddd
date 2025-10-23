@@ -1,9 +1,9 @@
-"use client";
+
+"use client"
 
 import React, { useState, ChangeEvent, FormEvent, DragEvent } from "react";
 import Image from "next/image";
 import { registerDiagnosticLab } from "../../services/diagnosticLabApi";
-
 
 interface DiagnosticLabForm {
   labName: string;
@@ -52,7 +52,10 @@ const diagnosticLabPlans: DiagnosticLabPlan[] = [
       { label: "Visibility", value: "1 Lab" },
       { label: "Banner / Photos", value: "✅" },
       { label: "Services Listing", value: "Up to 15 services" },
-      { label: "Social Media Exposure", value: "1 Instagram & Facebook post/Month" },
+      {
+        label: "Social Media Exposure",
+        value: "1 Instagram & Facebook post/Month",
+      },
       { label: "Priority in Search Results", value: "Medium" },
     ],
     button: "Pay Now",
@@ -65,7 +68,10 @@ const diagnosticLabPlans: DiagnosticLabPlan[] = [
       { label: "Visibility", value: "Up to 3 Labs" },
       { label: "Banner / Photos", value: "✅" },
       { label: "Services Listing", value: "Unlimited" },
-      { label: "Social Media Exposure", value: "2 Instagram, Facebook, YouTube post/Month" },
+      {
+        label: "Social Media Exposure",
+        value: "2 Instagram, Facebook, YouTube post/Month",
+      },
       { label: "Priority in Search Results", value: "Top Rank" },
     ],
     button: "Pay Now",
@@ -96,7 +102,7 @@ const DiagnosticLabRegistrationForm: React.FC = () => {
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value, type } = e.target;
-    if (type === 'checkbox') {
+    if (type === "checkbox") {
       setForm({ ...form, [name]: (e.target as HTMLInputElement).checked });
     } else {
       setForm({ ...form, [name]: value });

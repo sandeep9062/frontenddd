@@ -1,7 +1,11 @@
-# For all user agents (search engine bots)
+# See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+#
+# This file is used to prevent search engine crawlers from indexing certain pages on your site.
+# For example, you may want to block crawlers from indexing your admin pages or user profiles.
+#
+# By default, we allow all crawlers to index all pages on the site.
 User-agent: *
-# Allow crawling of all content on the site
 Allow: /
 
-# Specify the location of your sitemap
+# We also specify the location of our sitemap, so that crawlers can find it and index our pages more effectively.
 Sitemap: https://www.dentaltourism.com/sitemap.xml

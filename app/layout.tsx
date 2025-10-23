@@ -22,20 +22,26 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default:
-      "Dental Tourism | Full-Stack Development, AI, and Digital Solutions",
-    template: "%s | Dental Tourism",
+    default: "Dental Tourism India | Find Top Dental Clinics & Dentists",
+    template: "%s | Dental Tourism India",
   },
   description:
-    "Dental Tourism specializes in crafting scalable software and digital products for startups and enterprises. We offer full-stack development (Next.js, MERN), UI/UX design, AI integration, and growth-focused digital marketing to help your business innovate and grow.",
-  keywords: ["startup tech partner"],
-  authors: [{ name: "Dental Tourism Team" }],
+    "Find and book top-rated dental clinics and dentists in India. Get affordable, world-class dental care, including implants, braces, and cosmetic dentistry. Plan your dental tourism journey with us.",
+  keywords: [
+    "dental tourism india",
+    "dental clinics in india",
+    "best dentists in india",
+    "affordable dental care india",
+    "dental implants india",
+    "cosmetic dentistry india",
+  ],
+  authors: [{ name: "Dental Tourism India Team" }],
   openGraph: {
-    title: "Dental Tourism | Full-Stack Development, AI, and Digital Solutions",
+    title: "Dental Tourism India | Find Top Dental Clinics & Dentists",
     description:
-      "Dental Tourism specializes in crafting scalable software and digital products for startups and enterprises. We offer full-stack development (Next.js, MERN), UI/UX design, AI integration, and growth-focused digital marketing.",
+      "Find and book top-rated dental clinics and dentists in India. Get affordable, world-class dental care, including implants, braces, and cosmetic dentistry. Plan your dental tourism journey with us.",
     url: "https://www.dentaltourism.com",
-    siteName: "Dental Tourism",
+    siteName: "Dental Tourism India",
     images: [
       {
         url: "https://www.dentaltourism.com/images/og-image.jpg", // A visually appealing image,image display when somebody share link on social media
@@ -55,11 +61,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@dentaltourismHQ", // if you have a Twitter handle
-    creator: "@dentaltourismHQ",
-    title: "Dental Tourism | Full-Stack Development, AI, and Digital Solutions",
+    site: "@dentaltourismIN",
+    creator: "@dentaltourismIN",
+    title: "Dental Tourism India | Find Top Dental Clinics & Dentists",
     description:
-      "Dental Tourism specializes in crafting scalable software and digital products for startups and enterprises. We offer full-stack development (Next.js, MERN), UI/UX design, AI integration, and growth-focused digital marketing.",
+      "Find and book top-rated dental clinics and dentists in India. Get affordable, world-class dental care, including implants, braces, and cosmetic dentistry. Plan your dental tourism journey with us.",
     images: ["https://www.dentaltourism.com/images/twitter-card.jpg"],
   },
   robots: {
@@ -82,22 +88,30 @@ export default function RootLayout({
 }) {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Dental Tourism",
+    "@type": "MedicalBusiness",
+    name: "Dental Tourism India",
     url: "https://www.dentaltourism.com",
     logo: "https://www.dentaltourism.com/images/logo.png",
-    sameAs: [
-      "https://twitter.com/dentaltourismHQ", // Replace with your social profiles
-      "https://www.linkedin.com/company/dentaltourism",
-      // ... more social links
-    ],
+    description: "Connecting international patients with top-rated dental clinics and dentists in India for affordable, high-quality dental care.",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "123 Dental Street",
+      addressLocality: "Mumbai",
+      "addressRegion": "MH",
+      "postalCode": "400001",
+      "addressCountry": "IN"
+    },
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+1-555-555-5555", // Replace with your phone number
-      contactType: "customer service",
-      areaServed: "US",
-      availableLanguage: "en",
+      telephone: "+91-123-456-7890",
+      contactType: "customer support",
+      areaServed: "Worldwide",
+      availableLanguage: ["en", "hi"]
     },
+    sameAs: [
+      "https://twitter.com/dentaltourismIN",
+      "https://www.linkedin.com/company/dentaltourismindia"
+    ]
   };
 
   return (

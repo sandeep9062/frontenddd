@@ -1,3 +1,5 @@
+
+
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
@@ -627,7 +629,7 @@ const FixMyTeeth = () => {
                   )}
                 </div>
 
-                {Object.values(teethProblems).flat().includes("other") && (
+
                   <div className="mt-8">
                     <h4 className="mb-2 text-lg font-semibold text-gray-800">
                       Please describe the 'Other' problem:
@@ -638,9 +640,10 @@ const FixMyTeeth = () => {
                       placeholder="Describe the other dental problem in detail..."
                       rows={4}
                       className="w-full p-4 transition-shadow border-2 border-gray-200 outline-none rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      required
                     />
                   </div>
-                )}
+              
 
                 <div className="mt-8">
                   <h4 className="mb-2 text-lg font-semibold text-gray-800">

@@ -8,6 +8,7 @@ import { siteSettingsApi } from "@/services/siteSettingsApi";
 import { contactApi } from "@/services/contactApi";
 
 
+import { plansApi } from "@/services/plansApi";
 
 import { testimonialsApi } from "@/services/testimonialsApi";
 import { servicesApi } from "@/services/servicesApi";
@@ -28,7 +29,7 @@ const store = configureStore({
     [contactApi.reducerPath]: contactApi.reducer,
 
     [blogsApi.reducerPath]: blogsApi.reducer,
-    
+    [plansApi.reducerPath]: plansApi.reducer,
 
     [testimonialsApi.reducerPath]: testimonialsApi.reducer,
     [servicesApi.reducerPath]: servicesApi.reducer,
@@ -43,15 +44,16 @@ const store = configureStore({
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([
-    
+
       websiteImagesApi.middleware,
       siteSettingsApi.middleware,
       contactApi.middleware,
-  
+
       blogsApi.middleware,
       testimonialsApi.middleware,
-      
-  
+
+      plansApi.middleware,
+
       servicesApi.middleware,
       clinicApi.middleware,
       cbctOpgLabsApi.middleware,

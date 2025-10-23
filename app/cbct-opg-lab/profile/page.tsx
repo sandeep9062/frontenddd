@@ -23,7 +23,7 @@ const ProfilePage = () => {
           Add a CBCT & OPG LAB
         </button>
         <button
-          onClick={() => router.push("/pricing-plans")}
+          onClick={() => router.push("/plans/cbctopgplabs")}
           className="px-4 py-2 font-bold text-white bg-green-500 rounded hover:bg-green-700"
         >
           Choose a CBCT & OPG LAB Plan
