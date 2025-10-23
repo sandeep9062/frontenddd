@@ -15,28 +15,24 @@ async function getLabData(id: string) {
   }
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const lab = await getLabData(params.id);
+export function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  return getLabData(params.id).then(lab => {
+    if (!lab) {
+      return {
+        title: "Lab Not Found | Dental Tourism India",
+        description: "The diagnostic lab you are looking for could not be found.",
+      };
+    }
 
-  if (!lab) {
     return {
-      title: "Lab Not Found | Dental Tourism India",
-      description: "The diagnostic lab you are looking for could not be found.",
+      title: `${lab.name} | Dental Tourism India`,
+      description: `Find details for ${lab.name}, a diagnostic lab in ${lab.location}, ${lab.state}. View services, ratings, and book appointments.`,
+      keywords: [lab.name, "diagnostic lab", lab.location, lab.state, "dental tourism india"],
     };
-  }
-
-  return {
-    title: `${lab.name} | Dental Tourism India`,
-    description: `Find details for ${lab.name}, a diagnostic lab in ${lab.location}, ${lab.state}. View services, ratings, and book appointments.`,
-    keywords: [lab.name, "diagnostic lab", lab.location, lab.state, "dental tourism india"],
-  };
+  });
 }
 
-interface LabDetailsPageProps {
-  params: { id: string };
-}
-
-const LabDetailsPage: React.FC<LabDetailsPageProps> = ({ params }) => {
+const LabDetailsPage = ({ params }: { params: { id: string } }) => {
   return <LabDetailsClient />;
 };
 
