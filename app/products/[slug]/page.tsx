@@ -221,7 +221,7 @@ const products = [
   },
 ];
 
-const ProductPage = ({ params }: { params: { slug: string } }) => {
+const ProductPage = ({ params }: { params: any }) => {
   const product = products.find(
     (p) =>
       p.name.toLowerCase().replace(/ & /g, "-").replace(/ /g, "-") ===
