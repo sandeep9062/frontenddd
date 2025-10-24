@@ -31,7 +31,7 @@ export default function Home() {
         <Testimonials />
         <Newsletter />
 
-        <PopupFormModal />
+        {/* <PopupFormModal /> */}
       </section>
     </>
   );

@@ -8,6 +8,7 @@ import "swiper/css/pagination";
 import Image from "next/image";
 import { UserCheck2 } from "lucide-react";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 // Use your local testimonials array
 const testimonials = [
@@ -69,19 +70,27 @@ const renderStars = (rating: number) => {
   const hasHalfStar = rating % 1 !== 0;
 
   for (let i = 0; i < fullStars; i++) {
-    stars.push(<FaStar key={`full-${i}`} className="w-5 h-5 text-yellow-400" />);
+    stars.push(
+      <FaStar key={`full-${i}`} className="w-5 h-5 text-yellow-400" />
+    );
   }
   if (hasHalfStar) {
-    stars.push(<FaStarHalfAlt key="half" className="w-5 h-5 text-yellow-400" />);
+    stars.push(
+      <FaStarHalfAlt key="half" className="w-5 h-5 text-yellow-400" />
+    );
   }
   for (let i = 0; i < 5 - fullStars - (hasHalfStar ? 1 : 0); i++) {
-    stars.push(<FaRegStar key={`empty-${i}`} className="w-5 h-5 text-gray-300" />);
+    stars.push(
+      <FaRegStar key={`empty-${i}`} className="w-5 h-5 text-gray-300" />
+    );
   }
 
   return <div className="flex gap-1">{stars}</div>;
 };
 
 const Testimonials = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="py-8 bg-white dark:bg-darkbg1">
       <div className="max-w-6xl px-4 mx-auto text-center">
@@ -92,7 +101,7 @@ const Testimonials = () => {
           viewport={{ once: true }}
           className="text-3xl font-bold md:text-4xl text-[#2C73D2]  dark:text-white"
         >
-          What Clients Say
+          {t("testimonials.title")}
         </motion.h2>
 
         {testimonials.length > 0 ? (
@@ -129,14 +138,18 @@ const Testimonials = () => {
                     )}
                     <div className="text-left">
                       <div className="flex items-center gap-1">
-                        <h4 className="font-semibold text-gray-900 dark:text-white">{t.name}</h4>
+                        <h4 className="font-semibold text-gray-900 dark:text-white">
+                          {t.name}
+                        </h4>
                         <UserCheck2 className="w-4 h-4 text-[#D4AF37]" />
                       </div>
                     </div>
                   </div>
 
                   {/* Stars */}
-                  <div className="flex justify-start mb-4">{renderStars(t.rating)}</div>
+                  <div className="flex justify-start mb-4">
+                    {renderStars(t.rating)}
+                  </div>
 
                   {/* Testimonial Message */}
                   <p className="text-sm leading-relaxed text-left text-gray-700 dark:text-gray-300">

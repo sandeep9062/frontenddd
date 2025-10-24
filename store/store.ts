@@ -9,6 +9,7 @@ import { contactApi } from "@/services/contactApi";
 
 
 import { plansApi } from "@/services/plansApi";
+import { popUpFormApi } from "@/services/popUpFormApi";
 
 import { testimonialsApi } from "@/services/testimonialsApi";
 import { servicesApi } from "@/services/servicesApi";
@@ -27,7 +28,7 @@ const store = configureStore({
     [websiteImagesApi.reducerPath]: websiteImagesApi.reducer,
     [siteSettingsApi.reducerPath]: siteSettingsApi.reducer,
     [contactApi.reducerPath]: contactApi.reducer,
-
+    [popUpFormApi.reducerPath]: popUpFormApi.reducer,
     [blogsApi.reducerPath]: blogsApi.reducer,
     [plansApi.reducerPath]: plansApi.reducer,
 
@@ -48,7 +49,7 @@ const store = configureStore({
       websiteImagesApi.middleware,
       siteSettingsApi.middleware,
       contactApi.middleware,
-
+      popUpFormApi.middleware,
       blogsApi.middleware,
       testimonialsApi.middleware,
 

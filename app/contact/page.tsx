@@ -1,9 +1,10 @@
-
 "use client";
 
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const ContactPage: React.FC = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,7 +21,7 @@ const ContactPage: React.FC = () => {
     e.preventDefault();
     console.log("Form submitted:", formData);
     // TODO: integrate backend API (e.g., via axios or fetch)
-    alert("Thank you! Your message has been sent.");
+    alert(t("contact.thankYou"));
     setFormData({ name: "", email: "", message: "" });
   };
 
@@ -28,13 +29,13 @@ const ContactPage: React.FC = () => {
     <div className="min-h-screen bg-gray-100">
       <div className="container px-4 py-8 mx-auto">
         <h1 className="mb-8 text-4xl font-bold text-center text-gray-800">
-          Contact Us
+          {t("contact.title")}
         </h1>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {/* Left Side - Form */}
           <div className="p-8 bg-white rounded-lg shadow-md">
             <h2 className="mb-4 text-2xl font-bold text-gray-800">
-              Get in Touch
+              {t("contact.getInTouch")}
             </h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
@@ -42,7 +43,7 @@ const ContactPage: React.FC = () => {
                   htmlFor="name"
                   className="block mb-2 font-bold text-gray-700"
                 >
-                  Name
+                  {t("contact.name")}
                 </label>
                 <input
                   type="text"
@@ -61,7 +62,7 @@ const ContactPage: React.FC = () => {
                   htmlFor="email"
                   className="block mb-2 font-bold text-gray-700"
                 >
-                  Email
+                  {t("contact.email")}
                 </label>
                 <input
                   type="email"
@@ -80,7 +81,7 @@ const ContactPage: React.FC = () => {
                   htmlFor="message"
                   className="block mb-2 font-bold text-gray-700"
                 >
-                  Message
+                  {t("contact.message")}
                 </label>
                 <textarea
                   id="message"
@@ -98,7 +99,7 @@ const ContactPage: React.FC = () => {
                 type="submit"
                 className="w-full px-4 py-2 font-bold text-white transition duration-300 bg-blue-500 rounded-lg hover:bg-blue-600"
               >
-                Send Message
+                {t("contact.submit")}
               </button>
             </form>
           </div>

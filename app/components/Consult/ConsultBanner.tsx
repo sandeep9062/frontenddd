@@ -2,12 +2,14 @@
 
 import React from "react";
 import Image, { StaticImageData } from "next/image";
+import { useTranslation } from "react-i18next";
 // Props interface
 interface HeroBannerProps {
   consultBannerImg?: string | StaticImageData;
 }
 
 const HeroBanner: React.FC<HeroBannerProps> = ({ consultBannerImg }) => {
+  const { t } = useTranslation();
   const dentistImages: string[] = [
     "/dentist1.png",
     "/dentist2.png",
@@ -20,17 +22,15 @@ const HeroBanner: React.FC<HeroBannerProps> = ({ consultBannerImg }) => {
       {/* Left Section */}
       <div className="flex-1 min-h-[340px] flex flex-col items-start justify-center text-white w-full">
         <h1 className="mb-4 text-2xl font-bold leading-tight sm:text-3xl md:text-5xl">
-          Skip the trip!
-          <br />
-          Take an online Dental Consultation
+          {t("consult.title")}
         </h1>
 
         <div className="mb-2 text-base font-semibold sm:text-lg md:text-xl">
-          Private Consultation + Audio calls + Video calls
+          {t("consult.subtitle")}
         </div>
 
         <div className="mb-4 text-sm sm:text-base md:text-lg">
-          Starts at just Rs 399 / USD $4.80
+          {t("consult.price")}
         </div>
 
         {/* Dentist Avatars */}

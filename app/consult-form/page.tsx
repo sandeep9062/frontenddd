@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 interface Dentist {
   name: string;
@@ -11,6 +12,7 @@ interface Dentist {
 }
 
 const ConsultForm: React.FC = () => {
+  const { t } = useTranslation();
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -79,11 +81,8 @@ const ConsultForm: React.FC = () => {
           </div>
 
           <form className="flex flex-col gap-2 mt-2">
-            <label
-              htmlFor="patientName"
-              className="text-sm font-semibold"
-            >
-              Patient name
+            <label htmlFor="patientName" className="text-sm font-semibold">
+              {t("forms.patientName")}
             </label>
             <input
               id="patientName"
@@ -93,22 +92,19 @@ const ConsultForm: React.FC = () => {
               required
             />
 
-            <label
-              htmlFor="phoneNumber"
-              className="text-sm font-semibold"
-            >
-              Phone number
+            <label htmlFor="phoneNumber" className="text-sm font-semibold">
+              {t("forms.phoneNumber")}
             </label>
             <input
               id="phoneNumber"
               type="tel"
               className="px-3 py-2 border rounded"
-              placeholder="Enter phone number"
+              placeholder={t("forms.enterPhoneNumber")}
               required
             />
 
             <a href="#" className="text-xs text-blue-500">
-              Have a coupon code?
+              {t("forms.haveCouponCode")}
             </a>
 
             {/* Disclaimer Checkbox */}
@@ -124,16 +120,15 @@ const ConsultForm: React.FC = () => {
                 className="text-xs leading-relaxed text-gray-700"
               >
                 <span className="font-semibold text-[#2C73D2]">
-                  Disclaimer:
+                  {t("forms.disclaimer")}
                 </span>{" "}
-                I hereby declare that all the information provided is
-                true and accurate. I understand that this is not for
-                emergency use and agree to the terms and conditions of
-                the consultation service.
+                {t("forms.disclaimerText")}
               </label>
             </div>
 
-            <div className="mt-2 text-xs text-gray-600">Final Fee</div>
+            <div className="mt-2 text-xs text-gray-600">
+              {t("forms.finalFee")}
+            </div>
             <div className="text-2xl font-bold text-[#2C73D2]">₹449</div>
 
             <button
@@ -145,15 +140,14 @@ const ConsultForm: React.FC = () => {
           </form>
 
           <div className="mt-4 text-xs text-gray-500">
-            Dental Tourism Clinics India Guarantee: 100% Money back if
-            no response
+            Dental Tourism Clinics India Guarantee: 100% Money back if no
+            response
             <br />
             Not for emergency use
             <br />
-            The contents of your consultations are private and
-            confidential. Dental Tourism Clinics India's team of doctors
-            may carry out routine anonymised audits to improve service
-            quality. T&C apply
+            The contents of your consultations are private and confidential.
+            Dental Tourism Clinics India's team of doctors may carry out routine
+            anonymised audits to improve service quality. T&C apply
           </div>
         </div>
       </div>

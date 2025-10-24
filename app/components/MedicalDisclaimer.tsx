@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 interface Disclaimer {
   title: string;
@@ -12,28 +13,26 @@ interface MedicalDisclaimerProps {
   page?: "general" | "consultation" | "treatment";
 }
 
-const MedicalDisclaimer: React.FC<MedicalDisclaimerProps> = ({ page = "general" }) => {
+const MedicalDisclaimer: React.FC<MedicalDisclaimerProps> = ({
+  page = "general",
+}) => {
+  const { t } = useTranslation();
+
   const disclaimers: Record<string, Disclaimer> = {
     general: {
-      title: "Medical Information Disclaimer",
-      content:
-        "The information provided on this platform is for educational and informational purposes only and is not intended as medical advice. This content should not be used to diagnose, treat, cure, or prevent any medical condition. Always consult with a qualified healthcare provider before making any medical decisions or treatment plans.",
-      warning:
-        "FOR INFORMATIONAL PURPOSES ONLY - NOT A SUBSTITUTE FOR PROFESSIONAL MEDICAL ADVICE",
+      title: t("medicalDisclaimer.generalTitle"),
+      content: t("medicalDisclaimer.generalContent"),
+      warning: t("medicalDisclaimer.generalWarning"),
     },
     consultation: {
-      title: "Consultation Service Disclaimer",
-      content:
-        "Our consultation service connects you with dental professionals but does not replace in-person medical examination. The advice provided through our platform should be considered as preliminary guidance only. Final diagnosis and treatment decisions must always be made by qualified healthcare providers in appropriate clinical settings.",
-      warning:
-        "NOT FOR MEDICAL EMERGENCIES - SEEK IMMEDIATE MEDICAL ATTENTION FOR URGENT CONDITIONS",
+      title: t("medicalDisclaimer.consultationTitle"),
+      content: t("medicalDisclaimer.consultationContent"),
+      warning: t("medicalDisclaimer.consultationWarning"),
     },
     treatment: {
-      title: "Treatment Information Disclaimer",
-      content:
-        "Treatment information, costs, and success rates presented on this platform are general estimates and may vary significantly based on individual medical conditions, chosen healthcare providers, and geographic locations. Actual treatment outcomes depend on numerous factors that can only be assessed through proper medical examination.",
-      warning:
-        "TREATMENT OUTCOMES MAY VARY - INDIVIDUAL RESULTS NOT GUARANTEED",
+      title: t("medicalDisclaimer.treatmentTitle"),
+      content: t("medicalDisclaimer.treatmentContent"),
+      warning: t("medicalDisclaimer.treatmentWarning"),
     },
   };
 
@@ -89,8 +88,13 @@ const MedicalDisclaimer: React.FC<MedicalDisclaimerProps> = ({ page = "general" 
             <ul className="ml-6 space-y-1">
               <li>• This platform is not a healthcare provider</li>
               <li>• We do not provide medical diagnoses or treatments</li>
-              <li>• All medical decisions should involve qualified professionals</li>
-              <li>• Emergency medical situations require immediate professional care</li>
+              <li>
+                • All medical decisions should involve qualified professionals
+              </li>
+              <li>
+                • Emergency medical situations require immediate professional
+                care
+              </li>
               <li>• Individual results may vary significantly</li>
             </ul>
           </div>

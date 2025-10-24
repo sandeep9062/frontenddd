@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { languages } from "../i18n"; 
+import { languages } from "../i18n";
 
 interface Language {
   code: string;
@@ -23,6 +23,9 @@ const LanguageSwitcher: React.FC = () => {
         languages.find((lang) => lang.code === storedLang) || languages[0];
       i18n.changeLanguage(foundLang.code);
       setCurrentLanguage(foundLang);
+    } else {
+      // Set default language for SSR
+      setCurrentLanguage(languages[0]);
     }
   }, [i18n]);
 
@@ -36,8 +39,15 @@ const LanguageSwitcher: React.FC = () => {
     setIsOpen(false);
   };
 
+  // ✅ Handle keyboard navigation
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === "Escape") {
+      setIsOpen(false);
+    }
+  };
+
   return (
-    <div className="relative inline-block text-left">
+    <div className="relative inline-block text-left" onKeyDown={handleKeyDown}>
       {/* Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -73,7 +83,11 @@ const LanguageSwitcher: React.FC = () => {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute right-0 z-50 w-64 mt-2 overflow-y-auto origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none max-h-96">
+        <div
+          className="absolute right-0 z-50 w-64 mt-2 overflow-y-auto origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none max-h-96"
+          role="menu"
+          aria-orientation="vertical"
+        >
           <div className="py-1" role="menu">
             <div className="px-4 py-2 text-xs font-semibold tracking-wide text-gray-500 uppercase border-b border-gray-200">
               {t("nav.language")}
@@ -116,10 +130,7 @@ const LanguageSwitcher: React.FC = () => {
 
       {/* Overlay to close when clicking outside */}
       {isOpen && (
-        <div
-          className="fixed inset-0 z-40"
-          onClick={() => setIsOpen(false)}
-        />
+        <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)} />
       )}
     </div>
   );

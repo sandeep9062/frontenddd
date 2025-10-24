@@ -2,37 +2,32 @@
 
 import React from "react";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 // --- Features Data ---
-const features = [
+const getFeatures = (t: any) => [
   {
-    image: "../consult.png",
-    title: "Instant Video Consultation",
-    desc: "Consult dentist online from anywhere.",
+    image: "/Expert Dentist.png",
+    title: t("features.instantConsultation"),
+    desc: t("features.instantConsultationDesc"),
     link: "/consult",
   },
   {
-    image: "../clinic.png",
-    title: "Trusted Dental Clinic Near You",
-    desc: "Book appointments with leading dental clinics.",
+    image: "/Dental Implants.png",
+    title: t("features.trustedClinics"),
+    desc: t("features.trustedClinicsDesc"),
     link: "/dental-clinics",
   },
   {
-    image: "../scan.png",
-    title: "3D Dental Scan Near You",
-    desc: "Locate CBCT & OPG dental scan centers.",
+    image: "/3d teeth.png",
+    title: t("features.dentalScans"),
+    desc: t("features.dentalScansDesc"),
     link: "/cbct-opg-lab",
   },
   {
-    image:"../bloodtest.png",
-    title: (
-      <>
-        Blood Test
-        <br />
-        Near You
-      </>
-    ),
-    desc: "Book a blood test at a lab close to you.",
+    image: "/Affordable Treatment.png",
+    title: t("features.bloodTest"),
+    desc: t("features.bloodTestDesc"),
     link: "/blood-test",
   },
 ];
@@ -43,46 +38,48 @@ interface FeatureProps {
 }
 
 const Feature: React.FC<FeatureProps> = ({ sectionSpacing = "" }) => {
-  return (
-    <section
-      className={`w-full max-w-full mx-0 sm:max-w-5xl sm:mx-auto pb-8 px-2 sm:px-4 mt-4 mb-4 overflow-x-hidden ${sectionSpacing}`}
-    >
-      {/* Header */}
-      <div className="mb-8 text-center">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#2C73D2] mb-2">
-          Leading Dental Clinics
-        </h2>
-        <p className="text-base text-gray-700 sm:text-lg md:text-lg">
-          Explore trusted dental clinics, book video consultations, locate scan centers, and find nearby labs — all in one place.
-        </p>
-      </div>
+  const { t } = useTranslation();
+  const features = getFeatures(t);
 
-      {/* Features Grid */}
-      <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 sm:gap-8">
-        {features.map((feature, idx) => (
-          <Link
-            key={idx}
-            href={feature.link || "#"}
-            className="flex flex-col items-center bg-[#f7f7f7] rounded-2xl shadow-lg p-6 hover:shadow-2xl transition group"
-          >
-            <div className="flex items-center justify-center mb-4">
-              <img
-                src={feature.image}
-                alt={typeof feature.title === "string" ? feature.title : "Feature"}
-                className="w-auto mx-auto mb-8 h-28"
-              />
-            </div>
-            <div className="text-lg font-bold text-[#2C73D2] mb-2 text-center">
-              {feature.title}
-            </div>
-            <div className="text-base text-[#333333] text-center mb-2">
-              {feature.desc}
-            </div>
-            <span className="mt-auto px-4 py-2 rounded-lg bg-gradient-to-r from-[#2C73D2] to-[#F4A300] text-white font-semibold shadow drop-shadow-md hover:from-[#F4A300] hover:to-[#2C73D2] transition">
-              Learn More
-            </span>
-          </Link>
-        ))}
+  return (
+    <section className={`w-full py-16 bg-gray-50 ${sectionSpacing}`}>
+      <div className="container px-4 mx-auto sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="mb-12 text-center">
+          <h2 className="text-3xl font-extrabold text-[#2C73D2] sm:text-4xl md:text-5xl">
+            Leading Dental Clinics
+          </h2>
+          <p className="max-w-3xl mx-auto mt-4 text-lg text-gray-700">
+            Explore trusted dental clinics, book video consultations, locate
+            scan centers, and find nearby labs — all in one place.
+          </p>
+        </div>
+
+        {/* Features Grid */}
+        <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-12">
+          {features.map((feature, idx) => (
+            <Link
+              key={idx}
+              href={feature.link || "#"}
+              className="group flex flex-col items-center p-8 text-center transition-all duration-300 bg-white shadow-lg rounded-2xl hover:scale-105 hover:shadow-xl border-2 border-transparent hover:border-[#2C73D2]"
+            >
+              <div className="flex items-center justify-center w-32 h-32 mb-6">
+                <img
+                  src={feature.image}
+                  alt={feature.title}
+                  className="object-contain h-32"
+                />
+              </div>
+              <h3 className="text-xl font-bold text-[#2C73D2] mb-3">
+                {feature.title}
+              </h3>
+              <p className="mb-6 text-base text-gray-700">{feature.desc}</p>
+              <div className="w-full px-6 py-3 mt-auto text-lg font-semibold text-white transition-all duration-300 rounded-lg shadow-md bg-gradient-to-r from-[#2C73D2] to-[#008F9B] group-hover:from-[#008F9B] group-hover:to-[#2C73D2]">
+                Learn More
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );

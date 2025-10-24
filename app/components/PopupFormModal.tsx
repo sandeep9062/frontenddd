@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import toast from "react-hot-toast";
-import { useAddPopUpFormMutation } from "./popUpFormApi";
+import { useAddPopUpFormMutation } from "../../services/popUpFormApi";
 
 export default function PopupFormModal() {
   const [show, setShow] = useState(false);

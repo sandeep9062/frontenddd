@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 interface ContactOption {
   icon: string;
@@ -11,38 +12,39 @@ interface ContactOption {
   onClick?: () => void;
 }
 
-const contactOptions: ContactOption[] = [
-  {
-    icon: "📞",
-    title: "Phone Support",
-    description: "Speak directly with our support team",
-    actionText: "+91 7087117423",
-    href: "tel:+917087117423",
-  },
-  {
-    icon: "💬",
-    title: "Live Chat",
-    description: "Get instant help from our team",
-    actionText: "Start Chat",
-    onClick: () => alert("Chat support coming soon!"),
-  },
-  {
-    icon: "📧",
-    title: "Email Support",
-    description: "Send us your questions",
-    actionText: "info@dentaltourismclinicsindia.com",
-    href: "mailto:info@dentaltourismclinicsindia.com",
-  },
-  {
-    icon: "🦷",
-    title: "Emergency Care",
-    description: "24/7 dental emergency support",
-    actionText: "Emergency Line",
-    href: "tel:emergency",
-  },
-];
-
 const ContactOptions: React.FC = () => {
+  const { t } = useTranslation();
+
+  const contactOptions: ContactOption[] = [
+    {
+      icon: "📞",
+      title: t("common.phoneSupport"),
+      description: t("common.speakDirectly"),
+      actionText: "+91 7087117423",
+      href: "tel:+917087117423",
+    },
+    {
+      icon: "💬",
+      title: t("common.liveChat"),
+      description: t("common.getInstantHelp"),
+      actionText: t("common.startChat"),
+      onClick: () => alert("Chat support coming soon!"),
+    },
+    {
+      icon: "📧",
+      title: t("common.emailSupport"),
+      description: t("common.sendQuestions"),
+      actionText: "info@dentaltourismclinicsindia.com",
+      href: "mailto:info@dentaltourismclinicsindia.com",
+    },
+    {
+      icon: "🦷",
+      title: t("common.emergencyCare"),
+      description: t("common.emergencySupport"),
+      actionText: t("common.emergencyLine"),
+      href: "tel:emergency",
+    },
+  ];
   return (
     <section className="grid gap-6 md:grid-cols-4">
       {contactOptions.map((option, index) => (

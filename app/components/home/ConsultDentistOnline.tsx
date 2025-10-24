@@ -780,26 +780,48 @@ interface SpecialistProps {
   sectionSpacing?: string;
 }
 
-const problemsPerSlide = 4; // Number of items visible per slide
-
 const Specialist: React.FC<SpecialistProps> = ({ sectionSpacing = "" }) => {
+  const [problemsPerSlide, setProblemsPerSlide] = useState(4);
   const [problemSliderIndex, setProblemSliderIndex] = useState(0);
   const [problemMaxIndex, setProblemMaxIndex] = useState(0);
 
   useEffect(() => {
-    setProblemMaxIndex(Math.ceil(sliderProblems.length / problemsPerSlide) - 1);
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setProblemsPerSlide(1);
+      } else if (window.innerWidth < 768) {
+        setProblemsPerSlide(2);
+      } else if (window.innerWidth < 1024) {
+        setProblemsPerSlide(3);
+      } else {
+        setProblemsPerSlide(4);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
+
+  useEffect(() => {
+    setProblemMaxIndex(
+      Math.ceil(sliderProblems.length / problemsPerSlide) - 1
+    );
+  }, [problemsPerSlide]);
 
   return (
     <section
-      className={`w-full max-w-full mx-0 sm:max-w-7xl sm:mx-auto pb-10 px-2 sm:px-4 mt-4 mb-4 ${sectionSpacing}`}
+      className={`w-full max-w-full mx-0 sm:max-w-7xl sm:mx-auto pb-6 sm:pb-10 px-2 sm:px-4 mt-4 mb-4 ${sectionSpacing}`}
     >
       <div className="flex flex-col items-center w-full">
         {/* Header */}
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#2C73D2] mb-2 font-[Poppins] text-center">
+        <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-[#2C73D2] mb-2 font-[Poppins] text-center">
           Consult Dentist Online
         </h2>
-        <p className="text-gray-700 text-base sm:text-lg md:text-lg font-[Poppins] mb-8 text-center">
+        <p className="text-gray-700 text-sm sm:text-lg md:text-lg font-[Poppins] mb-6 sm:mb-8 text-center">
           Private online consultations with verified dentists in all
           specialists.
         </p>
@@ -831,25 +853,25 @@ const Specialist: React.FC<SpecialistProps> = ({ sectionSpacing = "" }) => {
               {sliderProblems.map((problem, idx) => (
                 <div
                   key={idx}
-                  className="flex-shrink-0 w-full p-2"
+                  className="flex-shrink-0 w-full p-1 sm:p-2"
                   style={{ width: `${100 / problemsPerSlide}%` }}
                 >
-                  <div className="flex flex-col bg-white rounded-2xl shadow-lg p-6 border-t-4 border-[#F4A300] w-full h-full justify-between">
-                    <div className="flex items-center justify-center w-full mb-4">
+                  <div className="flex flex-col bg-white rounded-2xl shadow-lg p-4 sm:p-6 border-t-4 border-[#F4A300] w-full h-full justify-between">
+                    <div className="flex items-center justify-center w-full mb-3 sm:mb-4">
                       <Image
                         src={problem.image}
                         alt={problem.name}
-                        width={96}
-                        height={96}
-                        className="object-contain"
+                        width={80}
+                        height={80}
+                        className="object-contain sm:w-24 sm:h-24"
                       />
                     </div>
-                    <h3 className="text-xl font-bold text-[#2C73D2] text-center w-full leading-tight mb-3">
+                    <h3 className="text-base sm:text-xl font-bold text-[#2C73D2] text-center w-full leading-tight mb-2 sm:mb-3">
                       {problem.name}
                     </h3>
-                    <ul className="w-full px-4 mb-4 text-base text-left text-gray-700 list-disc">
+                    <ul className="w-full px-3 mb-3 text-sm text-left text-gray-700 list-disc sm:px-4 sm:mb-4 sm:text-base">
                       {Array.isArray(problem.points) ? (
-                        problem.points.slice(0, 4).map((point, i) => (
+                        problem.points.slice(0, 3).map((point, i) => (
                           <li key={i} className="mb-1">
                             {point}
                           </li>
@@ -860,7 +882,7 @@ const Specialist: React.FC<SpecialistProps> = ({ sectionSpacing = "" }) => {
                     </ul>
                     <Link
                       href="/consult"
-                      className="mt-auto mx-auto px-8 py-3 rounded-lg bg-gradient-to-r from-[#2C73D2] to-[#0052D4] text-white font-semibold shadow-lg hover:from-[#0052D4] hover:to-[#2C73D2] transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
+                      className="mt-auto mx-auto px-6 py-2 sm:px-8 sm:py-3 rounded-lg bg-gradient-to-r from-[#2C73D2] to-[#0052D4] text-white font-semibold shadow-lg hover:from-[#0052D4] hover:to-[#2C73D2] transition-all duration-300 transform hover:scale-105 flex items-center justify-center text-sm sm:text-base"
                     >
                       <span className="whitespace-nowrap">Consult Now</span>
                     </Link>

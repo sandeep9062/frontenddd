@@ -143,8 +143,10 @@ const BookAnAppointment: React.FC = () => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
         setSpecialistsPerSlide(1);
-      } else if (window.innerWidth < 1024) {
+      } else if (window.innerWidth < 768) {
         setSpecialistsPerSlide(2);
+      } else if (window.innerWidth < 1024) {
+        setSpecialistsPerSlide(3);
       } else {
         setSpecialistsPerSlide(4);
       }
@@ -182,26 +184,50 @@ const BookAnAppointment: React.FC = () => {
           <div
             className="flex transition-transform duration-500 ease-in-out"
             style={{
-              transform: `translateX(-${specialistIndex * 100 / specialistsPerSlide}%)`,
-              width: `${(specialists.length / specialistsPerSlide) * 100}%`,
+              transform: `translateX(-${specialistIndex * 100}%)`,
             }}
           >
-            {specialists.map((spec, idx) => (
-              <div key={idx} className="w-full px-4" style={{ flex: `0 0 ${100 / specialists.length}%` }}>
-                <div className="flex flex-col items-center h-full p-6 text-center transition-transform transform bg-white rounded-lg shadow-lg hover:scale-105">
-                  <div className="flex-shrink-0">
-                    <Image src={spec.img} alt={spec.name} width={80} height={80} className="object-cover w-20 h-20 mx-auto rounded-full" />
-                  </div>
-                  <div className="mt-4">
-                    <h3 className="text-lg font-semibold text-gray-900">{spec.name}</h3>
-                    <p className="mt-2 text-sm text-gray-600">{spec.desc}</p>
-                  </div>
-                  <button
-                    onClick={() => setSelectedSpecialist(spec)}
-                    className="w-full px-4 py-2 mt-6 text-sm font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                  >
-                    View Details
-                  </button>
+            {Array.from({ length: specialistMaxIndex + 1 }).map((_, slideIndex) => (
+              <div
+                key={slideIndex}
+                className="flex-shrink-0 w-full"
+                style={{ flexBasis: "100%" }}
+              >
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                  {specialists
+                    .slice(
+                      slideIndex * specialistsPerSlide,
+                      (slideIndex + 1) * specialistsPerSlide
+                    )
+                    .map((spec, idx) => (
+                      <div key={idx} className="w-full">
+                        <div className="flex flex-col items-center h-full p-6 text-center transition-transform transform bg-white rounded-lg shadow-lg hover:scale-105">
+                          <div className="flex-shrink-0">
+                            <Image
+                              src={spec.img}
+                              alt={spec.name}
+                              width={80}
+                              height={80}
+                              className="object-cover w-20 h-20 mx-auto rounded-full"
+                            />
+                          </div>
+                          <div className="mt-4">
+                            <h3 className="text-lg font-semibold text-gray-900">
+                              {spec.name}
+                            </h3>
+                            <p className="mt-2 text-sm text-gray-600">
+                              {spec.desc}
+                            </p>
+                          </div>
+                          <button
+                            onClick={() => setSelectedSpecialist(spec)}
+                            className="w-full px-4 py-2 mt-6 text-sm font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                          >
+                            View Details
+                          </button>
+                        </div>
+                      </div>
+                    ))}
                 </div>
               </div>
             ))}

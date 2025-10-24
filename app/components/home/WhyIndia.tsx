@@ -1,62 +1,63 @@
 "use client";
 
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const WhyIndia: React.FC = () => {
-  const sectionSpacing = "mt-8 mb-12"; // You can adjust spacing if needed
+  const { t } = useTranslation();
 
   const reasons = [
     {
-      title: "Affordable Treatments",
-      desc: "Save up to 70% on world-class dental treatments.",
-      img: "../Affordable Treatment.png",
+      title: t("whyIndia.affordableTreatments"),
+      desc: t("whyIndia.affordableTreatmentsDesc"),
+      img: "/Affordable Treatment.png",
     },
     {
-      title: "Expert Dentists You can Trust",
-      desc: "Precision, passion and a perfect smile — lead by experts.",
-      img: "../Expert Dentist.png",
+      title: t("whyIndia.expertDentists"),
+      desc: t("whyIndia.expertDentistsDesc"),
+      img: "/Expert Dentist.png",
     },
     {
-      title: "Tourism + Dental Treatment",
-      desc: "Recover your smile & joy while exploring India’s beauty.",
-      img:"../Tourism + Treatment.png",
+      title: t("whyIndia.tourismDental"),
+      desc: t("whyIndia.tourismDentalDesc"),
+      img: "/Tourism + Dental Treatment.png",
     },
     {
-      title: "Top Dental Clinics Across India",
-      desc: "Top rated dental clinics across India for expert care & trusted smile.",
+      title: t("whyIndia.topClinics"),
+      desc: t("whyIndia.topClinicsDesc"),
       img: "../Assisted Travel Plans.png",
     },
   ];
 
   return (
-    <section
-      className={`w-full max-w-full mx-0 sm:max-w-5xl sm:mx-auto pt-6 pb-8 px-2 sm:px-4 mt-0 mb-4 ${sectionSpacing}`}
-    >
-      {/* Section Heading */}
-      <div className="mb-8 text-center">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#2C73D2] mb-1 font-[Poppins]">
-          Why India is the Global Hub for Dental Tourism?
-        </h2>
-      </div>
+    <section className="w-full py-16 bg-gray-50">
+      <div className="container px-4 mx-auto sm:px-6 lg:px-8">
+        {/* Section Heading */}
+        <div className="mb-12 text-center">
+          <h2 className="text-3xl font-extrabold text-[#2C73D2] sm:text-4xl md:text-5xl">
+            {t("whyIndia.title")}
+          </h2>
+        </div>
 
-      {/* Reasons Grid */}
-      <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
-        {reasons.map((reason, idx) => (
-          <div
-            key={idx}
-            className="flex flex-col items-center bg-white rounded-2xl shadow-lg p-6 border-t-4 border-[#F4A300] min-h-[340px] justify-start"
-          >
-            <img
-              src={reason.img}
-              alt={reason.title}
-              className="w-[160px] h-[160px] object-contain mb-4"
-            />
-            <h3 className="text-lg font-bold text-[#2C73D2] mb-2 text-center">
-              {reason.title}
-            </h3>
-            <p className="text-base text-center text-gray-700">{reason.desc}</p>
-          </div>
-        ))}
+        {/* Reasons Grid */}
+        <div className="grid w-full grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {reasons.map((reason, idx) => (
+            <div
+              key={idx}
+              className="flex flex-col items-center p-6 text-center transition-transform transform bg-white border-t-4 border-[#F4A300] rounded-2xl shadow-lg hover:scale-105"
+            >
+              <img
+                src={reason.img}
+                alt={reason.title}
+                className="object-contain w-32 h-32 mb-4"
+              />
+              <h3 className="text-lg font-bold text-[#2C73D2] mb-2">
+                {reason.title}
+              </h3>
+              <p className="text-base text-gray-700">{reason.desc}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

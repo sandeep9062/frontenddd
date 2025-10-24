@@ -76,7 +76,7 @@ export default function BlogDetailClient({ slug }: { slug: string }) {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="min-h-screen mt-10 bg-white dark:bg-[#0D1321] py-16 sm:py-24 px-4 md:px-8"
+        className="min-h-screen bg-white dark:bg-[#0D1321] py-4 sm:py-24 px-4 md:px-8"
       >
         <div className="max-w-6xl mx-auto">
           {/* Back to Blog List Button */}
@@ -126,12 +126,7 @@ export default function BlogDetailClient({ slug }: { slug: string }) {
             <span className="flex items-center gap-1">
               <Clock size={16} /> {readTime || 5} min read
             </span>
-            <span className="flex items-center gap-1">
-              <Eye size={16} /> {views || 0} views
-            </span>
-            <span className="flex items-center gap-1">
-              <ThumbsUp size={16} /> {likes || 0} likes
-            </span>
+            
             {status && (
               <span
                 className={`px-2 py-1 rounded-full text-xs font-semibold uppercase ${

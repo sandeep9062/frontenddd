@@ -1,9 +1,8 @@
-
-
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 import toast, { Toaster } from "react-hot-toast";
 import { useDropzone } from "react-dropzone";
 import { useSelector } from "react-redux";
@@ -343,6 +342,7 @@ const steps = [
 ];
 
 const FixMyTeeth = () => {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(true);
   const [selectedState, setSelectedState] = useState("");
   const [showQuoteForm, setShowQuoteForm] = useState(false);
@@ -469,7 +469,7 @@ const FixMyTeeth = () => {
             </span>
           </h1>
           <p className="max-w-2xl mx-auto mt-4 text-lg text-gray-600">
-            Get expert advice and personalized treatment plans.
+            {t("forms.treatmentPlanDesc")}
           </p>
         </header>
 
@@ -487,14 +487,13 @@ const FixMyTeeth = () => {
                 />
               </div>
               <h2 className="mt-6 text-3xl font-bold text-gray-900">
-                Treatment Plan & Quote in 24 Hours
+                {t("forms.treatmentPlan")}
               </h2>
               <p className="mt-4 text-lg text-gray-600">
-                For just <span className="font-bold text-blue-600">₹149</span>,
-                select your dental problems and get a detailed plan.
+                {t("forms.treatmentPlanDesc")}
               </p>
               <Button onClick={() => setShowQuoteForm(!showQuoteForm)}>
-                {showQuoteForm ? "Hide Form" : "Start Now - ₹149"}
+                {showQuoteForm ? t("forms.hideForm") : t("forms.startNow")}
               </Button>
             </div>
 
@@ -629,21 +628,19 @@ const FixMyTeeth = () => {
                   )}
                 </div>
 
-
-                  <div className="mt-8">
-                    <h4 className="mb-2 text-lg font-semibold text-gray-800">
-                      Please describe the 'Other' problem:
-                    </h4>
-                    <textarea
-                      value={otherProblemText}
-                      onChange={(e) => setOtherProblemText(e.target.value)}
-                      placeholder="Describe the other dental problem in detail..."
-                      rows={4}
-                      className="w-full p-4 transition-shadow border-2 border-gray-200 outline-none rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                      required
-                    />
-                  </div>
-              
+                <div className="mt-8">
+                  <h4 className="mb-2 text-lg font-semibold text-gray-800">
+                    Please describe the 'Other' problem:
+                  </h4>
+                  <textarea
+                    value={otherProblemText}
+                    onChange={(e) => setOtherProblemText(e.target.value)}
+                    placeholder="Describe the other dental problem in detail..."
+                    rows={4}
+                    className="w-full p-4 transition-shadow border-2 border-gray-200 outline-none rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    required
+                  />
+                </div>
 
                 <div className="mt-8">
                   <h4 className="mb-2 text-lg font-semibold text-gray-800">

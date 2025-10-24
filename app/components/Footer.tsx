@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 import customLogo from "../../public/logo.png"; // adjust path if needed
 
 // ✅ SVG ICONS (same as before)
@@ -45,6 +46,7 @@ const YouTubeIcon = () => (
 
 // ✅ Footer Component
 const Footer: React.FC = () => {
+  const { t } = useTranslation();
   const linkClass =
     "mb-1 text-sm transition-colors duration-200 hover:text-[#F4A300]";
   const titleClass =
@@ -63,85 +65,87 @@ const Footer: React.FC = () => {
         <div className="grid w-full grid-cols-2 mb-8 sm:grid-cols-4 lg:grid-cols-7 gap-x-6 gap-y-8 lg:gap-x-10">
           {/* Column 1 */}
           <div className="flex flex-col items-start min-w-[120px]">
-            <span className={titleClass}>For Patients</span>
+            <span className={titleClass}>{t("footer.forPatients")}</span>
             <Link href="/consult" className={linkClass}>
-              Search Dentist
+              {t("footer.searchDentist")}
             </Link>
-            <Link href="/clinics" className={linkClass}>
-              Search Dental Clinics
+            <Link href="/dental-clinics" className={linkClass}>
+              {t("footer.searchClinics")}
             </Link>
             <Link href="/consult" className={linkClass}>
-              Consult Now
+              {t("footer.consultNow")}
             </Link>
             <Link href="/patient-refund-policy" className={linkClass}>
-              Refund Policy
+              {t("footer.refundPolicy")}
             </Link>
           </div>
 
           {/* Column 2 */}
           <div className="flex flex-col items-start min-w-[110px]">
-            <span className={titleClass}>For Dentist</span>
+            <span className={titleClass}>{t("footer.forDentist")}</span>
             <Link href="/consult" className={linkClass}>
-              Profile
+              {t("footer.profile")}
             </Link>
             <Link href="/refund-policy" className={linkClass}>
-              Refund Policy
+              {t("footer.refundPolicy")}
             </Link>
           </div>
 
           {/* Column 3 */}
           <div className="flex flex-col items-start min-w-[160px]">
-            <span className={titleClass}>For CBCT & OPG Centre</span>
+            <span className={titleClass}>{t("footer.forCBCT")}</span>
             <Link href="/cbct-opg-lab" className={linkClass}>
-              Profile
+              {t("footer.profile")}
             </Link>
             <Link href="/refund-policy" className={linkClass}>
-              Refund Policy
+              {t("footer.refundPolicy")}
             </Link>
           </div>
 
           {/* Column 4 */}
           <div className="flex flex-col items-start min-w-[160px]">
-            <span className={titleClass}>For Blood Test Lab</span>
+            <span className={titleClass}>{t("footer.forBloodTest")}</span>
             <Link href="/blood-test" className={linkClass}>
-              Profile
+              {t("footer.profile")}
             </Link>
             <Link href="/refund-policy" className={linkClass}>
-              Refund Policy
+              {t("footer.refundPolicy")}
             </Link>
           </div>
 
           {/* Column 5 */}
           <div className="flex flex-col items-start min-w-[120px]">
-            <span className={titleClass}>For Dental Essentials</span>
+            <span className={titleClass}>
+              {t("footer.forDentalEssentials")}
+            </span>
             <Link href="#" className={linkClass}>
-              Profile
+              {t("footer.profile")}
             </Link>
             <Link href="/refund-policy" className={linkClass}>
-              Refund Policy
+              {t("footer.refundPolicy")}
             </Link>
           </div>
 
           {/* Column 6 */}
           <div className="flex flex-col items-start min-w-[120px]">
-            <span className={titleClass}>More</span>
+            <span className={titleClass}>{t("footer.more")}</span>
             <Link href="/support" className={linkClass}>
-              Help & Center
+              {t("footer.helpCenter")}
             </Link>
             <Link href="/privacy-policy" className={linkClass}>
-              Privacy Policy
+              {t("footer.privacyPolicy")}
             </Link>
             <Link href="cookie-policy" className={linkClass}>
-              Cookie Policy
+              {t("footer.cookiePolicy")}
             </Link>
             <Link href="/terms" className={linkClass}>
-              T&C
+              {t("footer.terms")}
             </Link>
             <Link href="/contact" className={linkClass}>
-              Contact Us
+              {t("footer.contactUs")}
             </Link>
             <Link href="/blog" className={linkClass}>
-              Blogs
+              {t("footer.blogs")}
             </Link>
           </div>
 
