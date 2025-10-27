@@ -21,12 +21,13 @@ interface NavLinkItem {
 }
 
 const navLinks: NavLinkItem[] = [
-  { nameKey: "nav.home", to: "/" },
+  { nameKey: "nav.home", to: "/" },  
   { nameKey: "nav.consult", to: "/consult" },
   { nameKey: "nav.dentalClinics", to: "/dental-clinics" },
   { nameKey: "nav.dentalScans", to: "/cbct-opg-lab" },
   { nameKey: "nav.bloodTest", to: "/blood-test" },
   { nameKey: "nav.fixMyTeeth", to: "/fix-my-teeth" },
+  { nameKey: "Products", to: "/products" },
   { nameKey: "nav.blogs", to: "/blog" },
   { nameKey: "nav.support", to: "/support" },
 ];

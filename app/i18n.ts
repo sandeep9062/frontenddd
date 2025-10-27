@@ -123,7 +123,7 @@ i18n.use(LanguageDetector).use(initReactI18next).init({
           startNow: "Start Now",
           hideForm: "Hide Form",
           treatmentPlan: "Treatment Plan & Quote in 24 Hours",
-          treatmentPlanDesc: "For just ₹149, select your dental problems and get a detailed plan."
+          treatmentPlanDesc: "For just ₹149/-, select your dental problems and get a detailed plan."
         },
         medicalDisclaimer: {
           generalTitle: "Medical Information Disclaimer",
@@ -248,7 +248,7 @@ i18n.use(LanguageDetector).use(initReactI18next).init({
           startNow: "अभी शुरू करें",
           hideForm: "फॉर्म छुपाएं",
           treatmentPlan: "24 घंटे में उपचार योजना और कोटेशन",
-          treatmentPlanDesc: "केवल ₹149 में, अपनी दंत समस्याओं का चयन करें और विस्तृत योजना प्राप्त करें।"
+          treatmentPlanDesc: "केवल ₹149/- में, अपनी दंत समस्याओं का चयन करें और विस्तृत योजना प्राप्त करें।"
         },
         medicalDisclaimer: {
           generalTitle: "चिकित्सा जानकारी अस्वीकरण",
@@ -373,7 +373,7 @@ i18n.use(LanguageDetector).use(initReactI18next).init({
           startNow: "Commencer maintenant",
           hideForm: "Masquer le formulaire",
           treatmentPlan: "Plan de traitement et devis en 24 heures",
-          treatmentPlanDesc: "Pour seulement ₹149, sélectionnez vos problèmes dentaires et obtenez un plan détaillé."
+          treatmentPlanDesc: "Pour seulement ₹149/-, sélectionnez vos problèmes dentaires et obtenez un plan détaillé."
         },
         medicalDisclaimer: {
           generalTitle: "Avertissement sur les Informations Médicales",

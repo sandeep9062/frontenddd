@@ -332,7 +332,7 @@ const steps = [
     color: "bg-green-500",
   },
   { number: 3, title: "Upload Photos", icon: "📷", color: "bg-purple-500" },
-  { number: 4, title: "Pay ₹149", icon: "💳", color: "bg-orange-500" },
+  { number: 4, title: "Pay ₹149/-", icon: "💳", color: "bg-orange-500" },
   {
     number: 5,
     title: "Receive Report in 24 hrs",
@@ -738,7 +738,7 @@ const FixMyTeeth = () => {
                   >
                     {isSubmitting
                       ? "Submitting..."
-                      : "Get My Treatment Plan - Pay ₹149"}
+                      : "Get My Treatment Plan - Pay ₹149/-"}
                   </Button>
                 </form>
               </div>

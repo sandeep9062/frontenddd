@@ -4,7 +4,7 @@ import React, { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import allStatesAndUTs from "../data/allStatesAndUTs";
 
-import ClinicCard from "./ClinicCard";
+import ClinicCard from "./home/ClinicCard";
 import ClinicDropdown from "./ClinicDropdown";
 import { useGetClinicsQuery } from "@/services/clinicApi";
 import { Clinic } from "@/types/clinic";

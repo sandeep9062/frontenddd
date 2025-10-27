@@ -15,6 +15,7 @@ import { testimonialsApi } from "@/services/testimonialsApi";
 import { servicesApi } from "@/services/servicesApi";
 import { clinicApi } from "@/services/clinicApi";
 import { cbctOpgLabsApi } from "@/services/cbctOpgLabs";
+import { productsApi } from "@/services/productsApi";
 import authReducer from "./authSlice";
 
 
@@ -36,6 +37,7 @@ const store = configureStore({
     [servicesApi.reducerPath]: servicesApi.reducer,
     [clinicApi.reducerPath]: clinicApi.reducer,
     [cbctOpgLabsApi.reducerPath]: cbctOpgLabsApi.reducer,
+    [productsApi.reducerPath]: productsApi.reducer,
     auth: authReducer,
 
 
@@ -58,6 +60,7 @@ const store = configureStore({
       servicesApi.middleware,
       clinicApi.middleware,
       cbctOpgLabsApi.middleware,
+      productsApi.middleware,
     ]),
   devTools: process.env.NODE_ENV !== "production", // ✅ enable Redux DevTools in development
 });

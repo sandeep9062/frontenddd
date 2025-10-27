@@ -75,7 +75,7 @@ const Feature: React.FC<FeatureProps> = ({ sectionSpacing = "" }) => {
               </h3>
               <p className="mb-6 text-base text-gray-700">{feature.desc}</p>
               <div className="w-full px-6 py-3 mt-auto text-lg font-semibold text-white transition-all duration-300 rounded-lg shadow-md bg-gradient-to-r from-[#2C73D2] to-[#008F9B] group-hover:from-[#008F9B] group-hover:to-[#2C73D2]">
-                Learn More
+               Book Now
               </div>
             </Link>
           ))}

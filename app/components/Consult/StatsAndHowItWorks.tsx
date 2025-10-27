@@ -6,83 +6,108 @@ interface Stat {
   value: number;
   suffix: string;
   label: string;
+  icon: string;
 }
 
 interface Step {
   icon: React.ReactNode;
   text: string;
+  description: string;
 }
 
 const stats: Stat[] = [
-  { value: 30999, suffix: "+", label: "Happy Users" },
-  { value: 327, suffix: "+", label: "Verified Doctors" },
-  { value: 15, suffix: "", label: "Specialities" },
+  { value: 30999, suffix: "+", label: "Happy Users", icon: "😊" },
+  { value: 327, suffix: "+", label: "Verified Doctors", icon: "👨‍⚕️" },
+  { value: 15, suffix: "", label: "Specialities", icon: "🦷" },
 ];
 
 const HowItWorks: Step[] = [
   {
     icon: (
-      <span className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-[#15396A] bg-white text-[#15396A] text-2xl shadow-md">
-        <svg
-          width="28"
-          height="28"
-          fill="none"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M8 5v14l11-7L8 5z"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </span>
+      <div className="relative">
+        <div className="w-16 h-16 bg-gradient-to-br from-[#2C73D2] to-[#008E97] rounded-2xl flex items-center justify-center shadow-lg">
+          <svg
+            width="32"
+            height="32"
+            fill="none"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            className="text-white"
+          >
+            <path
+              d="M8 5v14l11-7L8 5z"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+        <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-[#F4A300] to-[#FF6B35] rounded-full flex items-center justify-center text-white text-xs font-bold">
+          1
+        </div>
+      </div>
     ),
     text: "Choose your dental need",
+    description:
+      "Select your problem or speciality from our comprehensive list",
   },
   {
     icon: (
-      <span className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-[#15396A] bg-white text-[#15396A] text-2xl shadow-md">
-        <svg
-          width="28"
-          height="28"
-          fill="none"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M17 8h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <circle
-            cx="12"
-            cy="12"
-            r="3"
-            stroke="currentColor"
-            strokeWidth="2"
-          />
-        </svg>
-      </span>
+      <div className="relative">
+        <div className="w-16 h-16 bg-gradient-to-br from-[#008E97] to-[#2C73D2] rounded-2xl flex items-center justify-center shadow-lg">
+          <svg
+            width="32"
+            height="32"
+            fill="none"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            className="text-white"
+          >
+            <path
+              d="M17 8h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <circle
+              cx="12"
+              cy="12"
+              r="3"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        </div>
+        <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-[#F4A300] to-[#FF6B35] rounded-full flex items-center justify-center text-white text-xs font-bold">
+          2
+        </div>
+      </div>
     ),
     text: "Audio/ video call with a verified doctor",
+    description:
+      "Connect with experienced dentists through secure video consultation",
   },
   {
     icon: (
-      <span className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-[#15396A] bg-white text-[#15396A] text-2xl shadow-md font-bold">
-        Rx
-      </span>
+      <div className="relative">
+        <div className="w-16 h-16 bg-gradient-to-br from-[#2C73D2] to-[#008E97] rounded-2xl flex items-center justify-center shadow-lg">
+          <div className="text-white text-xl font-bold">Rx</div>
+        </div>
+        <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-[#F4A300] to-[#FF6B35] rounded-full flex items-center justify-center text-white text-xs font-bold">
+          3
+        </div>
+      </div>
     ),
     text: "Get a digital prescription & a free follow-up",
+    description:
+      "Receive instant digital prescription and schedule follow-up consultations",
   },
 ];
 
 /** Custom hook to animate counting up */
-function useCountUp(end: number, duration = 600, trigger = true): number {
+function useCountUp(end: number, duration = 800, trigger = true): number {
   const [count, setCount] = useState(0);
   const start = 0;
   const frame = useRef<number | null>(null);
@@ -118,11 +143,11 @@ const StatCountUp: React.FC<{
   suffix?: string;
   duration?: number;
   trigger: boolean;
-}> = ({ value, suffix = "", duration = 600, trigger }) => {
+}> = ({ value, suffix = "", duration = 800, trigger }) => {
   const count = useCountUp(value, duration, trigger);
   return (
     <span>
-      {count}
+      {count.toLocaleString()}
       {suffix}
     </span>
   );
@@ -130,7 +155,9 @@ const StatCountUp: React.FC<{
 
 const StatsAndHowItWorks: React.FC = () => {
   const [startAnim, setStartAnim] = useState(false);
+  const [howItWorksAnim, setHowItWorksAnim] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
+  const howItWorksRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -141,56 +168,139 @@ const StatsAndHowItWorks: React.FC = () => {
       }
     };
 
+    const onScrollHowItWorks = () => {
+      if (!howItWorksRef.current) return;
+      const rect = howItWorksRef.current.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        setHowItWorksAnim(true);
+      }
+    };
+
     window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScrollHowItWorks);
     onScroll(); // trigger immediately if visible
-    return () => window.removeEventListener("scroll", onScroll);
+    onScrollHowItWorks();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("scroll", onScrollHowItWorks);
+    };
   }, []);
 
   return (
     <>
       {/* How it works */}
-      <div className="flex flex-col items-center w-full py-10 bg-white">
-        <h2 className="text-3xl font-bold text-[#2C73D2] text-center mb-10">
-          How it works
-        </h2>
-        <div className="flex flex-col items-center justify-center w-full max-w-5xl gap-10 md:flex-row md:gap-0">
-          {HowItWorks.map((step) => (
-            <div
-              key={step.text}
-              className="relative flex flex-col items-center flex-1"
-            >
-              {step.icon}
-              <span className="mt-4 text-[#15396A] text-base md:text-lg text-center font-medium max-w-[180px]">
-                {step.text}
-              </span>
+      <div
+        ref={howItWorksRef}
+        className="w-full py-20 bg-gradient-to-br from-white via-gray-50 to-blue-50"
+      >
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#2C73D2] to-[#008E97] text-white rounded-full text-sm font-semibold mb-6">
+              🔄 Process
             </div>
-          ))}
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#2C73D2] to-[#008E97] mb-6">
+              How it works
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Get expert dental care in just three simple steps
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            {HowItWorks.map((step, index) => (
+              <div
+                key={step.text}
+                className={`relative flex flex-col items-center text-center group ${
+                  howItWorksAnim ? "animate-fade-in-up" : "opacity-0"
+                }`}
+                style={{ animationDelay: `${index * 200}ms` }}
+              >
+                {/* Connection Line */}
+                {index < HowItWorks.length - 1 && (
+                  <div className="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-[#2C73D2] to-[#008E97] transform translate-x-4"></div>
+                )}
+
+                <div className="mb-6 group-hover:scale-110 transition-transform duration-300">
+                  {step.icon}
+                </div>
+
+                <h3 className="text-xl font-bold text-[#15396A] mb-3 group-hover:text-[#2C73D2] transition-colors">
+                  {step.text}
+                </h3>
+                <p className="text-gray-600 leading-relaxed max-w-xs">
+                  {step.description}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Stats Bar */}
       <div
         ref={statsRef}
-        className="w-full bg-[#2C73D2] py-8 flex flex-col items-center justify-center mt-0"
+        className="relative w-full py-20 bg-gradient-to-r from-[#2C73D2] via-[#1E5BA8] to-[#15396A] overflow-hidden"
       >
-        <div className="flex flex-col items-center justify-center w-full max-w-5xl gap-10 md:flex-row md:gap-24">
-          {stats.map((stat) => (
-            <div key={stat.label} className="flex flex-col items-center">
-              <span className="text-[#F4A300] text-3xl md:text-4xl font-bold mb-1">
-                <StatCountUp
-                  value={stat.value}
-                  suffix={stat.suffix}
-                  duration={600}
-                  trigger={startAnim}
-                />
-              </span>
-              <span className="text-lg font-semibold text-center text-white md:text-xl">
-                {stat.label}
-              </span>
-            </div>
-          ))}
+        {/* Background Pattern */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
+
+        <div className="relative max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              Trusted by Thousands
+            </h3>
+            <p className="text-xl text-blue-100">
+              Join our growing community of satisfied patients
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-16">
+            {stats.map((stat, index) => (
+              <div
+                key={stat.label}
+                className={`flex flex-col items-center group ${
+                  startAnim ? "animate-fade-in-up" : "opacity-0"
+                }`}
+                style={{ animationDelay: `${index * 200}ms` }}
+              >
+                <div className="mb-4 text-6xl group-hover:scale-110 transition-transform duration-300">
+                  {stat.icon}
+                </div>
+                <div className="text-center">
+                  <div className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#F4A300] mb-2 group-hover:text-white transition-colors">
+                    <StatCountUp
+                      value={stat.value}
+                      suffix={stat.suffix}
+                      duration={1000}
+                      trigger={startAnim}
+                    />
+                  </div>
+                  <div className="text-lg sm:text-xl font-semibold text-white group-hover:text-blue-100 transition-colors">
+                    {stat.label}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fade-in-up {
+          animation: fade-in-up 0.6s ease-out forwards;
+        }
+      `}</style>
     </>
   );
 };

@@ -261,7 +261,7 @@ const ProductPage = ({ params }: { params: any }) => {
             </div>
             <span className="ml-2 text-gray-600">{product.rating} stars</span>
           </div>
-          
+
           <div className="mb-4">
             <h2 className="mb-2 text-xl font-semibold text-gray-800">
               Features
@@ -274,8 +274,6 @@ const ProductPage = ({ params }: { params: any }) => {
               ))}
             </ul>
           </div>
-        
-        
         </div>
       </div>
     </div>

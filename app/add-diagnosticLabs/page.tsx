@@ -4,13 +4,15 @@ import React, { useState } from "react";
 import Image from "next/image";
 import toast, { Toaster } from "react-hot-toast";
 import allStatesAndUTs from "../data/allStatesAndUTs";
-
+import { MultiSelect } from "@/components/ui/MultiSelect";
+import offers from "../data/offers";
 interface FormData {
   name: string;
   location: string;
   state: string;
   rating: number;
-  bookUrl: string;
+  appointmentCharges: number;
+  offers: string;
   website: string;
   whatsapp: string;
   mapUrl: string;
@@ -23,7 +25,8 @@ const AddDiagnosticLab: React.FC = () => {
     location: "",
     state: "",
     rating: 0,
-    bookUrl: "",
+    appointmentCharges: "",
+    offers: [] as string[],
     website: "",
     whatsapp: "",
     mapUrl: "",
@@ -47,11 +50,19 @@ const AddDiagnosticLab: React.FC = () => {
     setFormData({ ...formData, img: file });
     if (file) setPreview(URL.createObjectURL(file));
   };
+  const handleOffersChange = (selected: string[]) => {
+    setFormData({ ...formData, offers: selected });
+  };
 
   // ✅ Handle submit
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.location || !formData.state || !formData.img) {
+    if (
+      !formData.name ||
+      !formData.location ||
+      !formData.state ||
+      !formData.img
+    ) {
       toast.error("Please fill all required fields");
       return;
     }
@@ -87,7 +98,7 @@ const AddDiagnosticLab: React.FC = () => {
           location: "",
           state: "",
           rating: 0,
-          bookUrl: "",
+
           website: "",
           whatsapp: "",
           mapUrl: "",
@@ -184,21 +195,6 @@ const AddDiagnosticLab: React.FC = () => {
             />
           </div>
 
-          {/* Book URL */}
-          <div>
-            <label className="block mb-1 font-medium text-gray-700">
-              Book URL
-            </label>
-            <input
-              name="bookUrl"
-              type="url"
-              placeholder="Enter booking link"
-              value={formData.bookUrl}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-[#6548ee] outline-none"
-            />
-          </div>
-
           {/* Website */}
           <div>
             <label className="block mb-1 font-medium text-gray-700">
@@ -226,6 +222,35 @@ const AddDiagnosticLab: React.FC = () => {
               value={formData.whatsapp}
               onChange={handleChange}
               className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-[#6548ee] outline-none"
+            />
+          </div>
+
+          {/* Appointment Charges */}
+          <div>
+            <label className="block text-sm font-medium text-gray-600">
+              Appointment Charges
+            </label>
+            <input
+              type="number"
+              name="appointmentCharges"
+              value={formData.appointmentCharges}
+              onChange={handleChange}
+              placeholder="500"
+              className="w-full p-2 mt-1 border rounded-md focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          {/* Offers */}
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium text-gray-600">
+              Offers
+            </label>
+            <MultiSelect
+              options={offers.map((o) => ({ label: o, value: o }))}
+              onValueChange={handleOffersChange}
+              defaultValue={formData.offers}
+              placeholder="Select offers"
+              className="mt-1"
             />
           </div>
 

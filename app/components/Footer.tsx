@@ -84,7 +84,7 @@ const Footer: React.FC = () => {
           <div className="flex flex-col items-start min-w-[110px]">
             <span className={titleClass}>{t("footer.forDentist")}</span>
             <Link href="/consult" className={linkClass}>
-              {t("footer.profile")}
+              Dentists
             </Link>
             <Link href="/refund-policy" className={linkClass}>
               {t("footer.refundPolicy")}
@@ -95,7 +95,7 @@ const Footer: React.FC = () => {
           <div className="flex flex-col items-start min-w-[160px]">
             <span className={titleClass}>{t("footer.forCBCT")}</span>
             <Link href="/cbct-opg-lab" className={linkClass}>
-              {t("footer.profile")}
+              CBCT & OPG Labs
             </Link>
             <Link href="/refund-policy" className={linkClass}>
               {t("footer.refundPolicy")}
@@ -106,7 +106,7 @@ const Footer: React.FC = () => {
           <div className="flex flex-col items-start min-w-[160px]">
             <span className={titleClass}>{t("footer.forBloodTest")}</span>
             <Link href="/blood-test" className={linkClass}>
-              {t("footer.profile")}
+              Blood Test Labs
             </Link>
             <Link href="/refund-policy" className={linkClass}>
               {t("footer.refundPolicy")}
@@ -118,8 +118,8 @@ const Footer: React.FC = () => {
             <span className={titleClass}>
               {t("footer.forDentalEssentials")}
             </span>
-            <Link href="#" className={linkClass}>
-              {t("footer.profile")}
+            <Link href="/products" className={linkClass}>
+              Dental Essentials
             </Link>
             <Link href="/refund-policy" className={linkClass}>
               {t("footer.refundPolicy")}
@@ -195,7 +195,7 @@ const Footer: React.FC = () => {
               reserved.{" "}
               <Link
                 href="/terms"
-                className="font-bold text-white transition-colors duration-300 hover:text-[#F4A300]"
+                className=" text-white/90 transition-colors duration-300 hover:text-[#F4A300]"
               >
                 Terms apply.
               </Link>

@@ -1,10 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { motion } from "framer-motion";
+import { Loader2 } from "lucide-react";
 
 import ClinicInfo from "./ClinicInfo";
 import SlotPicker from "./SlotPicker";
@@ -16,128 +18,97 @@ const BookAppointment: React.FC<{ initialClinic?: Clinic }> = ({
   initialClinic,
 }) => {
   const router = useRouter();
-  // If you pass clinic via search params as JSON (not recommended), parse it; else use initialClinic or a placeholder
-  const clinicFromParams = null;
 
-  const clinic: Clinic = initialClinic ||
-    clinicFromParams || {
-      Name: "All Care Dental Centre",
-      City: "Bangalore",
-      State: "Karnataka",
-      Address: "MG Road, Basavanagudi",
-      Rating: 4.5,
-      Fee: 300,
-      Description: "Experienced dental clinic.",
-    };
+  const clinic: Clinic = initialClinic || {
+    Name: "All Care Dental Centre",
+    City: "Bangalore",
+    State: "Karnataka",
+    Address: "MG Road, Basavanagudi",
+    Rating: 4.5,
+    Fee: 300,
+    Description: "Experienced dental clinic.",
+  };
 
-  const [activeTab, setActiveTab] = React.useState<string>("info");
-  const [showStoryModal, setShowStoryModal] = React.useState(false);
-  const [stories, setStories] = React.useState<Story[]>([]);
-
-  const [selectedSlot, setSelectedSlot] = React.useState("");
-  const [selectedDate, setSelectedDate] = React.useState(allDays[0].value);
-  const [patientName, setPatientName] = React.useState("");
-  const [patientPhone, setPatientPhone] = React.useState("");
+  const [activeTab, setActiveTab] = useState("info");
+  const [showStoryModal, setShowStoryModal] = useState(false);
+  const [stories, setStories] = useState<Story[]>([]);
+  const [selectedSlot, setSelectedSlot] = useState("");
+  const [selectedDate, setSelectedDate] = useState(allDays[0].value);
+  const [patientName, setPatientName] = useState("");
+  const [patientPhone, setPatientPhone] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function handleBooking() {
-    if (!selectedSlot) {
-      toast.error("Please select a time slot.");
-      return;
-    }
-    if (!patientName || !patientPhone) {
-      toast.error("Please enter your name and phone number.");
-      return;
-    }
-    if (!/^\d{10}$/.test(patientPhone)) {
-      toast.error("Please enter a valid 10-digit phone number.");
-      return;
-    }
+    if (!selectedSlot) return toast.error("Please select a time slot.");
+    if (!patientName || !patientPhone)
+      return toast.error("Please enter your name and phone number.");
+    if (!/^\d{10}$/.test(patientPhone))
+      return toast.error("Please enter a valid 10-digit phone number.");
 
     try {
+      setLoading(true);
       const resp = await axios.post(
-        `${
-          process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_VERCEL_URL
-        }/api/v1/appointments`,
+        `${process.env.NEXT_PUBLIC_API_URL || ""}/api/v1/appointments`,
         {
           clinicId: clinic._id || clinic.id,
-          clinicName: clinic.Name || clinic.name,
+          clinicName: clinic.Name,
           patientName,
           patientPhone,
           appointmentDate: selectedDate,
           appointmentSlot: selectedSlot,
-          clinicAddress: clinic.Address || clinic.address,
-          clinicCity: clinic.City || clinic.city,
+          clinicAddress: clinic.Address,
+          clinicCity: clinic.City,
         }
       );
 
       if (resp.data?.success) {
         toast.success("Appointment booked successfully!");
-        // navigate to appointment details - using router.push and pass state via query if needed
         router.push("/appointment-details");
-      } else {
-        toast.error(resp.data?.message || "Failed to book appointment");
-      }
-    } catch (err) {
-      console.error("Error booking appointment", err);
-      if (axios.isAxiosError(err)) {
-        toast.error(err.response?.data?.message || "Something went wrong.");
-      } else {
-        toast.error("An unexpected error occurred.");
-      }
+      } else toast.error(resp.data?.message || "Failed to book appointment");
+    } catch (err: any) {
+      toast.error(err.response?.data?.message || "Something went wrong.");
+    } finally {
+      setLoading(false);
     }
   }
 
-  function handleStorySubmit(story: Story) {
+  const handleStorySubmit = (story: Story) => {
     setStories((prev) => [story, ...prev]);
     setShowStoryModal(false);
-    toast.success(
-      "Thanks for sharing your story. It will be reviewed before publishing."
-    );
-  }
+    toast.success("Thanks for sharing your story!");
+  };
 
   return (
-    <div className="min-h-screen bg-[#F4F6FA] w-full flex flex-col items-center py-8 px-2">
-      <div className="flex flex-col w-full max-w-5xl gap-8 md:flex-row">
+    <motion.div
+      className="min-h-screen w-full bg-gradient-to-b from-[#E8F0FF] to-[#F7FAFF] flex flex-col items-center py-10 px-3"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
+    >
+      <div className="flex flex-col w-full max-w-6xl gap-8 lg:flex-row">
         <ClinicInfo clinic={clinic} />
-        <div className="bg-white rounded-2xl shadow-xl p-8 flex-1 min-w-[340px]">
-          <div className="font-bold text-xl mb-2 text-[#2056AE]">
-            Pick a time slot
-          </div>
-          <div className="flex items-center justify-between mb-2">
-            <span className="bg-[#F4F8FF] px-3 py-1 rounded text-[#2056AE] font-semibold">
-              Clinic Appointment
+
+        {/* Booking Card */}
+        <motion.div
+          className="flex-1 bg-white rounded-2xl shadow-2xl p-8 border border-[#E0E7FF] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2 }}
+        >
+          <h2 className="font-extrabold text-2xl text-[#2056AE] mb-4">
+            Book Your Appointment
+          </h2>
+
+          <div className="flex items-center justify-between mb-3">
+            <span className="bg-[#F4F8FF] text-[#2056AE] font-semibold px-3 py-1 rounded-lg">
+              Clinic Visit
             </span>
             <span className="text-[#2056AE] font-bold">
-              ₹ {clinic.Fee || clinic.fee} fee{" "}
-              <span className="text-sm font-normal text-gray-500">
+              ₹ {clinic.Fee}{" "}
+              <span className="text-sm font-medium text-gray-500">
                 (approx)
               </span>
             </span>
-          </div>
-          <div className="mb-2 font-medium text-gray-700">
-            {clinic.Name || clinic.name} - since 1969
-          </div>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="text-[#F4A300] font-bold">
-              {clinic.Rating || "4.5"}
-            </span>
-            <span className="flex items-center">
-              {[...Array(5)].map((_, i) => (
-                <svg
-                  key={i}
-                  className={`w-4 h-4 ${
-                    i < Math.round(Number(clinic.Rating || 4.5))
-                      ? "text-yellow-400"
-                      : "text-gray-300"
-                  }`}
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.966a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.966c.3.921-.755 1.688-1.54 1.118l-3.38-2.455a1 1 0 00-1.175 0l-3.38 2.455c-.784.57-1.838-.197-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.049 9.393c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.966z" />
-                </svg>
-              ))}
-            </span>
-            <span className="text-sm text-gray-500">Verified details</span>
           </div>
 
           <SlotPicker
@@ -147,195 +118,170 @@ const BookAppointment: React.FC<{ initialClinic?: Clinic }> = ({
             setSelectedSlot={setSelectedSlot}
           />
 
-          <div className="mt-4">
+          <div className="mt-4 space-y-3">
             <input
               type="text"
-              placeholder="Patient Name"
+              placeholder="Full Name"
               value={patientName}
               onChange={(e) => setPatientName(e.target.value)}
-              className="w-full px-3 py-2 mb-2 text-sm border-2 rounded-lg sm:text-base"
+              className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:border-[#2056AE] focus:ring-2 focus:ring-[#2056AE]/30 transition text-sm"
             />
             <input
-              type="text"
-              placeholder="Patient Phone"
+              type="tel"
+              placeholder="Mobile Number"
               value={patientPhone}
               onChange={(e) => setPatientPhone(e.target.value)}
-              className="w-full px-3 py-2 mb-2 text-sm border-2 rounded-lg sm:text-base"
+              className="w-full px-4 py-2.5 border-2 border-gray-200 rounded-xl focus:border-[#2056AE] focus:ring-2 focus:ring-[#2056AE]/30 transition text-sm"
             />
           </div>
+
           <button
-            className="bg-[#2056AE] text-white px-6 py-3 rounded-xl shadow font-bold w-full mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
-            disabled={!selectedSlot || !patientName || !patientPhone}
             onClick={handleBooking}
+            disabled={loading || !selectedSlot || !patientName || !patientPhone}
+            className="mt-5 w-full bg-[#2056AE] text-white py-3 rounded-xl font-semibold shadow-lg hover:bg-[#184a9b] disabled:bg-gray-300 disabled:cursor-not-allowed transition flex items-center justify-center gap-2"
           >
-            Book Appointment
+            {loading && <Loader2 className="w-4 h-4 animate-spin" />}
+            {loading ? "Booking..." : "Book Appointment"}
           </button>
-          <div className="flex justify-end w-full mt-2">
+
+          <div className="flex justify-end">
             <button
-              className="text-[#2056AE] underline font-semibold hover:text-[#1890FF] mt-2"
               onClick={() => router.push("/contact-form")}
+              className="mt-3 text-[#2056AE] underline hover:text-[#1890FF] font-semibold transition"
             >
               Contact Form
             </button>
           </div>
-        </div>
+        </motion.div>
       </div>
 
-      <div className="w-full max-w-5xl p-6 mt-8 bg-white shadow rounded-2xl">
-        <div className="flex justify-end mb-2">
+      {/* Tabs Section */}
+      <div className="mt-10 w-full max-w-6xl bg-white rounded-2xl shadow-lg p-8 border border-[#E0E7FF]">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex gap-6">
+            {["profile", "services", "consult", "healthfeed"].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`pb-1 border-b-2 font-semibold capitalize transition ${
+                  activeTab === tab
+                    ? "border-[#2056AE] text-[#2056AE]"
+                    : "border-transparent text-gray-500 hover:text-[#2056AE]"
+                }`}
+              >
+                {tab === "healthfeed" ? "Health Feed" : tab}
+              </button>
+            ))}
+          </div>
+
           <button
-            className="text-[#2056AE] underline font-semibold hover:text-[#1890FF]"
             onClick={() => setShowStoryModal(true)}
+            className="text-[#2056AE] underline font-semibold hover:text-[#1890FF]"
           >
             Share your story
           </button>
         </div>
 
-        <div className="flex gap-8 pb-2 mb-4 border-b">
-          <button
-            className={`text-[#2056AE] font-semibold hover:underline border-b-2 pb-1 ${
-              activeTab === "profile"
-                ? "border-[#1890FF] text-[#1890FF]"
-                : "border-transparent"
-            }`}
-            onClick={() => setActiveTab("profile")}
-          >
-            Dentist Profile
-          </button>
-          <button
-            className={`text-[#2056AE] font-semibold hover:underline border-b-2 pb-1 ${
-              activeTab === "services"
-                ? "border-[#1890FF] text-[#1890FF]"
-                : "border-transparent"
-            }`}
-            onClick={() => setActiveTab("services")}
-          >
-            Services
-          </button>
-          <button
-            className={`text-[#2056AE] font-semibold hover:underline border-b-2 pb-1 ${
-              activeTab === "consult"
-                ? "border-[#1890FF] text-[#1890FF]"
-                : "border-transparent"
-            }`}
-            onClick={() => setActiveTab("consult")}
-          >
-            Consult Q&A
-          </button>
-          <button
-            className={`text-[#2056AE] font-semibold hover:underline border-b-2 pb-1 ${
-              activeTab === "healthfeed"
-                ? "border-[#1890FF] text-[#1890FF]"
-                : "border-transparent"
-            }`}
-            onClick={() => setActiveTab("healthfeed")}
-          >
-            Healthfeed
-          </button>
-        </div>
-
-        {activeTab === "profile" && (
-          <div className="bg-[#f7f7f7] rounded-xl p-6 shadow-md mt-4">
-            <h3 className="text-xl font-bold text-[#2056AE] mb-4">
-              Dentist Profile
-            </h3>
-            <div className="flex items-center gap-6">
-              <Image
-                src={clinic.DoctorImage || "/doctor1.png"}
-                alt="Dentist"
-                width={80}
-                height={80}
-                className="h-20 w-20 object-cover rounded-full border-2 border-[#2C73D2] shadow"
-              />
-              <div>
-                <span className="font-bold text-[#2056AE] text-lg">
-                  Dentist
-                </span>
-                <div className="mt-1 text-base font-semibold text-gray-700">
-                  {clinic.doctorProfile ||
-                    clinic.Description ||
-                    "Dr. Venkatesh.MJ is a Dentist in Basavanagudi, Bangalore."}
+        {/* Tab Content */}
+        <div className="mt-6">
+          {activeTab === "profile" && (
+            <div className="bg-[#F8FAFF] rounded-xl p-6 shadow">
+              <h3 className="text-lg font-bold text-[#2056AE] mb-3">
+                Dentist Profile
+              </h3>
+              <div className="flex flex-col items-center gap-6 sm:flex-row">
+                <Image
+                  src={clinic.DoctorImage || "/doctor1.png"}
+                  alt="Doctor"
+                  width={90}
+                  height={90}
+                  className="rounded-full border-2 border-[#2056AE]"
+                />
+                <div>
+                  <p className="text-base text-gray-700">
+                    {clinic.Description ||
+                      "Dr. Venkatesh M.J is a senior dentist in Bangalore with over 15 years of experience."}
+                  </p>
                 </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {activeTab === "services" && (
-          <div className="bg-[#f7f7f7] rounded-xl p-6 shadow-md mt-4">
-            <h3 className="text-xl font-bold text-[#2056AE] mb-4">Services</h3>
-            <span className="font-bold text-[#2056AE] text-base">
-              Services:
-            </span>
-            <span className="ml-2 text-base text-gray-700">
-              {clinic.Services ||
-                clinic.services ||
-                clinic.Specialty ||
-                "General Dentistry, Cosmetic Dentistry, Implants, Braces, Root Canal, Cleaning"}
-            </span>
-          </div>
-        )}
-
-        {activeTab === "consult" && (
-          <div className="flex flex-col items-center justify-center py-12">
-            <div className="mb-4">{/* icon */}</div>
-            <div className="mb-4 text-center text-gray-700">
-              No query answered by this doctor. Get answers to your health
-              queries now
+          {activeTab === "services" && (
+            <div className="bg-[#F8FAFF] rounded-xl p-6 shadow">
+              <h3 className="text-lg font-bold text-[#2056AE] mb-3">
+                Services
+              </h3>
+              <p className="text-gray-700">
+                {clinic.Services ||
+                  "General Dentistry, Cosmetic Dentistry, Implants, Braces, Root Canal, Cleaning"}
+              </p>
             </div>
-            <button
-              className="bg-[#1BC47D] text-white px-6 py-2 rounded font-bold text-base shadow hover:bg-[#159C5B] transition"
-              onClick={() => router.push("/consult")}
-            >
-              Ask Free Question
-            </button>
-          </div>
-        )}
+          )}
 
-        {activeTab === "healthfeed" && (
-          <div className="flex flex-col items-center justify-center py-12">
-            <div className="mb-4">{/* icon */}</div>
-            <div className="mb-4 text-center text-gray-700">
-              No articles written by this doctor.
+          {activeTab === "consult" && (
+            <div className="py-10 text-center">
+              <p className="mb-4 text-gray-600">
+                No queries answered yet. Ask your health questions now.
+              </p>
+              <button
+                onClick={() => router.push("/consult")}
+                className="bg-[#1BC47D] text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-[#15A969] transition"
+              >
+                Ask Free Question
+              </button>
             </div>
-            <button
-              className="bg-[#1BC47D] text-white px-6 py-2 rounded font-bold text-base shadow hover:bg-[#159C5B] transition"
-              onClick={() => router.push("/articles")}
-            >
-              Read all articles
-            </button>
-          </div>
-        )}
+          )}
 
-        <StoryModal
-          clinicName={clinic.Name || clinic.name}
-          open={showStoryModal}
-          onClose={() => setShowStoryModal(false)}
-          onSubmit={handleStorySubmit}
-        />
+          {activeTab === "healthfeed" && (
+            <div className="py-10 text-center">
+              <p className="mb-4 text-gray-600">
+                No articles available from this doctor.
+              </p>
+              <button
+                onClick={() => router.push("/articles")}
+                className="bg-[#1BC47D] text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-[#15A969] transition"
+              >
+                View Articles
+              </button>
+            </div>
+          )}
+        </div>
 
+        {/* Stories Section */}
         {stories.length > 0 && (
-          <div className="mt-8">
-            <div className="font-bold text-lg mb-4 text-[#2056AE]">
+          <div className="mt-10">
+            <h3 className="text-xl font-bold text-[#2056AE] mb-4">
               Patient Stories
-            </div>
-            <div className="flex flex-col gap-4">
+            </h3>
+            <div className="grid gap-4 sm:grid-cols-2">
               {stories.map((s, idx) => (
-                <div key={idx} className="bg-[#F4F6FA] rounded-xl p-4 shadow">
+                <div
+                  key={idx}
+                  className="bg-[#F4F6FA] rounded-xl p-4 shadow hover:shadow-md transition"
+                >
                   <div className="font-semibold text-[#2056AE] mb-1">
                     {s.anonymous ? "Anonymous" : s.name}
                   </div>
-                  <div className="mb-1 text-gray-700">{s.experience}</div>
-                  <div className="text-xs text-gray-500">
-                    {s.problem} | {s.waitTime} | {s.improvements.join(", ")}
-                  </div>
+                  <p className="mb-1 text-gray-700">{s.experience}</p>
+                  <p className="text-xs text-gray-500">
+                    {s.problem} | {s.waitTime} |{" "}
+                    {s.improvements.join(", ") || "Good experience"}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
         )}
       </div>
-    </div>
+
+      <StoryModal
+        clinicName={clinic.Name}
+        open={showStoryModal}
+        onClose={() => setShowStoryModal(false)}
+        onSubmit={handleStorySubmit}
+      />
+    </motion.div>
   );
 };
 

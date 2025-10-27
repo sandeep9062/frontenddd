@@ -2,6 +2,7 @@
 // Exported list of all dental problems for use in dropdowns and other components
 
 const problems = [
+  "Audible Breathing",
   "Adding Bone to the Socket",
   "Bad Breath",
   "Burning Mouth",

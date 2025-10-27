@@ -9,6 +9,7 @@ import RouteTransitionWrapper from "./components/RouteTransitionWrapper";
 import ClientProvider from "./ClientProvider";
 import OffersStrip from "./components/OffersStrip";
 import ToasterProvider from "./providers/ToastProvider";
+import FloatingSocialButtons from "./components/FloatingSocialButtons";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -92,26 +93,27 @@ export default function RootLayout({
     name: "Dental Tourism India",
     url: "https://www.dentaltourism.com",
     logo: "https://www.dentaltourism.com/images/logo.png",
-    description: "Connecting international patients with top-rated dental clinics and dentists in India for affordable, high-quality dental care.",
+    description:
+      "Connecting international patients with top-rated dental clinics and dentists in India for affordable, high-quality dental care.",
     address: {
       "@type": "PostalAddress",
       streetAddress: "123 Dental Street",
       addressLocality: "Mumbai",
-      "addressRegion": "MH",
-      "postalCode": "400001",
-      "addressCountry": "IN"
+      addressRegion: "MH",
+      postalCode: "400001",
+      addressCountry: "IN",
     },
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+91-123-456-7890",
       contactType: "customer support",
       areaServed: "Worldwide",
-      availableLanguage: ["en", "hi"]
+      availableLanguage: ["en", "hi"],
     },
     sameAs: [
       "https://twitter.com/dentaltourismIN",
-      "https://www.linkedin.com/company/dentaltourismindia"
-    ]
+      "https://www.linkedin.com/company/dentaltourismindia",
+    ],
   };
 
   return (
@@ -129,6 +131,7 @@ export default function RootLayout({
             <OffersStrip />
             {children}
             <Footer />
+            <FloatingSocialButtons />
           </RouteTransitionWrapper>
         </ClientProvider>
       </body>

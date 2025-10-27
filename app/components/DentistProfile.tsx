@@ -159,6 +159,8 @@ export default function DentistProfilePage() {
     problems: string[];
     specialization: string;
     experienceYears: string;
+    consultationCharges: number;
+    ratings: number;
     certifications: string;
     clinicAddress: string;
     states: string;
@@ -180,6 +182,8 @@ export default function DentistProfilePage() {
     problems: [],
     specialization: "",
     experienceYears: "",
+    consultationCharges: "",
+    ratings: "",
     certifications: "",
     clinicAddress: "",
     states: "",
@@ -218,6 +222,8 @@ export default function DentistProfilePage() {
           problems: profile?.problems || [],
           specialization: profile?.specialization || "",
           experienceYears: profile?.experienceYears || "",
+          consultationCharges: profile?.consultationCharges || "",
+          ratings: profile?.ratings || "",
           certifications: profile?.certifications?.join(", ") || "",
           clinicAddress: profile?.clinicAddress || "",
           states: profile?.states || "",
@@ -335,6 +341,15 @@ export default function DentistProfilePage() {
           </p>
         </CardHeader>
 
+        {form.specialization && (
+          <div className="p-4 mx-6 mb-4 text-center bg-blue-100 border border-blue-200 rounded-lg">
+            <p className="text-lg font-semibold text-blue-800">
+              Your Specialization:{" "}
+              <span className="font-bold">{form.specialization}</span>
+            </p>
+          </div>
+        )}
+
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Profile Image */}
@@ -362,7 +377,6 @@ export default function DentistProfilePage() {
                 Upload Photo
               </label>
             </div>
-
             {/* Personal Info */}
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <Input
@@ -378,7 +392,6 @@ export default function DentistProfilePage() {
                 placeholder="Phone Number"
               />
             </div>
-
             {/* Clinic Info */}
             <Input
               name="clinicName"
@@ -433,6 +446,20 @@ export default function DentistProfilePage() {
               value={form.experienceYears}
               onChange={handleChange}
               placeholder="Experience (Years)"
+            />{" "}
+            <Input
+              name="ratings"
+              type="number"
+              value={form.ratings}
+              onChange={handleChange}
+              placeholder="Rating (less than 5)"
+            />{" "}
+            <Input
+              name="consultationCharges"
+              type="number"
+              value={form.consultationCharges}
+              onChange={handleChange}
+              placeholder=" Consultation Charges(Rupees)"
             />
             <Input
               name="certifications"
@@ -452,7 +479,6 @@ export default function DentistProfilePage() {
               onChange={handleChange}
               placeholder="About You / Clinic"
             />
-
             {/* Education Info */}
             <h3 className="pt-4 font-semibold text-gray-700 border-t">
               Education & Qualifications
@@ -504,7 +530,6 @@ export default function DentistProfilePage() {
                 placeholder="Other Qualifications"
               />
             </div>
-
             {/* Toggles */}
             <div className="flex flex-col gap-3 pt-4 border-t">
               <label className="flex items-center gap-2">
@@ -531,7 +556,6 @@ export default function DentistProfilePage() {
                 </span>
               </label>
             </div>
-
             {/* Submit Button */}
             <Button type="submit" className="w-full" disabled={saving}>
               {saving ? "Updating..." : "Update Profile"}

@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState, useEffect, FormEvent, useRef } from "react";
 import { useTranslation } from "react-i18next";
@@ -26,38 +25,108 @@ const ConsultPage: React.FC = () => {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1200);
+    const timer = setTimeout(() => setLoading(false), 1500);
     return () => clearTimeout(timer);
   }, []);
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center w-full min-h-screen">
-        <div className="text-lg font-semibold text-gray-700">Loading...</div>
+      <div className="flex items-center justify-center w-full min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div className="text-center">
+          {/* Loading Animation */}
+          <div className="relative mb-8">
+            <div className="w-20 h-20 mx-auto">
+              <div className="absolute inset-0 border-4 border-[#2C73D2] border-t-transparent rounded-full animate-spin"></div>
+              <div
+                className="absolute inset-2 border-4 border-[#008E97] border-t-transparent rounded-full animate-spin"
+                style={{
+                  animationDirection: "reverse",
+                  animationDuration: "1.5s",
+                }}
+              ></div>
+              <div
+                className="absolute inset-4 border-4 border-[#F4A300] border-t-transparent rounded-full animate-spin"
+                style={{ animationDuration: "2s" }}
+              ></div>
+            </div>
+          </div>
+
+          {/* Loading Text */}
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold text-[#2C73D2]">
+              Loading Your Dental Care
+            </h2>
+            <p className="text-gray-600">
+              Preparing the best consultation experience for you...
+            </p>
+
+            {/* Loading Steps */}
+            <div className="flex justify-center space-x-2 mt-6">
+              <div className="w-2 h-2 bg-[#2C73D2] rounded-full animate-bounce"></div>
+              <div
+                className="w-2 h-2 bg-[#008E97] rounded-full animate-bounce"
+                style={{ animationDelay: "0.1s" }}
+              ></div>
+              <div
+                className="w-2 h-2 bg-[#F4A300] rounded-full animate-bounce"
+                style={{ animationDelay: "0.2s" }}
+              ></div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="w-full min-h-screen pb-8 overflow-x-hidden bg-white">
-      <ConsultBanner consultBannerImg="/consult-banner.png" />
-      <div id="problem-form">
+    <div className="w-full min-h-screen bg-gradient-to-br from-white via-blue-50 to-indigo-100">
+      {/* Hero Section */}
+      <section className="relative">
+        <ConsultBanner consultBannerImg="/consult-banner.png" />
+      </section>
+
+      {/* Problem Form Section */}
+      <section id="problem-form" ref={problemFormRef} className="relative">
         <ProblemForm />
-      </div>
-      <SpecialityForm />
+      </section>
 
-      {/* Dentist Slider */}
-      <div className="flex flex-col items-center justify-center w-full mt-8">
-        <div className="relative w-full max-w-4xl">
-          <DentistSlider />
-        </div>
-      </div>
+      {/* Speciality Form Section */}
+      <section className="relative">
+        <SpecialityForm />
+      </section>
 
-      <StatsAndHowItWorks />
-      <AdvantagesVirtualConsultation />
-      <VirtualCareReviewsSlider />
-      <ConsultNowBanner />
-      <FAQSection />
+      {/* Dentist Slider Section */}
+      <section className="relative">
+        <DentistSlider />
+      </section>
+
+      {/* Stats and How It Works Section */}
+      <section className="relative">
+        <StatsAndHowItWorks />
+      </section>
+
+      {/* Advantages Section */}
+      <section className="relative">
+        <AdvantagesVirtualConsultation />
+      </section>
+
+      {/* Reviews Section */}
+      <section className="relative">
+        <VirtualCareReviewsSlider />
+      </section>
+
+      {/* CTA Banner Section */}
+      <section className="relative">
+        <ConsultNowBanner />
+      </section>
+
+      {/* FAQ Section */}
+      <section className="relative">
+        <FAQSection />
+      </section>
+
+      {/* Footer Spacing */}
+      <div className="h-16"></div>
     </div>
   );
 };

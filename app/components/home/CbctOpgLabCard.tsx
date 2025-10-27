@@ -3,21 +3,21 @@
 import React from "react";
 import Image from "next/image";
 import { FaWhatsapp, FaMapMarkerAlt, FaGlobe, FaBook } from "react-icons/fa";
-import { Clinic } from "../../../types/clinic";
+import { CbctOpgLab } from "../../../types/cbctOpgLab";
 
-interface ClinicCardProps {
-  clinic: Clinic;
+interface CbctOpgLabCardProps {
+  lab: CbctOpgLab;
 }
 
-const ClinicCard: React.FC<ClinicCardProps> = ({ clinic }) => {
-  const whatsappNumber = clinic.whatsapp?.replace(/\D/g, "") || "";
+const CbctOpgLabCard: React.FC<CbctOpgLabCardProps> = ({ lab }) => {
+  const whatsappNumber = lab.whatsapp?.replace(/\D/g, "") || "";
 
   return (
     <div className="flex-shrink-0 w-full max-w-sm p-4 overflow-hidden transition-transform duration-300 bg-white border border-gray-200 shadow-lg rounded-2xl hover:shadow-xl hover:-translate-y-1">
       <div className="relative w-full h-48 mb-4">
         <Image
-          src={clinic.img || "/placeholder.png"}
-          alt={clinic.name || "Clinic"}
+          src={lab.img || "/placeholder.png"}
+          alt={lab.name || "Lab"}
           layout="fill"
           objectFit="cover"
           className="rounded-xl"
@@ -25,10 +25,10 @@ const ClinicCard: React.FC<ClinicCardProps> = ({ clinic }) => {
       </div>
       <div className="flex flex-col">
         <h3 className="mb-1 text-xl font-bold text-gray-800 truncate">
-          {clinic.name || "N/A"}
+          {lab.name || "N/A"}
         </h3>
         <p className="mb-3 text-base text-gray-500">
-          {clinic.location || "N/A"}, {clinic.state || "N/A"}
+          {lab.location || "N/A"}, {lab.state || "N/A"}
         </p>
 
         <div className="flex items-center gap-2 mb-4">
@@ -38,7 +38,7 @@ const ClinicCard: React.FC<ClinicCardProps> = ({ clinic }) => {
                 key={i}
                 className="w-5 h-5"
                 fill={
-                  i < Math.round(clinic.rating || 0) ? "currentColor" : "none"
+                  i < Math.round(lab.rating || 0) ? "currentColor" : "none"
                 }
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -52,11 +52,11 @@ const ClinicCard: React.FC<ClinicCardProps> = ({ clinic }) => {
               </svg>
             ))}
           </span>
-          <span className="text-sm text-gray-500">({clinic.rating || 0})</span>
+          <span className="text-sm text-gray-500">({lab.rating || 0})</span>
         </div>
 
         <a
-          href={`/book-appointment?clinicId=${clinic._id}`}
+          href={`/book-appointment?clinicId=${lab._id}`}
           className="flex items-center justify-center w-full gap-2 px-4 py-2 mb-3 font-semibold text-center text-white transition-colors duration-300 bg-blue-600 rounded-lg hover:bg-blue-700"
         >
           <FaBook />
@@ -65,7 +65,7 @@ const ClinicCard: React.FC<ClinicCardProps> = ({ clinic }) => {
 
         <div className="flex w-full gap-2">
           <a
-            href={clinic.website || "#"}
+            href={lab.website || "#"}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center flex-1 py-2 text-center text-gray-600 transition-colors duration-300 bg-gray-100 rounded-lg hover:bg-gray-200"
@@ -83,7 +83,7 @@ const ClinicCard: React.FC<ClinicCardProps> = ({ clinic }) => {
             <FaWhatsapp size={20} />
           </a>
           <a
-            href={clinic.mapUrl || "#"}
+            href={lab.mapUrl || "#"}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center flex-1 py-2 text-center text-gray-600 transition-colors duration-300 bg-gray-100 rounded-lg hover:bg-gray-200"
@@ -97,4 +97,4 @@ const ClinicCard: React.FC<ClinicCardProps> = ({ clinic }) => {
   );
 };
 
-export default ClinicCard;
+export default CbctOpgLabCard;

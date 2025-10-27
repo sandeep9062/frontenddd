@@ -18,6 +18,7 @@ export interface Clinic {
   state: string;
   rating: number;
   problems: [string];
+  offers: [string];
   bookUrl: string;
   website: string;
   whatsapp: string;

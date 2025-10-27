@@ -3,7 +3,9 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
+import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 // Slider data for problems (62 real problems)
 const sliderProblems = [
@@ -775,15 +777,37 @@ const sliderProblems = [
     points,
   };
 });
+
+// Dentist interface
+interface Dentist {
+  _id: string;
+  user: { name: string };
+  image: string;
+  specialization: string[];
+  problems: string[];
+  clinicName?: string;
+  clinicAddress?: string;
+  states?: string[];
+  experienceYears?: number;
+}
+
 // --- Specialist Component ---
 interface SpecialistProps {
   sectionSpacing?: string;
 }
 
 const Specialist: React.FC<SpecialistProps> = ({ sectionSpacing = "" }) => {
+  const { t, i18n } = useTranslation();
   const [problemsPerSlide, setProblemsPerSlide] = useState(4);
   const [problemSliderIndex, setProblemSliderIndex] = useState(0);
   const [problemMaxIndex, setProblemMaxIndex] = useState(0);
+
+  // New state for dentist functionality
+  const [selectedProblem, setSelectedProblem] = useState<string>("");
+  const [filteredDentists, setFilteredDentists] = useState<Dentist[]>([]);
+  const [showDentistModal, setShowDentistModal] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     const handleResize = () => {
@@ -807,10 +831,49 @@ const Specialist: React.FC<SpecialistProps> = ({ sectionSpacing = "" }) => {
   }, []);
 
   useEffect(() => {
-    setProblemMaxIndex(
-      Math.ceil(sliderProblems.length / problemsPerSlide) - 1
-    );
+    setProblemMaxIndex(Math.ceil(sliderProblems.length / problemsPerSlide) - 1);
   }, [problemsPerSlide]);
+
+  // Function to fetch dentists by problem
+  const fetchDentistsByProblem = async (problem: string) => {
+    setLoading(true);
+    setError("");
+
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    if (!apiUrl) {
+      console.error("NEXT_PUBLIC_API_URL is not set.");
+      setError("Application is not configured correctly.");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const { data } = await axios.get(`${apiUrl}/api/v1/dentists/problem`, {
+        params: { problem: problem },
+      });
+      setFilteredDentists(data);
+      setShowDentistModal(true);
+    } catch (error) {
+      console.error("Error fetching dentists by problem:", error);
+      setError("Could not fetch dentist data.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Function to handle consult now button click
+  const handleConsultNowClick = (problemName: string) => {
+    setSelectedProblem(problemName);
+    fetchDentistsByProblem(problemName);
+  };
+
+  // Function to close dentist modal
+  const closeDentistModal = () => {
+    setShowDentistModal(false);
+    setSelectedProblem("");
+    setFilteredDentists([]);
+    setError("");
+  };
 
   return (
     <section
@@ -880,12 +943,12 @@ const Specialist: React.FC<SpecialistProps> = ({ sectionSpacing = "" }) => {
                         <li className="mb-1">{problem.points}</li>
                       )}
                     </ul>
-                    <Link
-                      href="/consult"
+                    <button
+                      onClick={() => handleConsultNowClick(problem.name)}
                       className="mt-auto mx-auto px-6 py-2 sm:px-8 sm:py-3 rounded-lg bg-gradient-to-r from-[#2C73D2] to-[#0052D4] text-white font-semibold shadow-lg hover:from-[#0052D4] hover:to-[#2C73D2] transition-all duration-300 transform hover:scale-105 flex items-center justify-center text-sm sm:text-base"
                     >
                       <span className="whitespace-nowrap">Consult Now</span>
-                    </Link>
+                    </button>
                   </div>
                 </div>
               ))}
@@ -923,6 +986,89 @@ const Specialist: React.FC<SpecialistProps> = ({ sectionSpacing = "" }) => {
           ))}
         </div>
       </div>
+
+      {/* Dentist Modal */}
+      {showDentistModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="relative w-full max-w-6xl max-h-[90vh] mx-4 bg-white rounded-2xl shadow-2xl overflow-hidden">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-6 bg-gradient-to-r from-[#2C73D2] to-[#0052D4] text-white">
+              <h3 className="text-2xl font-bold">
+                Dentists for "{selectedProblem}"
+              </h3>
+              <button
+                onClick={closeDentistModal}
+                className="p-2 text-white transition-colors duration-200 hover:bg-white hover:bg-opacity-20 rounded-full"
+              >
+                <FaTimes className="text-xl" />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+              {loading ? (
+                <div className="flex items-center justify-center py-12">
+                  <div className="text-lg font-semibold text-gray-700">
+                    Loading dentists...
+                  </div>
+                </div>
+              ) : error ? (
+                <div className="px-4 py-2 text-red-600 bg-red-100 rounded-lg">
+                  {error}
+                </div>
+              ) : filteredDentists.length > 0 ? (
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {filteredDentists.map((dentist) => (
+                    <div
+                      key={dentist._id}
+                      className="flex flex-col items-center px-6 py-5 font-semibold text-center transition-all duration-300 bg-white border border-gray-200 shadow-lg rounded-xl hover:shadow-2xl hover:scale-105"
+                    >
+                      <Image
+                        src={dentist.image}
+                        alt={dentist.user?.name || "Dentist"}
+                        width={90}
+                        height={90}
+                        className="object-cover mb-4 border-4 border-blue-200 rounded-full shadow-md"
+                      />
+                      <div className="mb-2 text-xl font-bold text-gray-800">
+                        {dentist.user?.name}
+                      </div>
+                      <div className="mb-3 text-sm text-center text-gray-600">
+                        {dentist.specialization?.join(", ")}
+                      </div>
+                      <div className="px-2 py-1 mb-3 text-xs text-center text-gray-500 bg-gray-100 rounded-full">
+                        Problems:{" "}
+                        {dentist.problems
+                          .flatMap((p) => p.split(","))
+                          .map((p) => p.trim())
+                          .join(", ")}
+                      </div>
+                      <div className="text-sm font-medium text-gray-700">
+                        {dentist.clinicName || "Online Consultation"}
+                      </div>
+                      {dentist.experienceYears && (
+                        <div className="mt-1 text-xs text-gray-500">
+                          {dentist.experienceYears} years experience
+                        </div>
+                      )}
+                      <Link
+                        href={`/consult/${dentist._id}`}
+                        className="w-full px-4 py-2 mt-4 text-sm font-bold text-white transition-all duration-300 bg-blue-500 rounded-lg hover:bg-blue-600"
+                      >
+                        Consult Now
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="w-full py-12 text-lg text-center text-gray-600">
+                  No dentists found for "{selectedProblem}".
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

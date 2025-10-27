@@ -276,7 +276,7 @@ const HelpSupport: React.FC = () => {
               href="tel:+911234567890"
               className=" text-[15px] text-green-600 hover:underline"
             >
-              +91 1234 567 890
+              +91 7087117423
             </a>
           </div>
 

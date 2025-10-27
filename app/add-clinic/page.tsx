@@ -8,6 +8,7 @@ import { useAddClinicMutation } from "@/services/clinicApi";
 import problems from "../data/problems";
 import allStatesAndUTs from "../data/allStatesAndUTs";
 import { MultiSelect } from "@/components/ui/MultiSelect";
+import offers from "../data/offers";
 
 const AddClinicPage = () => {
   const [formData, setFormData] = useState({
@@ -15,8 +16,9 @@ const AddClinicPage = () => {
     location: "",
     state: "",
     problems: [] as string[],
+    offers: [] as string[],
     rating: "",
-    bookUrl: "",
+    appointmentCharges: "",
     website: "",
     whatsapp: "",
     mapUrl: "",
@@ -36,6 +38,10 @@ const AddClinicPage = () => {
 
   const handleProblemsChange = (selected: string[]) => {
     setFormData({ ...formData, problems: selected });
+  };
+
+  const handleOffersChange = (selected: string[]) => {
+    setFormData({ ...formData, offers: selected });
   };
 
   // Handle file drop
@@ -64,9 +70,9 @@ const AddClinicPage = () => {
     const clinicFormData = new FormData();
     clinicFormData.append("image", image);
     Object.entries(formData).forEach(([key, value]) => {
-      if (key === "problems" && Array.isArray(value)) {
-        value.forEach((problem) => {
-          clinicFormData.append(key, problem);
+      if ((key === "problems" || key === "offers") && Array.isArray(value)) {
+        value.forEach((item) => {
+          clinicFormData.append(key, item);
         });
       } else {
         clinicFormData.append(key, value as string);
@@ -81,8 +87,9 @@ const AddClinicPage = () => {
         location: "",
         state: "",
         problems: [],
+        offers: [],
         rating: "",
-        bookUrl: "",
+        appointmentCharges: "",
         website: "",
         whatsapp: "",
         mapUrl: "",
@@ -217,21 +224,6 @@ const AddClinicPage = () => {
             />
           </div>
 
-          {/* Book URL */}
-          <div>
-            <label className="block text-sm font-medium text-gray-600">
-              Book URL
-            </label>
-            <input
-              type="text"
-              name="bookUrl"
-              value={formData.bookUrl}
-              onChange={handleChange}
-              placeholder="#book"
-              className="w-full p-2 mt-1 border rounded-md focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
           {/* Website */}
           <div>
             <label className="block text-sm font-medium text-gray-600">
@@ -277,6 +269,21 @@ const AddClinicPage = () => {
             />
           </div>
 
+          {/* Appointment Charges */}
+          <div>
+            <label className="block text-sm font-medium text-gray-600">
+              Appointment Charges
+            </label>
+            <input
+              type="number"
+              name="appointmentCharges"
+              value={formData.appointmentCharges}
+              onChange={handleChange}
+              placeholder="500"
+              className="w-full p-2 mt-1 border rounded-md focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
           {/* Problems */}
           <div className="md:col-span-2">
             <label className="block text-sm font-medium text-gray-600">
@@ -287,6 +294,20 @@ const AddClinicPage = () => {
               onValueChange={handleProblemsChange}
               defaultValue={formData.problems}
               placeholder="Select problems"
+              className="mt-1"
+            />
+          </div>
+
+          {/* Offers */}
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium text-gray-600">
+              Offers
+            </label>
+            <MultiSelect
+              options={offers.map((o) => ({ label: o, value: o }))}
+              onValueChange={handleOffersChange}
+              defaultValue={formData.offers}
+              placeholder="Select offers"
               className="mt-1"
             />
           </div>

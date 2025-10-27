@@ -1,9 +1,18 @@
 export interface CbctOpgLab {
-  id: string;
+  _id: string;
   name: string;
+  state: string;
   location: string;
   rating: number;
-  specialty: string;
-  img: string;
-  state: string;
+  bookUrl?: string;
+  website?: string;
+  whatsapp?: string;
+  mapUrl?: string;
+  img?: string;
+  isActive: boolean;
+  user: {
+    _id: string;
+    name: string;
+    email: string;
+  };
 }

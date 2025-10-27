@@ -7,6 +7,10 @@ import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import allStatesAndUTs from "../data/allStatesAndUTs";
+
+import offers from "../data/offers";
+import { MultiSelect } from "@/components/ui/MultiSelect";
+
 const AddCbctOpgLabs: React.FC = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -14,7 +18,8 @@ const AddCbctOpgLabs: React.FC = () => {
     location: "",
     state: "",
     rating: "",
-    bookUrl: "",
+    offers: [] as string[],
+    appointmentCharges: "",
     website: "",
     whatsapp: "",
     mapUrl: "",
@@ -52,6 +57,10 @@ const AddCbctOpgLabs: React.FC = () => {
     } else {
       toast.error("Please upload a valid image file.");
     }
+  };
+
+  const handleOffersChange = (selected: string[]) => {
+    setFormData({ ...formData, offers: selected });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -157,14 +166,26 @@ const AddCbctOpgLabs: React.FC = () => {
           />
 
           <input
-            type="url"
-            name="bookUrl"
-            placeholder="Booking URL"
-            value={formData.bookUrl}
+            type="number"
+            name="appointmentCharges"
+            placeholder="appointmentCharges"
+            value={formData.appointmentCharges}
             onChange={handleInputChange}
             className="p-3 border border-gray-300 rounded-lg focus:border-[#6548ee] focus:outline-none"
           />
-
+          {/* Offers */}
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium text-gray-600">
+              Offers
+            </label>
+            <MultiSelect
+              options={offers.map((o) => ({ label: o, value: o }))}
+              onValueChange={handleOffersChange}
+              defaultValue={formData.offers}
+              placeholder="Select offers"
+              className="mt-1"
+            />
+          </div>
           <input
             type="url"
             name="website"
