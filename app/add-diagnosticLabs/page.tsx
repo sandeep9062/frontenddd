@@ -12,7 +12,7 @@ interface FormData {
   state: string;
   rating: number;
   appointmentCharges: number;
-  offers: string;
+  offers: string[];
   website: string;
   whatsapp: string;
   mapUrl: string;
@@ -25,8 +25,8 @@ const AddDiagnosticLab: React.FC = () => {
     location: "",
     state: "",
     rating: 0,
-    appointmentCharges: "",
-    offers: [] as string[],
+    appointmentCharges: 0,
+    offers: [],
     website: "",
     whatsapp: "",
     mapUrl: "",
@@ -98,7 +98,8 @@ const AddDiagnosticLab: React.FC = () => {
           location: "",
           state: "",
           rating: 0,
-
+          appointmentCharges: 0,
+          offers: [],
           website: "",
           whatsapp: "",
           mapUrl: "",

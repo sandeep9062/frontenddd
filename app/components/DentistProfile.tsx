@@ -158,7 +158,7 @@ export default function DentistProfilePage() {
     clinicName: string;
     problems: string[];
     specialization: string;
-    experienceYears: string;
+    experienceYears: number;
     consultationCharges: number;
     ratings: number;
     certifications: string;
@@ -181,9 +181,9 @@ export default function DentistProfilePage() {
     clinicName: "",
     problems: [],
     specialization: "",
-    experienceYears: "",
-    consultationCharges: "",
-    ratings: "",
+    experienceYears: 0,
+    consultationCharges: 0,
+    ratings: 0,
     certifications: "",
     clinicAddress: "",
     states: "",
@@ -221,9 +221,9 @@ export default function DentistProfilePage() {
           clinicName: profile?.clinicName || "",
           problems: profile?.problems || [],
           specialization: profile?.specialization || "",
-          experienceYears: profile?.experienceYears || "",
-          consultationCharges: profile?.consultationCharges || "",
-          ratings: profile?.ratings || "",
+          experienceYears: profile?.experienceYears || 0,
+          consultationCharges: profile?.consultationCharges || 0,
+          ratings: profile?.ratings || 0,
           certifications: profile?.certifications?.join(", ") || "",
           clinicAddress: profile?.clinicAddress || "",
           states: profile?.states || "",

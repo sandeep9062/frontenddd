@@ -17,12 +17,16 @@ export interface Clinic {
   location: string;
   state: string;
   rating: number;
-  problems: [string];
-  offers: [string];
+  appointmentCharges: number;
+  problems: string[];
+  offers: string[];
   bookUrl: string;
   website: string;
   whatsapp: string;
   mapUrl: string;
   img: string;
   user: User;
+  isActive?: boolean;
+  createdAt?: string;
+  updatedAt?: string;
 }

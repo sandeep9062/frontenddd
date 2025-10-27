@@ -80,7 +80,13 @@ const AddCbctOpgLabs: React.FC = () => {
       Object.keys(formData).forEach((key) => {
         const value = formData[key as keyof typeof formData];
         if (value) {
-          data.append(key, value);
+          if (Array.isArray(value)) {
+            value.forEach((item) => {
+              data.append(key, item);
+            });
+          } else {
+            data.append(key, value);
+          }
         }
       });
 
