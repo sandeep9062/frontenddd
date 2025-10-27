@@ -103,7 +103,7 @@ export default function BookAppointmentPage() {
 
       try {
         setClinicLoading(true);
-        const response = await axios.get(`/api/v1/clinics/${clinicId}`);
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/clinics/${clinicId}`);
 
         if (response.data?.success) {
           setClinic(response.data.data);
