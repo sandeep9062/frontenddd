@@ -5,8 +5,8 @@ export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/api/v1`,
-    prepareHeaders: (headers, { getState }: { getState: () => RootState }) => {
-      const token = getState().auth.token;
+    prepareHeaders: (headers, { getState }) => {
+      const token = (getState() as RootState).auth.token;
       if (token) {
         headers.set("Authorization", `Bearer ${token}`);
       }

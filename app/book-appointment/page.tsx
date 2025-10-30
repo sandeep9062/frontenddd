@@ -47,10 +47,10 @@ export default function BookAppointmentPage() {
 
   useEffect(() => {
     if (profile) {
-      setPatientName(profile.user.name);
+      setPatientName(profile.name);
 
       // ✅ Extract only last 10 digits from phone number
-      const phone = profile.user.phone?.replace(/\D/g, ""); // remove all non-digits
+      const phone = profile.phone?.replace(/\D/g, ""); // remove all non-digits
       const last10 = phone?.slice(-10); // take last 10 digits
       setPatientPhone(last10 || ""); // fallback to empty if undefined
     }
