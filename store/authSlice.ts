@@ -8,6 +8,7 @@ interface AuthState {
     name: string;
     email: string;
     role: string;
+    phone: string;
   } | null;
   token: string | null;
 }
@@ -25,7 +26,13 @@ const authSlice = createSlice({
     loginSuccess(
       state,
       action: PayloadAction<{
-        user: { _id: string; name: string; email: string; role: string };
+        user: {
+          _id: string;
+          name: string;
+          email: string;
+          role: string;
+          phone: string;
+        };
         token: string;
       }>
     ) {

@@ -93,9 +93,9 @@ i18n.use(LanguageDetector).use(initReactI18next).init({
           blogs: "Blogs"
         },
         consult: {
-          title: "Skip the trip! Take an online Dental Consultation",
+          title: "Skip the trip! Book an online Dental Consultation",
           subtitle: "Private Consultation + Audio calls + Video calls",
-          price: "Starts at just Rs 399 / USD $4.80",
+          price: "Starts at just Rs 399/- / USD $ 4.80/-",
           loading: "Loading...",
           getStarted: "Get Started",
           bookNow: "Book Now"
@@ -220,7 +220,7 @@ i18n.use(LanguageDetector).use(initReactI18next).init({
         consult: {
           title: "यात्रा छोड़ें! ऑनलाइन दंत परामर्श लें",
           subtitle: "निजी परामर्श + ऑडियो कॉल + वीडियो कॉल",
-          price: "केवल ₹399 / USD $4.80 से शुरू",
+          price: "केवल ₹399/- / USD $ 4.80/- से शुरू",
           loading: "लोड हो रहा है...",
           getStarted: "शुरू करें",
           bookNow: "अभी बुक करें"
@@ -345,7 +345,7 @@ i18n.use(LanguageDetector).use(initReactI18next).init({
         consult: {
           title: "Évitez le voyage ! Prenez une consultation dentaire en ligne",
           subtitle: "Consultation privée + appels audio + appels vidéo",
-          price: "À partir de seulement ₹399 / USD $4.80",
+          price: "À partir de seulement ₹399/- / USD $ 4.80/-",
           loading: "Chargement...",
           getStarted: "Commencer",
           bookNow: "Réserver maintenant"

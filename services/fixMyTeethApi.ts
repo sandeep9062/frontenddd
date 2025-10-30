@@ -1,37 +1,58 @@
-import axios from "axios";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL
-  ? `${process.env.NEXT_PUBLIC_API_URL}/api/v1`
-  : "http://localhost:9000/api/v1";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const getToken = () =>
   typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
-export const submitFixMyTeethCase = async (formData: FormData) => {
-  try {
-    const token = getToken();
-    const headers: { "Content-Type": string; Authorization?: string } = {
-      "Content-Type": "multipart/form-data",
-    };
+const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/fix-my-teeth`;
 
-    if (token) {
-      headers.Authorization = `Bearer ${token}`;
-    }
-
-    const response = await axios.post(`${API_URL}/fix-my-teeth`, formData, {
-      headers,
-    });
-    return { success: true, data: response.data };
-  } catch (error) {
-    if (axios.isAxiosError(error) && error.response) {
-      return {
-        success: false,
-        message: error.response.data.message || "An unknown error occurred",
-      };
-    }
-    return {
-      success: false,
-      message: (error as Error).message || "An unknown error occurred",
-    };
+const prepareHeaders = (headers: Headers) => {
+  const token = getToken();
+  if (token) {
+    headers.set("Authorization", `Bearer ${token}`);
   }
+  return headers;
 };
+
+interface TeethProblems {
+  [key: string]: boolean;
+}
+
+export interface FixMyTeethSubmission {
+  _id: string;
+  selectedType: "adult" | "kid";
+  name: string;
+  email: string;
+  status: string;
+  teethProblems: TeethProblems;
+  otherProblemText: string;
+  selectedState: string;
+  photos: string[];
+  createdAt: string;
+}
+
+export const fixMyTeethApi = createApi({
+  reducerPath: "fixMyTeethApi",
+  baseQuery: fetchBaseQuery({
+    baseUrl,
+    prepareHeaders,
+  }),
+  tagTypes: ["FixMyTeeth"],
+  endpoints: (builder) => ({
+    getMyFixMyTeethSubmissions: builder.query<FixMyTeethSubmission[], void>({
+      query: () => "/my",
+      providesTags: ["FixMyTeeth"],
+      transformResponse: (response: { submissions: FixMyTeethSubmission[] }) =>
+        response.submissions,
+    }),
+    submitFixMyTeethCase: builder.mutation<{ success: boolean; message: string }, FormData>({
+      query: (formData) => ({
+        url: "/",
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: ["FixMyTeeth"],
+    }),
+  }),
+});
+
+export const { useGetMyFixMyTeethSubmissionsQuery, useSubmitFixMyTeethCaseMutation } = fixMyTeethApi;

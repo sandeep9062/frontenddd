@@ -31,6 +31,30 @@ const ClinicCard: React.FC<ClinicCardProps> = ({ clinic }) => {
           {clinic.location || "N/A"}, {clinic.state || "N/A"}
         </p>
 
+        <div className="mb-3">
+          <p className="text-sm font-semibold text-gray-800">
+            Appointment Charges:{" "}
+            <span className="font-bold text-green-600">
+              ₹{clinic.appointmentCharges?.toLocaleString() || "N/A"}
+            </span>
+          </p>
+        </div>
+
+        {clinic.offers && clinic.offers.length > 0 && (
+          <div className="mb-4">
+            <h4 className="mb-2 text-sm font-semibold text-gray-800">
+              Available Offers:
+            </h4>
+            <ul className="space-y-1 list-disc list-inside">
+              {clinic.offers.map((offer, index) => (
+                <li key={index} className="text-xs text-gray-600">
+                  {offer}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         <div className="flex items-center gap-2 mb-4">
           <span className="flex items-center gap-1 text-yellow-500">
             {[...Array(5)].map((_, i) => (

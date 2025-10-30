@@ -4,7 +4,7 @@ export interface CbctOpgLab {
   state: string;
   location: string;
   rating: number;
-  bookUrl?: string;
+  bookUrl?: string; appointmentCharges: number; offers?: string[];
   website?: string;
   whatsapp?: string;
   mapUrl?: string;

@@ -17,7 +17,7 @@ interface DiagnosticLabForm {
 
 export const registerDiagnosticLab = async (formData: DiagnosticLabForm) => {
   try {
-    const response = await axios.post(`${API_URL}/diagnostic-lab-register/register`, formData, {
+    const response = await axios.post(`${API_URL}/v1/diagnostic-lab-register/register`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },

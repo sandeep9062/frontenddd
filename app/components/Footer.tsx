@@ -135,9 +135,13 @@ const Footer: React.FC = () => {
             <Link href="/privacy-policy" className={linkClass}>
               {t("footer.privacyPolicy")}
             </Link>
-            <Link href="cookie-policy" className={linkClass}>
+            <Link href="/cookie-policy" className={linkClass}>
               {t("footer.cookiePolicy")}
             </Link>
+            <Link href="/HIPAA-Compliant" className={linkClass}>
+              HIPPA Compliant
+            </Link>
+
             <Link href="/terms" className={linkClass}>
               {t("footer.terms")}
             </Link>

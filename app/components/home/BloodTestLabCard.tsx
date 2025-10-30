@@ -11,7 +11,7 @@ interface Lab {
   state: string;
   rating: number;
   img: string;
-  bookUrl?: string;
+
   website?: string;
   whatsapp?: string;
   mapUrl?: string;
@@ -68,7 +68,7 @@ const BloodTestLabCard: React.FC<BloodTestLabCardProps> = ({ lab }) => {
         </div>
 
         <a
-          href={lab.bookUrl || "#"}
+          href={`/book-appointment?labId=${lab._id}&type=blood-test`}
           className="flex items-center justify-center w-full gap-2 px-4 py-2 mb-3 font-semibold text-center text-white transition-colors duration-300 bg-blue-600 rounded-lg hover:bg-blue-700"
         >
           <FaBook />

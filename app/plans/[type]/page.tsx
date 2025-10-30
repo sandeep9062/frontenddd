@@ -3,13 +3,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import axios from "axios";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { CheckCircle2, XCircle, Star } from "lucide-react";
 
-import instagramIcon from "@/public/instagram.png";
-import youtubeIcon from "@/public/youtube.png";
-import RazorpayCheckout from "@/app/components/RazorpayCheckout";
+import { motion } from "framer-motion";
+
+
 interface Plan {
   _id: string;
   type: string;
@@ -27,8 +24,21 @@ export default function PlansByTypePage() {
   const [plans, setPlans] = useState<Plan[]>([]);
   const [loading, setLoading] = useState(true);
   const [billing, setBilling] = useState<"month" | "year">("month");
+  const [userId, setUserId] = useState<string | null>(null);
 
   useEffect(() => {
+    // 1. Get userId from localStorage
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      try {
+        const userData = JSON.parse(storedUser);
+        setUserId(userData?._id || null);
+      } catch (error) {
+        console.error("Failed to parse user data from localStorage:", error);
+      }
+    }
+
+    // 2. Fetch plans
     if (!type) return;
     const fetchPlans = async () => {
       try {
@@ -36,7 +46,12 @@ export default function PlansByTypePage() {
         const filtered = data.filter(
           (plan: Plan) => plan.type.toLowerCase() === String(type).toLowerCase()
         );
-        setPlans(filtered);
+        const processedPlans = filtered.map((plan: Plan) => {
+          const features = Array.isArray(plan.features) ? plan.features : [String(plan.features)];
+          const splitFeatures = features.flatMap(f => f.split(',').map(item => item.trim()));
+          return { ...plan, features: splitFeatures };
+        });
+        setPlans(processedPlans);
       } catch (error) {
         console.error("Error fetching plans:", error);
       } finally {
@@ -146,14 +161,15 @@ export default function PlansByTypePage() {
                     Billed {billing === "month" ? "monthly" : "annually"}
                   </p>
                 </div>
-                <div className="flex-grow mb-8 text-gray-600">
-                  {plan.features.map((feature, i) =>
-                    feature
-                      .split(",")
-                      .map((item, j) => <p key={j}>{item.trim()}</p>)
-                  )}
-                </div>
-                {/* <button
+                <ul className="flex-grow mb-8 space-y-3 text-gray-600">
+                  {plan.features.map((feature, i) => (
+                    <li key={i} className="flex items-start">
+
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <button
                   className={`w-full mt-auto py-3 rounded-lg font-semibold text-lg transition-all duration-300 ${
                     plan.highlight
                       ? "bg-blue-600 text-white hover:bg-blue-700 shadow-lg"
@@ -162,19 +178,8 @@ export default function PlansByTypePage() {
                   onClick={() => handlePay(plan)}
                 >
                   Choose {plan.name}
-                </button> */}
-                <RazorpayCheckout
-                  planId={plan._id}
-                  planName={plan.name}
-                  amount={
-                    billing === "month"
-                      ? plan.pricing.monthly
-                      : plan.pricing.yearly
-                  }
-                  billingCycle={billing}
-                  type={plan.type}
-                  userId={null} // (if logged in, otherwise remove)
-                />{" "}
+                </button>
+                
               </div>
             </motion.div>
           ))}

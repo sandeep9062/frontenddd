@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 import {
   CalendarDays,
-  Clock,
   Phone,
   Globe,
   MapPin,
@@ -23,60 +22,44 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useSearchParams } from "next/navigation";
-import { Clinic } from "@/types/clinic";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
+import { useGetMyProfileQuery } from "@/services/userApi";
+import { UserProfile } from "../types";
 
 export default function BookAppointmentPage() {
   const searchParams = useSearchParams();
   const clinicId = searchParams.get("clinicId");
+  const labId = searchParams.get("labId");
+  const serviceType = searchParams.get("type") || "clinic"; // clinic, cbct-opg-lab, blood-test
 
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [selectedSlot, setSelectedSlot] = useState("");
   const [patientName, setPatientName] = useState("");
   const [patientPhone, setPatientPhone] = useState("");
   const [loading, setLoading] = useState(false);
-  const [clinic, setClinic] = useState<Clinic | null>(null);
+  const [clinic, setClinic] = useState<any | null>(null);
   const [clinicLoading, setClinicLoading] = useState(true);
+  const { user } = useSelector((state: RootState) => state.auth);
+  const { data: profile } = useGetMyProfileQuery(undefined, {
+    skip: !user,
+  }) as { data: UserProfile | undefined };
+
+  useEffect(() => {
+    if (profile) {
+      setPatientName(profile.user.name);
+
+      // ✅ Extract only last 10 digits from phone number
+      const phone = profile.user.phone?.replace(/\D/g, ""); // remove all non-digits
+      const last10 = phone?.slice(-10); // take last 10 digits
+      setPatientPhone(last10 || ""); // fallback to empty if undefined
+    }
+
+    //console.log(profile, "user-detailalala");
+  }, [profile]);
 
   // Default clinic data as fallback
-  const defaultClinic = {
-    _id: "default",
-    name: "All Care Dental Centre",
-    location: "MG Road, Basavanagudi, Bangalore",
-    state: "Karnataka",
-    rating: 4.7,
-    problems: ["Root Canal", "Braces", "Dental Implants", "Cosmetic Dentistry"],
-    bookUrl: "",
-    website: "https://allcaredental.in",
-    whatsapp: "+91 98765 43210",
-    mapUrl: "https://maps.google.com/?q=MG+Road+Basavanagudi+Bangalore",
-    img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=400&h=300&q=80",
-    user: {
-      _id: "default",
-      name: "Dr. Default",
-      email: "default@clinic.com",
-      phone: "+91 98765 43210",
-      role: "dentist",
-      profile: { problems: [] },
-    },
-    // Additional fields for display
-    phone: "+91 98765 43210",
-    email: "default@clinic.com",
-    reviews: 156,
-    fee: 300,
-    offers: [
-      "Get 10% off on first dental cleaning",
-      "Free consultation for new patients",
-    ],
-    specialties: [
-      "Root Canal",
-      "Braces",
-      "Dental Implants",
-      "Cosmetic Dentistry",
-    ],
-    isActive: true,
-    createdAt: "2020-01-01T00:00:00.000Z",
-    updatedAt: "2024-01-01T00:00:00.000Z",
-  };
+  
 
   const timeSlots = [
     "10:00 AM",
@@ -93,50 +76,73 @@ export default function BookAppointmentPage() {
     "4:30 PM",
   ];
 
-  // Fetch clinic details by ID
+  // Fetch service details by ID (clinic, cbct-opg-lab, or blood-test)
   useEffect(() => {
-    const fetchClinicDetails = async () => {
-      if (!clinicId) {
+    const fetchServiceDetails = async () => {
+      const id = clinicId || labId;
+      if (!id) {
         setClinicLoading(false);
         return;
       }
 
       try {
         setClinicLoading(true);
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/clinics/${clinicId}`);
+        let response;
+
+        if (serviceType === "cbct-opg-lab") {
+          response = await axios.get(
+            `${process.env.NEXT_PUBLIC_API_URL}/api/v1/cbct-opg-labs/${id}`
+          );
+        } else if (serviceType === "blood-test") {
+          response = await axios.get(
+            `${process.env.NEXT_PUBLIC_API_URL}/api/v1/diagnostic-labs/${id}`
+          );
+        } else {
+          // Default to clinic
+          response = await axios.get(
+            `${process.env.NEXT_PUBLIC_API_URL}/api/v1/clinics/${id}`
+          );
+        }
 
         if (response.data?.success) {
           setClinic(response.data.data);
         } else {
-          toast.error("Failed to fetch clinic details");
+          toast.error("Failed to fetch service details");
         }
       } catch (error) {
-        console.error("Error fetching clinic details:", error);
-        toast.error("Failed to fetch clinic details");
+        console.error("Error fetching service details:", error);
+        toast.error("Failed to fetch service details");
       } finally {
         setClinicLoading(false);
       }
     };
 
-    fetchClinicDetails();
-  }, [clinicId]);
+    fetchServiceDetails();
+  }, [clinicId, labId, serviceType]);
 
-  // Use fetched clinic data or fallback to default
+  // Use fetched service data or fallback to default
   const currentClinic = clinic
     ? {
         ...clinic,
+        name: clinic.name,
         // Add additional fields for display if not present
         phone: clinic.user?.phone || clinic.whatsapp || "+91 98765 43210",
         email: clinic.user?.email || "contact@clinic.com",
         reviews: 156, // Default reviews count
-        fee: clinic.appointmentCharges,
-        offers: clinic.offers || ["Get 10% off on first dental cleaning"], // Use actual offers or default
-        specialties: clinic.problems || ["General Dentistry"], // Use problems as specialties
+        fee: clinic.appointmentCharges || 0,
+        offers: clinic.offers || ["Get 10% off on first appointment"], // Use actual offers or default
+        specialties:
+          clinic.problems ||
+          (serviceType === "cbct-opg-lab"
+            ? ["CBCT Scan", "OPG Scan"]
+            : serviceType === "blood-test"
+            ? ["Blood Tests", "Diagnostics"]
+            : ["General Services"]), // Use problems as specialties
         isActive: clinic.isActive !== undefined ? clinic.isActive : true,
         createdAt: clinic.createdAt || new Date().toISOString(),
         updatedAt: clinic.updatedAt || new Date().toISOString(),
       }
-    : defaultClinic;
+    : "";
 
   async function handleBooking() {
     if (!selectedDate || !selectedSlot)
@@ -152,13 +158,15 @@ export default function BookAppointmentPage() {
         `${process.env.NEXT_PUBLIC_API_URL}/api/v1/appointments`,
         {
           clinicName: currentClinic.name,
-          clinicId: clinicId,
+          clinicId: clinicId || labId,
+          serviceType: serviceType,
           fullName: patientName,
           mobileNumber: patientPhone,
           appointmentDate: selectedDate,
           timeSlot: selectedSlot,
           clinicSpecialities: currentClinic.specialties,
           clinicLocation: currentClinic.location,
+          clinicCharges: currentClinic.fee,
         }
       );
 
@@ -204,7 +212,13 @@ export default function BookAppointmentPage() {
         {/* Header */}
         <div className="flex flex-col items-start justify-between mb-6 sm:flex-row sm:items-center">
           <h1 className="text-2xl sm:text-3xl font-bold text-[#2056AE] mb-3 sm:mb-0">
-            Book an Appointment
+            Book{" "}
+            {serviceType === "cbct-opg-lab"
+              ? "CBCT/OPG Lab"
+              : serviceType === "blood-test"
+              ? "Blood Test Lab"
+              : "Clinic"}{" "}
+            Appointment
           </h1>
           <div className="text-sm text-gray-500">
             Call us:{" "}
@@ -273,7 +287,7 @@ export default function BookAppointmentPage() {
               <div className="text-2xl font-bold text-[#2056AE]">
                 ₹ {currentClinic.fee}
               </div>
-              <div className="text-sm text-gray-500">Consultation Fee</div>
+              <div className="text-sm text-gray-500">Appointment Fee</div>
             </div>
           </div>
 
@@ -398,14 +412,16 @@ export default function BookAppointmentPage() {
               Specialties & Services
             </h3>
             <div className="flex flex-wrap gap-2">
-              {currentClinic.specialties.map((specialty, index) => (
-                <span
-                  key={index}
-                  className="px-3 py-1 text-sm font-medium text-[#2056AE] bg-blue-100 rounded-full"
-                >
-                  {specialty}
-                </span>
-              ))}
+              {currentClinic.specialties.map(
+                (specialty: string, index: number) => (
+                  <span
+                    key={index}
+                    className="px-3 py-1 text-sm font-medium text-[#2056AE] bg-blue-100 rounded-full"
+                  >
+                    {specialty}
+                  </span>
+                )
+              )}
             </div>
           </div>
 
@@ -417,7 +433,7 @@ export default function BookAppointmentPage() {
               </h3>
               <div className="space-y-2">
                 {Array.isArray(currentClinic.offers) ? (
-                  currentClinic.offers.map((offer, index) => (
+                  currentClinic.offers.map((offer: string, index: number) => (
                     <div
                       key={index}
                       className="flex items-center gap-2 p-3 text-sm font-medium text-green-700 rounded-lg bg-green-50"

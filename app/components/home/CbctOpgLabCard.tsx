@@ -31,15 +31,37 @@ const CbctOpgLabCard: React.FC<CbctOpgLabCardProps> = ({ lab }) => {
           {lab.location || "N/A"}, {lab.state || "N/A"}
         </p>
 
+        <div className="mb-3">
+          <p className="text-sm font-semibold text-gray-800">
+            Appointment Charges:{" "}
+            <span className="font-bold text-green-600">
+              ₹{lab.appointmentCharges?.toLocaleString() || "N/A"}
+            </span>
+          </p>
+        </div>
+
+        {lab.offers && lab.offers.length > 0 && (
+          <div className="mb-4">
+            <h4 className="mb-2 text-sm font-semibold text-gray-800">
+              Available Offers:
+            </h4>
+            <ul className="space-y-1 list-disc list-inside">
+              {lab.offers.map((offer, index) => (
+                <li key={index} className="text-xs text-gray-600">
+                  {offer}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         <div className="flex items-center gap-2 mb-4">
           <span className="flex items-center gap-1 text-yellow-500">
             {[...Array(5)].map((_, i) => (
               <svg
                 key={i}
                 className="w-5 h-5"
-                fill={
-                  i < Math.round(lab.rating || 0) ? "currentColor" : "none"
-                }
+                fill={i < Math.round(lab.rating || 0) ? "currentColor" : "none"}
                 stroke="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -56,7 +78,7 @@ const CbctOpgLabCard: React.FC<CbctOpgLabCardProps> = ({ lab }) => {
         </div>
 
         <a
-          href={`/book-appointment?clinicId=${lab._id}`}
+          href={`/book-appointment?labId=${lab._id}&type=cbct-opg-lab`}
           className="flex items-center justify-center w-full gap-2 px-4 py-2 mb-3 font-semibold text-center text-white transition-colors duration-300 bg-blue-600 rounded-lg hover:bg-blue-700"
         >
           <FaBook />

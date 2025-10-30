@@ -4,10 +4,13 @@ export interface ProductImage {
 }
 
 export interface Product {
+  slug: string;
+  user: string;
   _id: string;
   name: string;
   brand?: string;
   category: string;
+  subcategory?: string;
   description?: string;
   composition?: string;
   dosage?: string;
@@ -27,4 +30,9 @@ export interface Product {
   isActive?: boolean;
   createdAt?: string;
   updatedAt?: string;
+}
+
+export interface UserProfile {
+  name: string;
+  phone: string;
 }

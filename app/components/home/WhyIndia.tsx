@@ -20,7 +20,7 @@ const WhyIndia: React.FC = () => {
     {
       title: t("whyIndia.tourismDental"),
       desc: t("whyIndia.tourismDentalDesc"),
-      img: "/Tourism + Dental Treatment.png",
+      img: "/Tourism + Treatment.png",
     },
     {
       title: t("whyIndia.topClinics"),

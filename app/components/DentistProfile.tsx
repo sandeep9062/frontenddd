@@ -24,6 +24,20 @@ interface Clinic {
   state: string;
 }
 
+interface Consultation {
+  _id: string;
+  patientName: string;
+  user?: {
+    name: string;
+  };
+  selectedDate: string;
+  selectedSlot: string;
+  status: string;
+  paymentStatus: string;
+  patientEmail: string;
+  message: string;
+}
+
 export default function DentistProfilePage() {
   const states = [
     "Andhra Pradesh",
@@ -204,6 +218,25 @@ export default function DentistProfilePage() {
   const [saving, setSaving] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [clinics, setClinics] = useState<Clinic[]>([]);
+  const [consultations, setConsultations] = useState<Consultation[]>([]);
+  const [userId, setUserId] = useState<string | null>(null);
+  const [selectedConsultation, setSelectedConsultation] =
+    useState<Consultation | null>(null);
+  const [statusFilter, setStatusFilter] = useState("All");
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "Completed":
+        return "text-green-600";
+      case "Confirmed":
+        return "text-blue-600";
+      case "Cancelled":
+        return "text-red-600";
+      case "Pending":
+      default:
+        return "text-yellow-600";
+    }
+  };
 
   useEffect(() => {
     const fetchProfileAndClinics = async () => {
@@ -220,13 +253,13 @@ export default function DentistProfilePage() {
           phone: user?.phone || "",
           clinicName: profile?.clinicName || "",
           problems: profile?.problems || [],
-          specialization: profile?.specialization || "",
+          specialization: String(profile?.specialization || ""),
           experienceYears: profile?.experienceYears || 0,
           consultationCharges: profile?.consultationCharges || 0,
           ratings: profile?.ratings || 0,
           certifications: profile?.certifications?.join(", ") || "",
           clinicAddress: profile?.clinicAddress || "",
-          states: profile?.states || "",
+          states: String(profile?.states || ""),
           about: profile?.about || "",
           image: profile?.image || "",
           gradCollege: profile?.gradCollege || "",
@@ -244,6 +277,17 @@ export default function DentistProfilePage() {
           headers: { Authorization: `Bearer ${token}` },
         });
         setClinics(clinicsRes.data.data);
+
+        if (user?._id) {
+          setUserId(user._id);
+          const consultationsRes = await axios.get(
+            `/api/v1/consultations/dentist/my`,
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          );
+          setConsultations(consultationsRes.data.data || []);
+        }
       } catch {
         toast.error("Failed to load profile or clinics");
       } finally {
@@ -253,6 +297,39 @@ export default function DentistProfilePage() {
 
     fetchProfileAndClinics();
   }, []);
+
+  const handleStatusChange = async (
+    consultationId: string,
+    newStatus: string
+  ) => {
+    try {
+      const token = localStorage.getItem("token");
+      await axios.put(
+        `/api/v1/consultations/${consultationId}/status`,
+        { status: newStatus },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      // Update the local state to reflect the change
+      setConsultations((prevConsultations) =>
+        prevConsultations.map((c) =>
+          c._id === consultationId ? { ...c, status: newStatus } : c
+        )
+      );
+
+      // Also update the selected consultation if it's the one being edited
+      if (selectedConsultation?._id === consultationId) {
+        setSelectedConsultation({ ...selectedConsultation, status: newStatus });
+      }
+
+      toast.success("Status updated successfully!");
+    } catch (error) {
+      toast.error("Failed to update status.");
+      console.error("Error updating status:", error);
+    }
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -404,7 +481,7 @@ export default function DentistProfilePage() {
               onValueChange={(value) =>
                 handleSelectChange("specialization", value)
               }
-              value={form.specialization}
+              value={form.specialization || ""}
             >
               <SelectTrigger>
                 <SelectValue placeholder="Select Speciality" />
@@ -427,7 +504,7 @@ export default function DentistProfilePage() {
             <ShadSelect
               name="states"
               onValueChange={(value) => handleSelectChange("states", value)}
-              value={form.states}
+              value={form.states || ""}
             >
               <SelectTrigger>
                 <SelectValue placeholder="Select State" />
@@ -586,6 +663,181 @@ export default function DentistProfilePage() {
           </CardContent>
         </Card>
       </div>
+
+      {userId && (
+        <div className="max-w-3xl p-6 mx-auto mt-10">
+          <Card className="border border-gray-200 shadow-lg rounded-2xl">
+            <CardHeader className="flex flex-col items-center space-y-2">
+              <h2 className="text-2xl font-bold text-gray-800">
+                My Consultations
+              </h2>
+            </CardHeader>
+            <CardContent>
+              <div className="mb-4">
+                <ShadSelect
+                  value={statusFilter}
+                  onValueChange={(value) => setStatusFilter(value)}
+                >
+                  <SelectTrigger className="w-48">
+                    <SelectValue placeholder="Filter by Status" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="All">All Statuses</SelectItem>
+                    <SelectItem value="Pending">Pending</SelectItem>
+                    <SelectItem value="Confirmed">Confirmed</SelectItem>
+                    <SelectItem value="Completed">Completed</SelectItem>
+                    <SelectItem value="Cancelled">Cancelled</SelectItem>
+                  </SelectContent>
+                </ShadSelect>
+              </div>
+              {consultations.length > 0 ? (
+                <table className="w-full text-left table-auto">
+                  <thead>
+                    <tr>
+                      <th className="px-4 py-2">Patient</th>
+                      <th className="px-4 py-2">Date</th>
+                      <th className="px-4 py-2">Time</th>
+                      <th className="px-4 py-2">Status</th>
+                      <th className="px-4 py-2">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {consultations
+                      .filter(
+                        (c) =>
+                          statusFilter === "All" || c.status === statusFilter
+                      )
+                      .map((consultation) => (
+                        <tr key={consultation._id}>
+                          <td className="px-4 py-2 border">
+                            {consultation.user?.name ||
+                              consultation.patientName}
+                          </td>
+                          <td className="px-4 py-2 border">
+                            {new Date(
+                              consultation.selectedDate
+                            ).toLocaleDateString("en-GB")}
+                          </td>
+                          <td className="px-4 py-2 border">
+                            {consultation.selectedSlot}
+                          </td>
+                          <td
+                            className={`px-4 py-2 border font-semibold ${getStatusColor(
+                              consultation.status
+                            )}`}
+                          >
+                            <ShadSelect
+                              value={consultation.status}
+                              onValueChange={(newStatus) =>
+                                handleStatusChange(consultation._id, newStatus)
+                              }
+                            >
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select Status" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="Pending">Pending</SelectItem>
+                                <SelectItem value="Confirmed">
+                                  Confirmed
+                                </SelectItem>
+                                <SelectItem value="Completed">
+                                  Completed
+                                </SelectItem>
+                                <SelectItem value="Cancelled">
+                                  Cancelled
+                                </SelectItem>
+                              </SelectContent>
+                            </ShadSelect>
+                          </td>
+                          <td className="px-4 py-2 border">
+                            <Button
+                              onClick={() =>
+                                setSelectedConsultation(consultation)
+                              }
+                            >
+                              View
+                            </Button>
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              ) : (
+                <p>No consultations found.</p>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {selectedConsultation && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="p-6 bg-white rounded-lg shadow-lg w-96">
+            <h3 className="mb-4 text-lg font-bold">Consultation Details</h3>
+            <div className="space-y-2">
+              <p>
+                <strong>Patient:</strong>{" "}
+                {selectedConsultation.user?.name ||
+                  selectedConsultation.patientName}
+              </p>
+              <p>
+                <strong>Date:</strong>{" "}
+                {new Date(selectedConsultation.selectedDate).toLocaleDateString(
+                  "en-GB"
+                )}
+              </p>
+              <p>
+                <strong>Time:</strong> {selectedConsultation.selectedSlot}
+              </p>
+              <p>
+                <strong>Status:</strong>{" "}
+                <span
+                  className={`font-semibold ${getStatusColor(
+                    selectedConsultation.status
+                  )}`}
+                >
+                  {selectedConsultation.status}
+                </span>
+              </p>
+              <p>
+                <strong>Payment Status:</strong>{" "}
+                {selectedConsultation.paymentStatus}
+              </p>
+              <p>
+                <strong>Email:</strong> {selectedConsultation.patientEmail}
+              </p>
+              <p>
+                <strong>Message:</strong> {selectedConsultation.message}
+              </p>
+              <div className="mt-4">
+                <label className="block mb-2 font-bold">Update Status</label>
+                <ShadSelect
+                  value={selectedConsultation.status}
+                  onValueChange={(newStatus) =>
+                    handleStatusChange(selectedConsultation._id, newStatus)
+                  }
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select Status" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Pending">Pending</SelectItem>
+                    <SelectItem value="Confirmed">Confirmed</SelectItem>
+                    <SelectItem value="Completed">Completed</SelectItem>
+                    <SelectItem value="Cancelled">Cancelled</SelectItem>
+                  </SelectContent>
+                </ShadSelect>
+              </div>
+            </div>
+            <Button
+              onClick={() => setSelectedConsultation(null)}
+              className="mt-6"
+            >
+              Close
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

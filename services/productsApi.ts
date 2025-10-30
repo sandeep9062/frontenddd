@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { Product } from "@/app/types";
 
 // ✅ Helper to get token (only client-side)
 const getToken = () =>
@@ -13,38 +14,6 @@ const prepareHeaders = (headers: Headers) => {
   }
   return headers;
 };
-
-// ✅ Interfaces
-interface ProductImage {
-  url: string;
-  public_id?: string;
-}
-
-interface Product {
-  _id: string;
-  name: string;
-  brand?: string;
-  category: string;
-  description?: string;
-  composition?: string;
-  dosage?: string;
-  prescriptionRequired?: boolean;
-  price: number;
-  discountPrice?: number;
-  stockCount: number;
-  expiryDate?: string;
-  manufacturingDate?: string;
-  manufacturer?: string;
-  storageConditions?: string;
-  weight?: number;
-  images: ProductImage[];
-  tags?: string[];
-  rating?: number;
-  numReviews?: number;
-  isActive?: boolean;
-  createdAt?: string;
-  updatedAt?: string;
-}
 
 interface PaginatedProductsResponse {
   products: Product[];
@@ -91,6 +60,13 @@ export const productsApi = createApi({
         url: `/`,
         method: "POST",
         body: formData,
+        prepareHeaders: (headers: Headers) => {
+          const token = getToken();
+          if (token) {
+            headers.set("Authorization", `Bearer ${token}`);
+          }
+          return headers;
+        },
       }),
       invalidatesTags: ["Products"],
     }),
@@ -101,6 +77,13 @@ export const productsApi = createApi({
         url: `/${id}`,
         method: "PUT",
         body: formData,
+        prepareHeaders: (headers: Headers) => {
+          const token = getToken();
+          if (token) {
+            headers.set("Authorization", `Bearer ${token}`);
+          }
+          return headers;
+        },
       }),
       invalidatesTags: (result, error, { id }) => [
         "Products",
@@ -113,6 +96,13 @@ export const productsApi = createApi({
       query: (id) => ({
         url: `/${id}`,
         method: "DELETE",
+        prepareHeaders: (headers: Headers) => {
+          const token = getToken();
+          if (token) {
+            headers.set("Authorization", `Bearer ${token}`);
+          }
+          return headers;
+        },
       }),
       invalidatesTags: (result, error, id) => [
         "Products",

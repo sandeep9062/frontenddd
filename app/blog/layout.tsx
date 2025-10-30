@@ -1,43 +1,46 @@
-import type { Metadata } from 'next';
-import React from 'react';
+import type { Metadata } from "next";
+import React from "react";
 
 // Define metadata for the Blog section
 export const metadata: Metadata = {
-  title: 'Dental Tourism Blog | Insights on SaaS, AI, Web Dev & Marketing',
-  description: 'Explore the Dental Tourism blog for deep dives, expert insights, and articles on SaaS development, AI integration, UI/UX design, web development trends, SEO strategies, and startup growth.',
+  title: "Dental Tourism Blog | Insights on SaaS, AI, Web Dev & Marketing",
+  description:
+    "Explore the Dental Tourism blog for deep dives, expert insights, and articles on SaaS development, AI integration, UI/UX design, web development trends, SEO strategies, and startup growth.",
   keywords: [
-    'Dental Tourism blog',
-    
-    'UI/UX trends',
-    'SEO strategies',
-    'digital marketing insights',
-    'startup growth',
-    'MERN stack insights',
-    'Next.js blog',
-    'cloud & DevOps',
-    'case studies'
+    "Dental Tourism blog",
+
+    "UI/UX trends",
+    "SEO strategies",
+    "digital marketing insights",
+    "startup growth",
+    "MERN stack insights",
+    "Next.js blog",
+    "cloud & DevOps",
+    "case studies",
   ],
   openGraph: {
-    title: 'Dental Tourism Blog | Insights on SaaS, AI, Web Dev & Marketing',
-    description: 'Explore the Dental Tourism blog for deep dives, expert insights, and articles on SaaS development, AI integration, UI/UX design, web development trends, SEO strategies, and startup growth.',
-    url: 'https://www.dentaltourism.com/blog',
-    siteName: 'Dental Tourism Blog',
+    title: "Dental Tourism Blog | Insights on SaaS, AI, Web Dev & Marketing",
+    description:
+      "Explore the Dental Tourism blog for deep dives, expert insights, and articles on SaaS development, AI integration, UI/UX design, web development trends, SEO strategies, and startup growth.",
+    url: "https://www.dentaltourism.com/blog",
+    siteName: "Dental Tourism Blog",
     images: [
       {
-        url: 'https://www.dentaltourism.com/images/og-image-blog.jpg', // A generic, eye-catching image for the blog home page
+        url: "https://www.dentaltourism.com/images/og-image-blog.jpg", // A generic, eye-catching image for the blog home page
         width: 1200,
         height: 630,
-        alt: 'Dental Tourism Blog - Latest Tech Insights',
+        alt: "Dental Tourism Blog - Latest Tech Insights",
       },
     ],
-    locale: 'en_US',
-    type: 'website',
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Dental Tourism Blog | Insights on SaaS, AI, Web Dev & Marketing',
-    description: 'Explore the Dental Tourism blog for deep dives, expert insights, and articles on SaaS development, AI integration, UI/UX design, web development trends, SEO strategies, and startup growth.',
-    images: ['https://www.dentaltourism.com/images/twitter-card-blog.jpg'], // A generic image for Twitter shares
+    card: "summary_large_image",
+    title: "Dental Tourism Blog | Insights on SaaS, AI, Web Dev & Marketing",
+    description:
+      "Explore the Dental Tourism blog for deep dives, expert insights, and articles on SaaS development, AI integration, UI/UX design, web development trends, SEO strategies, and startup growth.",
+    images: ["https://www.dentaltourism.com/images/twitter-card-blog.jpg"], // A generic image for Twitter shares
   },
 };
 

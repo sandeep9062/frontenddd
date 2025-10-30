@@ -10,7 +10,7 @@ import { selectUser } from "../../store/authSlice";
 import allStatesAndUTs from "../data/allStatesAndUTs";
 import FAQSection from "../components/FAQSection";
 import ContactOptions from "../components/ContactOptions";
-import { submitFixMyTeethCase } from "../../services/fixMyTeethApi";
+import { useSubmitFixMyTeethCaseMutation } from "../../services/fixMyTeethApi";
 import Button from "../components/Button";
 import Modal from "../components/Modal";
 import Step from "../components/Step";
@@ -357,6 +357,7 @@ const FixMyTeeth = () => {
   );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const user = useSelector(selectUser);
+  const [submitCase] = useSubmitFixMyTeethCaseMutation();
 
   useEffect(() => {
     if (user) {
@@ -431,7 +432,7 @@ const FixMyTeeth = () => {
     uploadedImages.forEach((image) => formData.append("photo", image.file));
 
     try {
-      const result = await submitFixMyTeethCase(formData);
+      const result = await submitCase(formData).unwrap();
       if (result.success) {
         toast.success("Quote request submitted successfully!");
         setQuoteForm({ name: "", email: "" });

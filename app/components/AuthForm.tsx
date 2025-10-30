@@ -55,7 +55,7 @@ export default function AuthForm({ type }: { type: "login" | "register" }) {
       } else if (res.data.role === "cbct&opgcenters") {
         router.push("/cbct-opg-lab/profile");
       } else if (res.data.role === "pharma&brand") {
-        router.push("/pharma&brand/profile");
+        router.push("/pharma-brand/profile");
       } else if (res.data.role === "diagnosticlabs") {
         router.push("/diagnostic-labs/profile");
       } else if (res.data.role === "patient") {
