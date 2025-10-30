@@ -127,7 +127,7 @@ const AddClinicPage = () => {
           {/* Drag and Drop Image Upload */}
           <div className="md:col-span-2">
             <label className="block mb-2 text-sm font-medium text-gray-600">
-              Clinic Image
+              Clinic Image , 3images (Max 600kb)
             </label>
             <div
               {...getRootProps()}
