@@ -20,8 +20,18 @@ import Select from "react-select";
 interface Clinic {
   _id: string;
   name: string;
+  description: string;
   location: string;
   state: string;
+  images: string[];
+  specialities: string[];
+  offers: string[];
+  problems: string[];
+  website?: string;
+  whatsapp?: string;
+  instagramId?: string;
+  appointmentCharges?: number;
+  noOfDoctors?: number;
 }
 
 interface Consultation {
@@ -650,10 +660,62 @@ export default function DentistProfilePage() {
             {clinics.length > 0 ? (
               <ul className="space-y-4">
                 {clinics.map((clinic) => (
-                  <li key={clinic._id} className="p-4 border rounded-lg">
-                    <h3 className="text-lg font-semibold">{clinic.name}</h3>
-                    <p>{clinic.location}</p>
-                    <p>{clinic.state}</p>
+                  <li
+                    key={clinic._id}
+                    className="p-4 border rounded-lg shadow-sm"
+                  >
+                    <div className="flex gap-4">
+                      {clinic.images && clinic.images.length > 0 && (
+                        <Image
+                          src={clinic.images[0]}
+                          alt={clinic.name}
+                          width={150}
+                          height={150}
+                          className="object-cover rounded-md"
+                        />
+                      )}
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-800">
+                          {clinic.name}
+                        </h3>
+                        <p className="text-gray-600">{clinic.description}</p>
+                        <p className="mt-1 text-sm text-gray-500">
+                          {clinic.location}, {clinic.state}
+                        </p>
+                        <div className="flex flex-wrap gap-2 mt-2">
+                          {clinic.specialities.map((spec) => (
+                            <span
+                              key={spec}
+                              className="px-2 py-1 text-xs text-blue-800 bg-blue-100 rounded-full"
+                            >
+                              {spec}
+                            </span>
+                          ))}
+                        </div>
+                        <div className="mt-2">
+                          {clinic.website && (
+                            <a
+                              href={clinic.website}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-500 hover:underline"
+                            >
+                              Website
+                            </a>
+                          )}
+                          {clinic.whatsapp && (
+                            <a
+                              href={clinic.whatsapp}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="ml-4 text-green-500 hover:underline"
+                            >
+                              WhatsApp
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    </div>
                   </li>
                 ))}
               </ul>

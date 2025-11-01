@@ -1,27 +1,56 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { FaWhatsapp, FaMapMarkerAlt, FaGlobe, FaBook } from "react-icons/fa";
+import {
+  FaWhatsapp,
+  FaMapMarkerAlt,
+  FaGlobe,
+  FaBook,
+  FaInstagram,
+} from "react-icons/fa";
 import { Clinic } from "../../../types/clinic";
+import OffersModal from "../OffersModal"; // Assuming this component will be created
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper/modules";
 
 interface ClinicCardProps {
   clinic: Clinic;
 }
 
 const ClinicCard: React.FC<ClinicCardProps> = ({ clinic }) => {
+  const [isOffersModalOpen, setIsOffersModalOpen] = useState(false);
   const whatsappNumber = clinic.whatsapp?.replace(/\D/g, "") || "";
+
+
+
+
+  console.log(clinic,"clinic-datat")
 
   return (
     <div className="flex-shrink-0 w-full max-w-sm p-4 overflow-hidden transition-transform duration-300 bg-white border border-gray-200 shadow-lg rounded-2xl hover:shadow-xl hover:-translate-y-1">
       <div className="relative w-full h-48 mb-4">
-        <Image
-          src={clinic.img || "/placeholder.png"}
-          alt={clinic.name || "Clinic"}
-          layout="fill"
-          objectFit="cover"
-          className="rounded-xl"
-        />
+        <Swiper
+          pagination={{
+            dynamicBullets: true,
+          }}
+          modules={[Pagination]}
+          className="h-full mySwiper"
+        >
+          {clinic.images?.map((image, index) => (
+            <SwiperSlide key={index} className="relative">
+              <Image
+                src={image}
+                alt={clinic.name || "Clinic"}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover rounded-xl"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
       <div className="flex flex-col">
         <h3 className="mb-1 text-xl font-bold text-gray-800 truncate">
@@ -29,6 +58,9 @@ const ClinicCard: React.FC<ClinicCardProps> = ({ clinic }) => {
         </h3>
         <p className="mb-3 text-base text-gray-500">
           {clinic.location || "N/A"}, {clinic.state || "N/A"}
+        </p>
+        <p className="h-10 mb-3 overflow-hidden text-sm text-gray-600 text-ellipsis">
+          {clinic.description || "No description available."}
         </p>
 
         <div className="mb-3">
@@ -42,16 +74,12 @@ const ClinicCard: React.FC<ClinicCardProps> = ({ clinic }) => {
 
         {clinic.offers && clinic.offers.length > 0 && (
           <div className="mb-4">
-            <h4 className="mb-2 text-sm font-semibold text-gray-800">
-              Available Offers:
-            </h4>
-            <ul className="space-y-1 list-disc list-inside">
-              {clinic.offers.map((offer, index) => (
-                <li key={index} className="text-xs text-gray-600">
-                  {offer}
-                </li>
-              ))}
-            </ul>
+            <button
+              onClick={() => setIsOffersModalOpen(true)}
+              className="w-full px-4 py-2 text-sm font-semibold text-white bg-teal-500 rounded-lg hover:bg-teal-600"
+            >
+              View Offers
+            </button>
           </div>
         )}
 
@@ -115,8 +143,25 @@ const ClinicCard: React.FC<ClinicCardProps> = ({ clinic }) => {
           >
             <FaMapMarkerAlt size={20} />
           </a>
+          <a
+            href={clinic.instagram || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center flex-1 py-2 text-center text-white transition-colors duration-300 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+            aria-label="Instagram"
+          >
+            <FaInstagram size={20} />
+          </a>
         </div>
       </div>
+      {clinic.offers && clinic.offers.length > 0 && (
+        <OffersModal
+          isOpen={isOffersModalOpen}
+          onClose={() => setIsOffersModalOpen(false)}
+          offers={clinic.offers}
+          clinicName={clinic.name || "Clinic"}
+        />
+      )}
     </div>
   );
 };

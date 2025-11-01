@@ -109,12 +109,12 @@ const SpecialityForm: React.FC = () => {
                 <Image
                   src={doctor.image || "/default-doctor.png"}
                   alt={doctor.user?.name || "Dentist"}
-                  width={80}
-                  height={80}
+                  width={120}
+                  height={120}
                   className="object-cover border-4 border-teal-100 rounded-full shadow-md"
                 />
-                <div className="absolute flex items-center justify-center w-6 h-6 bg-green-400 border-2 border-white rounded-full -bottom-1 -right-1">
-                  <span className="text-xs font-bold text-white">✓</span>
+                <div className="absolute flex items-center justify-center w-8 h-8 bg-green-400 border-2 border-white rounded-full -bottom-1 -right-1">
+                  <span className="text-base font-bold text-white">✓</span>
                 </div>
               </div>
             </div>
@@ -157,20 +157,7 @@ const SpecialityForm: React.FC = () => {
               <div className="mb-1 text-sm font-medium text-gray-700">
                 {doctor.clinicName}
               </div>
-              <div className="flex items-center justify-center text-xs text-gray-500">
-                <svg
-                  className="w-3 h-3 mr-1"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                {doctor.address}
-              </div>
+              
             </div>
 
             {/* Clinic Info */}
@@ -178,11 +165,7 @@ const SpecialityForm: React.FC = () => {
               <div className="mb-1 text-sm font-medium text-gray-700">
                 {doctor.clinicName || "Online Consultation"}
               </div>
-              {doctor.clinicAddress && (
-                <div className="text-xs text-gray-500">
-                  📍 {doctor.clinicAddress}
-                </div>
-              )}
+              
             </div>
 
             {/* CTA Button */}

@@ -8,7 +8,7 @@ const WhyIndia: React.FC = () => {
 
   const reasons = [
     {
-      title: t("whyIndia.affordableTreatments"),
+      title:"Affordable Dental Treatments",
       desc: t("whyIndia.affordableTreatmentsDesc"),
       img: "/Affordable Treatment.png",
     },

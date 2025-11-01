@@ -14,6 +14,9 @@ interface User {
 export interface Clinic {
   _id: string;
   name: string;
+  description: string;
+  images?: string[];
+  img?: string;
   location: string;
   state: string;
   rating: number;
@@ -23,10 +26,8 @@ export interface Clinic {
   bookUrl: string;
   website: string;
   whatsapp: string;
-  mapUrl: string;
-  img: string;
-  user: User;
-  isActive?: boolean;
+  instagram: string;
+  mapUrl?: string;
   createdAt?: string;
   updatedAt?: string;
 }

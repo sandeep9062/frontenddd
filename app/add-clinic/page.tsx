@@ -9,22 +9,26 @@ import problems from "../data/problems";
 import allStatesAndUTs from "../data/allStatesAndUTs";
 import { MultiSelect } from "@/components/ui/MultiSelect";
 import offers from "../data/offers";
-
+import specialities from "../data/specialities";
 const AddClinicPage = () => {
   const [formData, setFormData] = useState({
     name: "",
+    description: "",
     location: "",
     state: "",
     problems: [] as string[],
     offers: [] as string[],
+    specialities: [] as string[],
     rating: "",
     appointmentCharges: "",
+    noOfDoctors: "",
     website: "",
     whatsapp: "",
+    instagramId: "",
     mapUrl: "",
   });
-  const [image, setImage] = useState<File | null>(null);
-  const [preview, setPreview] = useState<string | null>(null);
+  const [images, setImages] = useState<File[]>([]);
+  const [previews, setPreviews] = useState<string[]>([]);
 
   const [addClinic, { isLoading }] = useAddClinicMutation();
 
@@ -44,33 +48,49 @@ const AddClinicPage = () => {
     setFormData({ ...formData, offers: selected });
   };
 
+  const handleSpecialitiesChange = (selected: string[]) => {
+    setFormData({ ...formData, specialities: selected });
+  };
+
   // Handle file drop
   const onDrop = useCallback((acceptedFiles: File[]) => {
-    const file = acceptedFiles[0];
-    if (file) {
-      setImage(file);
-      setPreview(URL.createObjectURL(file));
-    }
+    setImages((prevImages) => [...prevImages, ...acceptedFiles]);
+    const newPreviews = acceptedFiles.map((file) => URL.createObjectURL(file));
+    setPreviews((prevPreviews) => [...prevPreviews, ...newPreviews]);
   }, []);
+
+  const handleRemoveImage = (index: number) => {
+    setImages((prevImages) => prevImages.filter((_, i) => i !== index));
+    setPreviews((prevPreviews) => {
+      const newPreviews = prevPreviews.filter((_, i) => i !== index);
+      URL.revokeObjectURL(prevPreviews[index]);
+      return newPreviews;
+    });
+  };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: { "image/*": [] },
-    multiple: false,
+    multiple: true,
   });
 
   // Submit form
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!image) {
-      toast.error("Please upload an image");
+    if (images.length === 0) {
+      toast.error("Please upload at least one image");
       return;
     }
 
     const clinicFormData = new FormData();
-    clinicFormData.append("image", image);
+    images.forEach((image) => {
+      clinicFormData.append("images", image);
+    });
     Object.entries(formData).forEach(([key, value]) => {
-      if ((key === "problems" || key === "offers") && Array.isArray(value)) {
+      if (
+        (key === "problems" || key === "offers" || key === "specialities") &&
+        Array.isArray(value)
+      ) {
         value.forEach((item) => {
           clinicFormData.append(key, item);
         });
@@ -84,18 +104,22 @@ const AddClinicPage = () => {
       toast.success("Clinic added successfully!");
       setFormData({
         name: "",
+        description: "",
         location: "",
         state: "",
         problems: [],
         offers: [],
+        specialities: [],
         rating: "",
         appointmentCharges: "",
+        noOfDoctors: "",
         website: "",
         whatsapp: "",
+        instagramId: "",
         mapUrl: "",
       });
-      setImage(null);
-      setPreview(null);
+      setImages([]);
+      setPreviews([]);
     } catch (error) {
       let errorMessage = "An unexpected error occurred";
       if (
@@ -136,17 +160,34 @@ const AddClinicPage = () => {
               }`}
             >
               <input {...getInputProps()} />
-              {preview ? (
-                <Image
-                  src={preview}
-                  alt="Uploaded clinic"
-                  width={192}
-                  height={192}
-                  className="object-cover w-48 h-48 rounded-md"
-                />
+              {previews.length > 0 ? (
+                <div className="flex flex-wrap gap-2">
+                  {previews.map((src, index) => (
+                    <div key={index} className="relative">
+                      <Image
+                        src={src}
+                        alt={`Uploaded clinic ${index + 1}`}
+                        width={100}
+                        height={100}
+                        className="object-cover rounded-md"
+                      />
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleRemoveImage(index);
+                        }}
+                        className="absolute top-0 right-0 p-1 text-xs text-white bg-red-500 rounded-full"
+                        aria-label="Remove image"
+                      >
+                        X
+                      </button>
+                    </div>
+                  ))}
+                </div>
               ) : (
                 <p className="text-sm text-gray-500">
-                  Drag & drop an image here, or click to select
+                  Drag & drop images here, or click to select
                 </p>
               )}
             </div>
@@ -199,7 +240,7 @@ const AddClinicPage = () => {
               <option value="" disabled>
                 Select a state
               </option>
-              {allStatesAndUTs.map((s) => (
+              {allStatesAndUTs.map((s: string) => (
                 <option key={s} value={s}>
                   {s}
                 </option>
@@ -284,13 +325,60 @@ const AddClinicPage = () => {
             />
           </div>
 
+          {/* No of Doctors */}
+          <div>
+            <label className="block text-sm font-medium text-gray-600">
+              Number of Doctors
+            </label>
+            <input
+              type="number"
+              name="noOfDoctors"
+              value={formData.noOfDoctors}
+              onChange={handleChange}
+              placeholder="5"
+              className="w-full p-2 mt-1 border rounded-md focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          {/* Instagram ID */}
+          <div>
+            <label className="block text-sm font-medium text-gray-600">
+              Instagram ID
+            </label>
+            <input
+              type="text"
+              name="instagramId"
+              value={formData.instagramId}
+              onChange={handleChange}
+              placeholder="clinic-instagram"
+              className="w-full p-2 mt-1 border rounded-md focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          {/* Description */}
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium text-gray-600">
+              Description
+            </label>
+            <textarea
+              name="description"
+              value={formData.description}
+              onChange={(e) =>
+                setFormData({ ...formData, description: e.target.value })
+              }
+              placeholder="A brief description of the clinic..."
+              className="w-full p-2 mt-1 border rounded-md focus:ring-2 focus:ring-blue-500"
+              rows={4}
+            />
+          </div>
+
           {/* Problems */}
           <div className="md:col-span-2">
             <label className="block text-sm font-medium text-gray-600">
               Problems Treated
             </label>
             <MultiSelect
-              options={problems.map((p) => ({ label: p, value: p }))}
+              options={problems.map((p: string) => ({ label: p, value: p }))}
               onValueChange={handleProblemsChange}
               defaultValue={formData.problems}
               placeholder="Select problems"
@@ -304,10 +392,24 @@ const AddClinicPage = () => {
               Offers
             </label>
             <MultiSelect
-              options={offers.map((o) => ({ label: o, value: o }))}
+              options={offers.map((o: string) => ({ label: o, value: o }))}
               onValueChange={handleOffersChange}
               defaultValue={formData.offers}
               placeholder="Select offers"
+              className="mt-1"
+            />
+          </div>
+
+          {/* Specialities */}
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium text-gray-600">
+              Specialities
+            </label>
+            <MultiSelect
+              options={specialities.map((s: string) => ({ label: s, value: s }))}
+              onValueChange={handleSpecialitiesChange}
+              defaultValue={formData.specialities}
+              placeholder="Select specialities"
               className="mt-1"
             />
           </div>

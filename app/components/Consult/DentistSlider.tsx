@@ -161,7 +161,7 @@ const DentistSlider: React.FC = () => {
                   return (
                     <div
                       key={dentist._id}
-                      className="group relative bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border border-gray-100 overflow-hidden w-[320px] h-[480px]"
+                      className="group relative bg-white rounded-3xl pb-2 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105  border border-gray-100 overflow-hidden w-[320px] h-[480px]"
                     >
                       <div className="absolute top-0 left-0 right-0 h-3 bg-gradient-to-r from-[#2C73D2] to-[#008E97]"></div>
                       <div className="absolute inset-0 opacity-50 bg-gradient-to-br from-blue-50 to-indigo-50"></div>
@@ -173,13 +173,13 @@ const DentistSlider: React.FC = () => {
                             <Image
                               src={dentist.image || "/default-profile.png"}
                               alt={dentist.user.name}
-                              className="object-cover w-32 h-32 border-4 border-white rounded-full shadow-2xl"
-                              width={128}
-                              height={128}
+                              className="object-cover w-40 h-40 border-4 border-white rounded-full shadow-2xl"
+                              width={160}
+                              height={160}
                               priority
                             />
-                            <div className="absolute flex items-center justify-center w-8 h-8 bg-green-400 border-4 border-white rounded-full shadow-lg -bottom-2 -right-2">
-                              <span className="text-xs font-bold text-white">
+                            <div className="absolute flex items-center justify-center w-10 h-10 bg-green-400 border-4 border-white rounded-full shadow-lg -bottom-2 -right-2">
+                              <span className="text-sm font-bold text-white">
                                 ✓
                               </span>
                             </div>
@@ -212,7 +212,7 @@ const DentistSlider: React.FC = () => {
                               {rating.toFixed(1)} / 5
                             </div>
 
-                            <div className="text-[#15396A] font-semibold">
+                            <div className="text-[#15396A] font-semibold ">
                               ₹{charges.toLocaleString("en-IN")}
                               <span className="ml-1 text-sm text-gray-500">
                                 per consult
@@ -223,25 +223,12 @@ const DentistSlider: React.FC = () => {
                           <div className="mb-1 text-sm font-medium text-gray-700">
                             {dentist.clinicName}
                           </div>
-                          <div className="flex items-center justify-center text-xs text-gray-500">
-                            <svg
-                              className="w-3 h-3 mr-1"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                            {dentist.address}
-                          </div>
+                         
                         </div>
 
                         {/* Button */}
                         <button
-                          className="group/btn w-full px-6 py-4 bg-gradient-to-r from-[#2C73D2] to-[#F4A300] text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+                          className="group/btn mb-2 w-full px-4 py-2 bg-gradient-to-r from-[#2C73D2] to-[#F4A300] text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
                           onClick={() => handleConsultClick(dentist)}
                         >
                           <svg
