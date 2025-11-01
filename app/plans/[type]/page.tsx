@@ -42,7 +42,7 @@ export default function PlansByTypePage() {
     if (!type) return;
     const fetchPlans = async () => {
       try {
-        const { data } = await axios.get(`/api/plans`);
+        const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/plans`);
         const filtered = data.filter(
           (plan: Plan) => plan.type.toLowerCase() === String(type).toLowerCase()
         );
