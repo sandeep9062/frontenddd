@@ -3,10 +3,12 @@ import React, { useEffect, useState } from "react";
 import ProductFilter from "../components/product/ProductFilter";
 import ProductSort from "../components/product/ProductSort";
 import ProductListPage from "../components/product/ProductListPage";
+import ProductComparison from "../components/product/ProductComparison";
 import { useGetProductsQuery } from "@/services/productsApi";
 import { Product } from "../types";
 import { categories } from "../data/categories";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from 'next/link';
 
 const SkeletonCard = () => (
   <div className="w-full p-4 bg-white border border-gray-200 rounded-lg shadow-sm">
@@ -23,6 +25,28 @@ const Page = () => {
   const { data, error, isLoading } = useGetProductsQuery({});
   const [sortValue, setSortValue] = useState("");
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const [selectedForComparison, setSelectedForComparison] = useState<Product[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleCompareChange = (product: Product) => {
+    setSelectedForComparison((prevSelected) => {
+      const isSelected = prevSelected.some((p) => p._id === product._id);
+      if (isSelected) {
+        return prevSelected.filter((p) => p._id !== product._id);
+      } else {
+        if (prevSelected.length < 2) {
+          return [...prevSelected, product];
+        } else {
+          alert("You can only select up to 2 products for comparison.");
+          return prevSelected;
+        }
+      }
+    });
+  };
 
   const handleSortChange = (value: string) => {
     setSortValue(value);
@@ -34,9 +58,19 @@ const Page = () => {
 
   const products = data?.products || [];
 
+  const searchedProducts = products.filter((product) => {
+    const query = searchQuery.toLowerCase();
+    return (
+      product.name.toLowerCase().includes(query) ||
+      product.category.toLowerCase().includes(query) ||
+      (product.brand && product.brand.toLowerCase().includes(query)) ||
+      (product.subcategory && product.subcategory.toLowerCase().includes(query))
+    );
+  });
+
   const filteredProducts =
     selectedFilters.length > 0
-      ? products.filter((product: Product) => {
+      ? searchedProducts.filter((product: Product) => {
           const productCategory = product.category.toLowerCase();
           const productSubcategory = product.subcategory
             ? product.subcategory.toLowerCase()
@@ -65,7 +99,7 @@ const Page = () => {
             return false;
           });
         })
-      : products;
+      : searchedProducts;
 
   const sortedProducts = [...filteredProducts].sort((a, b) => {
     if (sortValue === "priceLowHigh") {
@@ -85,6 +119,27 @@ const Page = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
+      <section className="py-16 text-center bg-white shadow-sm">
+        <div className="container px-4 mx-auto sm:px-6 lg:px-8">
+          <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
+            Explore Dental Products & Materials 🦷
+          </h1>
+          <p className="max-w-2xl mx-auto mt-6 text-lg text-gray-600">
+            Learn about the latest tools, materials, and technologies used in modern dentistry — their uses, benefits, and limitations. Empowering patients and clinics with informed choices.
+          </p>
+          <div className="max-w-md mx-auto mt-8">
+            <input
+              type="search"
+              placeholder="Search dental product or category…"
+              className="w-full px-4 py-3 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
+          </div>
+        </div>
+      </section>
+
       <div className="container px-4 py-12 mx-auto sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-4 lg:gap-12">
           <div className="lg:col-span-1">
@@ -121,7 +176,11 @@ const Page = () => {
                   </p>
                 </motion.div>
               ) : sortedProducts.length > 0 ? (
-                <ProductListPage products={sortedProducts} />
+                <ProductListPage
+                  products={sortedProducts}
+                  onCompare={handleCompareChange}
+                  selectedForComparison={selectedForComparison}
+                />
               ) : (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -142,6 +201,30 @@ const Page = () => {
           </div>
         </div>
       </div>
+
+      {/* Comparison Section */}
+      {selectedForComparison.length === 2 && (
+        <div className="container px-4 mx-auto sm:px-6 lg:px-8">
+          <ProductComparison product1={selectedForComparison[0]} product2={selectedForComparison[1]} />
+        </div>
+      )}
+
+      {/* CTA Section */}
+      <section className="py-16 mt-12 bg-blue-50">
+        <div className="container px-4 mx-auto text-center sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">
+            Want a personalized treatment plan using these materials?
+          </h2>
+          <p className="max-w-2xl mx-auto mt-4 text-lg text-gray-600">
+            Get your detailed quote for just ₹149 — within 24 hours.
+          </p>
+          <div className="mt-8">
+            <Link href="/quote" className="inline-block px-8 py-4 text-lg font-semibold text-white bg-blue-600 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+              Get My Plan
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

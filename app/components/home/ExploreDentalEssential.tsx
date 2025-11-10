@@ -104,9 +104,9 @@ const ExploreDentalEssential = () => {
                       {product.name}
                     </h3>
                   </div>
-                  <div className="text-center text-xl font-bold text-[#2C73D2] my-2">
+                  {/* <div className="text-center text-xl font-bold text-[#2C73D2] my-2">
                     ₹{product.price}
-                  </div>
+                  </div> */}
                   <Link
                     href={`/products/${product._id}`}
                     className="w-full px-4 py-2 mt-auto rounded-lg bg-gradient-to-r from-[#2C73D2] to-[#00BFFF] text-white font-semibold shadow-lg hover:from-[#00BFFF] hover:to-[#2C73D2] transition text-center text-base"

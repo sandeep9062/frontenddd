@@ -6,29 +6,22 @@ import { useGetCbctOpgLabsQuery } from "@/services/cbctOpgLabs";
 import allStatesAndUTs from "@/app/data/allStatesAndUTs";
 import { CbctOpgLab } from "@/types/cbctOpgLab";
 import CbctOpgLabCard from "../components/home/CbctOpgLabCard";
-import {
-
-
-  Search,
-  Filter,
-
-} from "lucide-react";
+import { Search, Filter } from "lucide-react";
 
 const CbctOpgLabList: React.FC = () => {
   const { data: labs = [], error, isLoading } = useGetCbctOpgLabsQuery();
 
-  console.log(labs, "labs-data");
+  //console.log(labs, "labs-data");
 
   const [search, setSearch] = useState<string>("");
 
   const [selectedState, setSelectedState] = useState<string>("");
 
-  
   const filteredLabs = labs.filter((lab: CbctOpgLab) => {
     const matchesSearch = lab.name.toLowerCase().includes(search.toLowerCase());
 
     const matchesState = selectedState ? lab.state === selectedState : true;
-    return matchesSearch  && matchesState;
+    return matchesSearch && matchesState;
   });
 
   if (isLoading) {
@@ -79,8 +72,10 @@ const CbctOpgLabList: React.FC = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-[#6548ee] mb-4">
               CBCT & OPG Labs
             </h1>
-            <p className="max-w-2xl mx-auto text-lg text-gray-600">
+            <p className="max-w-lg mx-auto text-lg text-gray-600">
               Find the best CBCT and OPG diagnostic centers near you.
+            </p>
+            <p className="max-w-lg mx-auto text-lg text-gray-600">
               Professional imaging services with state-of-the-art equipment.
             </p>
           </div>

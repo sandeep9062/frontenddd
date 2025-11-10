@@ -65,7 +65,7 @@ const FindTopDental: React.FC<FindTopDentalProps> = ({
           Find Top Dental Clinics in India{" "}
           <span className="text-2xl sm:text-3xl md:text-4xl">🇮🇳</span>
         </h2>
-        <p className="max-w-3xl mb-8 text-center text-gray-600 text-md sm:text-lg">
+        <p className="max-w-2xl mb-8 text-center text-gray-600 text-md sm:text-lg">
           Book appointments with India’s Finest Clinics – Verified, Rated and
           Recommended. Where Clinical Skill Meets Patient Trust.
         </p>

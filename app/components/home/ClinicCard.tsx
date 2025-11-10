@@ -14,7 +14,8 @@ import OffersModal from "../OffersModal"; // Assuming this component will be cre
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper/modules";
+import "swiper/css/navigation";
+import { Pagination, Navigation } from "swiper/modules";
 
 interface ClinicCardProps {
   clinic: Clinic;
@@ -31,12 +32,13 @@ const ClinicCard: React.FC<ClinicCardProps> = ({ clinic }) => {
 
   return (
     <div className="flex-shrink-0 w-full max-w-sm p-4 overflow-hidden transition-transform duration-300 bg-white border border-gray-200 shadow-lg rounded-2xl hover:shadow-xl hover:-translate-y-1">
-      <div className="relative w-full h-48 mb-4">
+      <div className="relative w-full h-48 mb-4 group">
         <Swiper
           pagination={{
             dynamicBullets: true,
           }}
-          modules={[Pagination]}
+          navigation={true}
+          modules={[Pagination, Navigation]}
           className="h-full mySwiper"
         >
           {clinic.images?.map((image, index) => (

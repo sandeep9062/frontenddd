@@ -332,7 +332,12 @@ const steps = [
     color: "bg-green-500",
   },
   { number: 3, title: "Upload Photos", icon: "📷", color: "bg-purple-500" },
-  { number: 4, title: "Pay ₹149/-", icon: "💳", color: "bg-orange-500" },
+  {
+    number: 4,
+    title: "Pay ₹149/- (approx. $1.80)",
+    icon: "💳",
+    color: "bg-orange-500",
+  },
   {
     number: 5,
     title: "Receive Report in 24 hrs",
@@ -488,10 +493,11 @@ const FixMyTeeth = () => {
                 />
               </div>
               <h2 className="mt-6 text-3xl font-bold text-gray-900">
-                {t("forms.treatmentPlan")}
+                Smile Smarter - Expert Dental Plan for ₹ 149/- (approx. $1.80)
               </h2>
               <p className="mt-4 text-lg text-gray-600">
-                {t("forms.treatmentPlanDesc")}
+                Tell us your dental issues, and our specialists will craft a
+                custom treatment plan with tranparent pricing in just 24 hours.
               </p>
               <Button onClick={() => setShowQuoteForm(!showQuoteForm)}>
                 {showQuoteForm ? t("forms.hideForm") : t("forms.startNow")}
@@ -739,7 +745,7 @@ const FixMyTeeth = () => {
                   >
                     {isSubmitting
                       ? "Submitting..."
-                      : "Get My Treatment Plan - Pay ₹149/-"}
+                      : "Get My Treatment Plan - Pay ₹149/- (approx. $1.80)"}
                   </Button>
                 </form>
               </div>

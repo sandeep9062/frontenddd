@@ -218,7 +218,7 @@ const BookAnAppointment: React.FC = () => {
   };
 
   return (
-    <section className="w-full max-w-full px-4 py-16 mx-auto sm:px-6 lg:px-8 bg-gray-50">
+    <section className="w-full px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
           Find the Right Dental Specialist
@@ -354,7 +354,7 @@ const BookAnAppointment: React.FC = () => {
                   setSelectedSpecialist(null);
                   setFilteredDentists([]);
                 }}
-                className="p-2 text-white transition-colors duration-200 hover:bg-white hover:bg-opacity-20 rounded-full"
+                className="p-2 text-white transition-colors duration-200 rounded-full hover:bg-white hover:bg-opacity-20"
               >
                 <FaTimes className="text-xl" />
               </button>

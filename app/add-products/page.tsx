@@ -24,6 +24,9 @@ const AddProductPage = () => {
     category: "",
     subcategory: "",
     description: "",
+    uses: "",
+    advantages: "",
+    disadvantages: "",
     composition: "",
     dosage: "",
     prescriptionRequired: false,
@@ -94,13 +97,12 @@ const AddProductPage = () => {
       // Handle boolean conversion for checkboxes
       if (key === "prescriptionRequired" || key === "isActive") {
         productData.append(key, String(value));
-      } else if (key === "tags") {
-        // Split tags string into an array
-        const tagsArray = (value as string).split(",").map((tag) => tag.trim());
-        // Append each tag separately if your backend expects an array
-        tagsArray.forEach((tag) => {
-          if (tag) {
-            productData.append("tags", tag);
+      } else if (key === "tags" || key === "advantages" || key === "disadvantages") {
+        // Split comma-separated strings into an array
+        const array = (value as string).split(",").map((item) => item.trim());
+        array.forEach((item) => {
+          if (item) {
+            productData.append(key, item);
           }
         });
       } else {
@@ -240,6 +242,51 @@ const AddProductPage = () => {
               rows={4}
               className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"
               placeholder="Enter a short product description..."
+            />
+          </div>
+
+          {/* Uses */}
+          <div>
+            <label className="block mb-1 text-sm font-medium text-gray-700">
+              Uses
+            </label>
+            <textarea
+              name="uses"
+              value={formData.uses}
+              onChange={handleInputChange}
+              rows={2}
+              className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"
+              placeholder="Describe the primary uses of the product..."
+            />
+          </div>
+
+          {/* Advantages */}
+          <div>
+            <label className="block mb-1 text-sm font-medium text-gray-700">
+              Advantages (comma-separated)
+            </label>
+            <textarea
+              name="advantages"
+              value={formData.advantages}
+              onChange={handleInputChange}
+              rows={2}
+              className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"
+              placeholder="e.g., High success rate, Biocompatible"
+            />
+          </div>
+
+          {/* Disadvantages */}
+          <div>
+            <label className="block mb-1 text-sm font-medium text-gray-700">
+              Disadvantages (comma-separated)
+            </label>
+            <textarea
+              name="disadvantages"
+              value={formData.disadvantages}
+              onChange={handleInputChange}
+              rows={2}
+              className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"
+              placeholder="e.g., Higher cost, Less long-term data"
             />
           </div>
 

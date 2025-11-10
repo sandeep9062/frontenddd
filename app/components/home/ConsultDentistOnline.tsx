@@ -10,92 +10,91 @@ import { useTranslation } from "react-i18next";
 // Slider data for problems (62 real problems)
 const sliderProblems = [
   { name: "Audible Breathing" },
-  { name: "Adding Bone to the Socket" },
   { name: "Bad Breath" },
-  { name: "Burning Mouth" },
-  { name: "Braces Adjustment" },
-  { name: "Bleeding Gums" },
   { name: "Biting Down Hard" },
+  { name: "Bleeding Gums" },
+  { name: "Bone up your smile" },//Adding Bone to the Socket
+  { name: "Braces Adjustment" },
+  { name: "Burning Mouth" },
+  { name: "Children’s Dentistry" },
   { name: "Complete Denture" },
   { name: "Crooked Tooth" },
-  { name: "Children’s Dentistry" },
-  { name: "Dental Implants" },
-  { name: "Dental Implant Pain" },
+  { name: "Delayed Eruption of Teeth" },
   { name: "Dental Braces" },
-  { name: "Dry Mouth" },
+  { name: "Dental Implant Pain" },
+  { name: "Dental Implants" },
   { name: "Dental Jewellery" },
-  { name: "Discoloured Teeth" },
-  { name: "Fractured Tooth" },
-  { name: "Facial Twitch" },
-  { name: "Front Tooth Gap" },
-  { name: "Facial Asymmetry" },
-  { name: "Gum Treatment" },
   { name: "Diabetic Mouth Changes" },
-  { name: "Lump on the Facial Nerve" },
+  { name: "Difficulty in Chewing & Kids Speaking" },
+  { name: "Discoloured Teeth" },
+  { name: "Dry Mouth" },
+  { name: "Dry Peeling Lips" },
+  { name: "Eruption Issues in Kids" },
+  { name: "Facial Asymmetry" },
+  { name: "Facial Muscle Twitching on One Side" },
+  { name: "Facial Twitch" },
+  { name: "Fractured Tooth" },
+  { name: "Front Tooth Gap" },
+  { name: "Grinding Teeth at Night" },
+  { name: "Gum Pocket" },
+  { name: "Gum Treatment" },
+  { name: "Hole in the Roof of the Mouth" },
+  { name: "Invisible Braces" },
   { name: "Loud Sleeping" },
   { name: "Loose Teeth" },
-  { name: "Mouth Breathing in Kids" },
-  { name: "Mouth Guard for Sports" },
+  { name: "Lump on the Facial Nerve" },
   { name: "Missing Front Tooth" },
-  { name: "Mouth Ulcer" },
-  { name: "Mouth Red Patch" },
-  { name: "Mouth Infection" },
+  { name: "Mouth Breathing in Kids" },
   { name: "Mouth Cancer" },
   { name: "Mouth Care After Cancer" },
+  { name: "Mouth Guard for Sports" },
+  { name: "Mouth Infection" },
+  { name: "Mouth Red Patch" },
+  { name: "Mouth Ulcer" },
+  { name: "Nutrition Deficiency Symptoms" },
   { name: "One Sided Facial Weakness" },
+  { name: "Oral Cancer Screening" },
+  { name: "Pain in the Jaw Joint" },
   { name: "Partial Tooth Cap" },
   { name: "Producing Too Much Saliva" },
-  { name: "Pain in the Jaw Joint" },
-  { name: "Ringing Sound in Ears" },
-  { name: "Root Canal Treatment" },
   { name: "Re-Root Canal Treatment" },
   { name: "Removable Teeth" },
-  { name: "Split Lip" },
-  { name: "Smoking Habit" },
-  { name: "Stone in the Saliva Gland" },
-  { name: "Smile Makeover" },
+  { name: "Ringing Sound in Ears" },
+  { name: "Root Canal Treatment" },
+  { name: "Sensitive Teeth" },
   { name: "Severe Gum Infection" },
-  { name: "Tight Tongue Skin" },
+  { name: "Smile Makeover" },
+  { name: "Smoking Habit" },
+  { name: "Split Lip" },
+  { name: "Stone in the Saliva Gland" },
+  { name: "Swelling Inside Mouth" },
+  { name: "Swollen Gums" },
+  { name: "Teeth Cleaning & Polishing" },
   { name: "Teeth Present at Birth" },
-  { name: "Tongue Pushing" },
-  { name: "Trapped Back Tooth" },
-  { name: "Tooth Crown" },
-  { name: "Tooth Wear" },
-  { name: "Tooth Rescue Treatment" },
-  { name: "Tooth Removal" },
+  { name: "Teeth Protector for Night" },
   { name: "Teeth Whitening" },
   { name: "Thin Shells for Teeth" },
-  { name: "Teeth Cleaning & Polishing" },
-  { name: "Tooth Replacement" },
-  { name: "Tooth is Stuck" },
   { name: "Thumb Sucking" },
-  { name: "Teeth Protector for Night" },
+  { name: "Tight Tongue Skin" },
+  { name: "Tongue Pushing" },
   { name: "Tooth Cavities" },
-  { name: "White Spots on Teeth" },
-  { name: "Invisible Braces" },
-  { name: "Dry Peeling Lips" },
-  { name: "Wearing Down of Teeth" },
-  { name: "Gum Pocket" },
-  { name: "Sensitive Teeth" },
-  { name: "Swollen Gums" },
+  { name: "Tooth Crown" },
   { name: "Tooth Filling" },
-  { name: "Wisdom Tooth Swelling" },
-  // New problems added below
-  { name: "Swelling Inside Mouth" },
-  { name: "Eruption Issues in Kids" },
-  { name: "Grinding Teeth at Night" },
+  { name: "Tooth is Stuck" },
+  { name: "Tooth Removal" },
+  { name: "Tooth Replacement" },
+  { name: "Tooth Rescue Treatment" },
+  { name: "Tooth Wear" },
+  { name: "Trapped Back Tooth" },
   { name: "Uncomfortable Denture" },
-  { name: "Oral Cancer Screening" },
-  { name: "Delayed Eruption of Teeth" },
-  { name: "Hole in the Roof of the Mouth" },
-  { name: "Nutrition Deficiency Symptoms" },
-  { name: "Difficulty in Chewing & Kids Speaking" },
-  { name: "Facial Muscle Twitching on One Side" },
+  { name: "Wearing Down of Teeth" },
+  { name: "White Spots on Teeth" },
+  { name: "Wisdom Tooth Swelling" },
 ].map((problem) => {
   let points: string | string[] =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
   switch (problem.name) {
-    case "Adding Bone to the Socket":
+    case "Bone up your smile":
       points = [
         "Tooth loss.",
         "Loose tooth.",
@@ -791,12 +790,12 @@ interface Dentist {
   experienceYears?: number;
 }
 
-// --- Specialist Component ---
-interface SpecialistProps {
+// --- ConsultDentistOnline Component ---
+interface ConsultDentistOnlineProps {
   sectionSpacing?: string;
 }
 
-const Specialist: React.FC<SpecialistProps> = ({ sectionSpacing = "" }) => {
+const ConsultDentistOnline: React.FC<ConsultDentistOnlineProps> = ({ sectionSpacing = "" }) => {
   const { t, i18n } = useTranslation();
   const [problemsPerSlide, setProblemsPerSlide] = useState(4);
   const [problemSliderIndex, setProblemSliderIndex] = useState(0);
@@ -831,7 +830,7 @@ const Specialist: React.FC<SpecialistProps> = ({ sectionSpacing = "" }) => {
   }, []);
 
   useEffect(() => {
-    setProblemMaxIndex(Math.ceil(sliderProblems.length / problemsPerSlide) - 1);
+    setProblemMaxIndex(sliderProblems.length - problemsPerSlide);
   }, [problemsPerSlide]);
 
   // Function to fetch dentists by problem
@@ -877,30 +876,31 @@ const Specialist: React.FC<SpecialistProps> = ({ sectionSpacing = "" }) => {
 
   return (
     <section
-      className={`w-full max-w-full mx-0 sm:max-w-7xl sm:mx-auto pb-6 sm:pb-10 px-2 sm:px-4 mt-4 mb-4 ${sectionSpacing}`}
+      className={`w-full bg-gray-50 py-12 sm:py-16 ${sectionSpacing}`}
     >
-      <div className="flex flex-col items-center w-full">
+      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         {/* Header */}
-        <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-[#2C73D2] mb-2 font-[Poppins] text-center">
-          Consult Dentist Online
-        </h2>
-        <p className="text-gray-700 text-sm sm:text-lg md:text-lg font-[Poppins] mb-6 sm:mb-8 text-center">
-          Private online consultations with verified dentists in all
-          specialists.
-        </p>
+        <div className="mb-10 text-center">
+          <h2 className="mb-4 text-3xl font-extrabold text-gray-900 sm:text-4xl md:text-5xl">
+            Consult a Dentist <span className="text-blue-600">Online</span>
+          </h2>
+          <p className="max-w-3xl mx-auto text-lg text-gray-600">
+            Get private and secure online consultations with our team of verified and experienced dental specialists.
+          </p>
+        </div>
 
         {/* Slider */}
-        <div className="flex items-center justify-center w-full">
+        <div className="relative flex items-center justify-center w-full">
           {/* Previous Button */}
           <button
             onClick={() =>
               setProblemSliderIndex((prev) => Math.max(prev - 1, 0))
             }
-            className="p-2 mr-2 transition bg-white rounded-full shadow-md hover:bg-gray-100 sm:mr-4 disabled:opacity-50"
+            className="absolute z-10 p-3 transition-transform transform bg-white rounded-full shadow-lg -left-4 hover:bg-gray-100 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={problemSliderIndex === 0}
             aria-label="Previous"
           >
-            <FaChevronLeft className="text-[#2C73D2]" />
+            <FaChevronLeft className="w-6 h-6 text-blue-600" />
           </button>
 
           {/* Slider Container */}
@@ -916,39 +916,41 @@ const Specialist: React.FC<SpecialistProps> = ({ sectionSpacing = "" }) => {
               {sliderProblems.map((problem, idx) => (
                 <div
                   key={idx}
-                  className="flex-shrink-0 w-full p-1 sm:p-2"
+                  className="flex-shrink-0 w-full p-2"
                   style={{ width: `${100 / problemsPerSlide}%` }}
                 >
-                  <div className="flex flex-col bg-white rounded-2xl shadow-lg p-4 sm:p-6 border-t-4 border-[#F4A300] w-full h-full justify-between">
-                    <div className="flex items-center justify-center w-full mb-3 sm:mb-4">
+                  <div className="flex flex-col w-full h-full overflow-hidden transition-shadow duration-300 bg-white border-t-4 border-blue-500 shadow-md group rounded-2xl hover:shadow-xl">
+                    <div className="flex flex-col items-center flex-shrink-0 p-6 text-center">
                       <Image
                         src={problem.image}
                         alt={problem.name}
                         width={80}
                         height={80}
-                        className="object-contain sm:w-24 sm:h-24"
+                        className="object-contain w-20 h-20 mb-4 transition-colors duration-300 border-4 border-gray-100 rounded-full sm:w-24 sm:h-24 group-hover:border-blue-200"
                       />
+                      <h3 className="text-lg font-bold leading-tight text-gray-800 sm:text-xl">
+                        {problem.name}
+                      </h3>
                     </div>
-                    <h3 className="text-base sm:text-xl font-bold text-[#2C73D2] text-center w-full leading-tight mb-2 sm:mb-3">
-                      {problem.name}
-                    </h3>
-                    <ul className="w-full px-3 mb-3 text-sm text-left text-gray-700 list-disc sm:px-4 sm:mb-4 sm:text-base">
-                      {Array.isArray(problem.points) ? (
-                        problem.points.slice(0, 3).map((point, i) => (
-                          <li key={i} className="mb-1">
-                            {point}
-                          </li>
-                        ))
-                      ) : (
-                        <li className="mb-1">{problem.points}</li>
-                      )}
-                    </ul>
-                    <button
-                      onClick={() => handleConsultNowClick(problem.name)}
-                      className="mt-auto mx-auto px-6 py-2 sm:px-8 sm:py-3 rounded-lg bg-gradient-to-r from-[#2C73D2] to-[#0052D4] text-white font-semibold shadow-lg hover:from-[#0052D4] hover:to-[#2C73D2] transition-all duration-300 transform hover:scale-105 flex items-center justify-center text-sm sm:text-base"
-                    >
-                      <span className="whitespace-nowrap">Consult Now</span>
-                    </button>
+                    <div className="flex-grow px-6 pt-2 pb-4">
+                      <ul className="space-y-2 text-sm text-gray-600 list-disc list-inside">
+                        {Array.isArray(problem.points) ? (
+                          problem.points.slice(0, 3).map((point, i) => (
+                            <li key={i}>{point}</li>
+                          ))
+                        ) : (
+                          <li>{problem.points}</li>
+                        )}
+                      </ul>
+                    </div>
+                    <div className="p-5 bg-gray-50">
+                      <button
+                        onClick={() => handleConsultNowClick(problem.name)}
+                        className="flex items-center justify-center w-full px-6 py-3 text-sm font-semibold text-white transition-all duration-300 transform bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 hover:scale-105 sm:text-base"
+                      >
+                        Consult Now
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -962,58 +964,47 @@ const Specialist: React.FC<SpecialistProps> = ({ sectionSpacing = "" }) => {
                 Math.min(prev + 1, problemMaxIndex)
               )
             }
-            className="p-2 ml-2 transition bg-white rounded-full shadow-md hover:bg-gray-100 sm:ml-4 disabled:opacity-50"
+            className="absolute z-10 p-3 transition-transform transform bg-white rounded-full shadow-lg -right-4 hover:bg-gray-100 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={problemSliderIndex >= problemMaxIndex}
             aria-label="Next"
           >
-            <FaChevronRight className="text-[#2C73D2]" />
+            <FaChevronRight className="w-6 h-6 text-blue-600" />
           </button>
-        </div>
-
-        {/* Dots */}
-        <div className="flex justify-center gap-2 mt-8">
-          {Array.from({ length: problemMaxIndex + 1 }).map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setProblemSliderIndex(idx)}
-              className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                problemSliderIndex === idx
-                  ? "bg-[#2C73D2]"
-                  : "bg-gray-300 hover:bg-gray-400"
-              }`}
-              aria-label={`Go to slide ${idx + 1}`}
-            />
-          ))}
         </div>
       </div>
 
       {/* Dentist Modal */}
       {showDentistModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="relative w-full max-w-6xl max-h-[90vh] mx-4 bg-white rounded-2xl shadow-2xl overflow-hidden">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm">
+          <div className="relative w-full max-w-5xl max-h-[90vh] mx-4 bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col">
             {/* Modal Header */}
-            <div className="flex items-center justify-between p-6 bg-gradient-to-r from-[#2C73D2] to-[#0052D4] text-white">
-              <h3 className="text-2xl font-bold">
-                Dentists for "{selectedProblem}"
+            <div className="flex items-center justify-between p-5 border-b border-gray-200">
+              <h3 className="text-2xl font-bold text-gray-800">
+                Available Dentists for "{selectedProblem}"
               </h3>
               <button
                 onClick={closeDentistModal}
-                className="p-2 text-white transition-colors duration-200 hover:bg-white hover:bg-opacity-20 rounded-full"
+                className="p-2 text-gray-500 transition-colors duration-200 rounded-full hover:bg-gray-100"
               >
                 <FaTimes className="text-xl" />
               </button>
             </div>
 
             {/* Modal Content */}
-            <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+            <div className="flex-grow p-6 overflow-y-auto">
               {loading ? (
-                <div className="flex items-center justify-center py-12">
-                  <div className="text-lg font-semibold text-gray-700">
-                    Loading dentists...
-                  </div>
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {Array.from({ length: 3 }).map((_, i) => (
+                    <div key={i} className="p-5 bg-white border border-gray-200 rounded-xl animate-pulse">
+                      <div className="w-24 h-24 mx-auto mb-4 bg-gray-200 rounded-full"></div>
+                      <div className="w-3/4 h-6 mx-auto mb-3 bg-gray-200 rounded"></div>
+                      <div className="w-1/2 h-4 mx-auto mb-4 bg-gray-200 rounded"></div>
+                      <div className="w-full h-10 bg-gray-200 rounded-lg"></div>
+                    </div>
+                  ))}
                 </div>
               ) : error ? (
-                <div className="px-4 py-2 text-red-600 bg-red-100 rounded-lg">
+                <div className="px-4 py-3 text-center text-red-700 bg-red-100 rounded-lg">
                   {error}
                 </div>
               ) : filteredDentists.length > 0 ? (
@@ -1021,47 +1012,40 @@ const Specialist: React.FC<SpecialistProps> = ({ sectionSpacing = "" }) => {
                   {filteredDentists.map((dentist) => (
                     <div
                       key={dentist._id}
-                      className="flex flex-col items-center px-6 py-5 font-semibold text-center transition-all duration-300 bg-white border border-gray-200 shadow-lg rounded-xl hover:shadow-2xl hover:scale-105"
+                      className="flex flex-col text-center transition-all duration-300 bg-white border border-gray-200 shadow-sm rounded-xl hover:shadow-lg hover:scale-105"
                     >
-                      <Image
-                        src={dentist.image}
-                        alt={dentist.user?.name || "Dentist"}
-                        width={90}
-                        height={90}
-                        className="object-cover mb-4 border-4 border-blue-200 rounded-full shadow-md"
-                      />
-                      <div className="mb-2 text-xl font-bold text-gray-800">
-                        {dentist.user?.name}
+                      <div className="flex-grow p-6">
+                        <Image
+                          src={dentist.image}
+                          alt={dentist.user?.name || "Dentist"}
+                          width={100}
+                          height={100}
+                          className="object-cover mx-auto mb-4 border-4 border-blue-100 rounded-full shadow-sm"
+                        />
+                        <h4 className="mb-1 text-xl font-bold text-gray-900">
+                          {dentist.user?.name}
+                        </h4>
+                        <p className="mb-3 text-sm font-medium text-blue-600">
+                          {dentist.specialization?.join(", ")}
+                        </p>
+                        <p className="text-xs text-gray-500">
+                          {dentist.experienceYears ? `${dentist.experienceYears} years experience` : ''}
+                        </p>
                       </div>
-                      <div className="mb-3 text-sm text-center text-gray-600">
-                        {dentist.specialization?.join(", ")}
+                      <div className="px-6 pb-6">
+                        <Link
+                          href={`/consult/${dentist._id}`}
+                          className="block w-full px-4 py-3 text-sm font-bold text-white transition-all duration-300 bg-blue-600 rounded-lg hover:bg-blue-700"
+                        >
+                          Consult Now
+                        </Link>
                       </div>
-                      <div className="px-2 py-1 mb-3 text-xs text-center text-gray-500 bg-gray-100 rounded-full">
-                        Problems:{" "}
-                        {dentist.problems
-                          .flatMap((p) => p.split(","))
-                          .map((p) => p.trim())
-                          .join(", ")}
-                      </div>
-                      <div className="text-sm font-medium text-gray-700">
-                        {dentist.clinicName || "Online Consultation"}
-                      </div>
-                      {dentist.experienceYears && (
-                        <div className="mt-1 text-xs text-gray-500">
-                          {dentist.experienceYears} years experience
-                        </div>
-                      )}
-                      <Link
-                        href={`/consult/${dentist._id}`}
-                        className="w-full px-4 py-2 mt-4 text-sm font-bold text-white transition-all duration-300 bg-blue-500 rounded-lg hover:bg-blue-600"
-                      >
-                        Consult Now
-                      </Link>
                     </div>
                   ))}
                 </div>
               ) : (
-                <div className="w-full py-12 text-lg text-center text-gray-600">
+                <div className="w-full py-12 text-lg text-center text-gray-500">
+                  <p className="mb-2 text-2xl">😔</p>
                   No dentists found for "{selectedProblem}".
                 </div>
               )}
@@ -1073,4 +1057,4 @@ const Specialist: React.FC<SpecialistProps> = ({ sectionSpacing = "" }) => {
   );
 };
 
-export default Specialist;
+export default ConsultDentistOnline;

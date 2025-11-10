@@ -36,7 +36,7 @@ const ProblemForm: React.FC = () => {
   const selectedProblem = (problem || otherProblem).trim();
 
   // ✅ Ensure unique problem options
-  const uniqueProblems = Array.from(new Set(problems));
+  const uniqueProblems = Array.from(new Set(problems)).sort();
 
   // Fetch dentists based on selected problem
   useEffect(() => {

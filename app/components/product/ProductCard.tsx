@@ -1,12 +1,23 @@
 import React from "react";
 import { Product } from "@/app/types";
-import { Star } from "lucide-react";
 import Link from "next/link";
 
-const ProductCard = ({ product }: { product: Product }) => {
+interface ProductCardProps {
+  product: Product;
+  onCompare: (product: Product) => void;
+  isSelected: boolean;
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({ product, onCompare, isSelected }) => {
+  const description = product.description || "";
+  const shortDescription =
+    description.length > 100
+      ? `${description.substring(0, 100)}...`
+      : description;
+
   return (
-    <Link href={`/products/${product._id}`} key={product._id}>
-      <div className="overflow-hidden transition-all duration-300 bg-white border border-gray-200 rounded-lg shadow-sm group hover:shadow-lg">
+    <div className="flex flex-col overflow-hidden transition-all duration-300 bg-white border border-gray-200 rounded-lg shadow-sm group hover:shadow-lg">
+      <Link href={`/products/${product._id}`} className="block">
         <div className="relative">
           <img
             src={product.images[0]?.url}
@@ -19,30 +30,31 @@ const ProductCard = ({ product }: { product: Product }) => {
             {product.name}
           </h3>
           <p className="mt-1 text-sm text-gray-500">{product.category}</p>
-          <div className="flex items-center mt-3">
-            {[...Array(5)].map((_, i) => (
-              <Star
-                key={i}
-                className={`w-5 h-5 ${
-                  product.rating && i < product.rating
-                    ? "text-yellow-400 fill-yellow-400"
-                    : "text-gray-300"
-                }`}
-              />
-            ))}
-            <span className="ml-2 text-sm text-gray-600">
-              ({product.rating?.toFixed(1)})
-            </span>
-          </div>
-          <div className="flex items-baseline justify-between mt-4">
-            <p className="text-2xl font-bold text-gray-900">₹{product.price}</p>
-            <p className="text-sm text-gray-500 line-through">
-              ₹{(product.price * 1.1).toFixed(2)}
-            </p>
+          <p className="h-12 mt-2 overflow-hidden text-sm text-gray-600">
+            {shortDescription}
+          </p>
+        </div>
+      </Link>
+      <div className="p-4 pt-0 mt-auto">
+        <div className="flex items-center justify-between">
+          <Link href={`/products/${product._id}`} className="inline-block px-4 py-2 text-center text-white bg-blue-600 rounded-md hover:bg-blue-700">
+            View Details
+          </Link>
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id={`compare-${product._id}`}
+              checked={isSelected}
+              onChange={() => onCompare(product)}
+              className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+            />
+            <label htmlFor={`compare-${product._id}`} className="ml-2 text-sm text-gray-700">
+              Compare
+            </label>
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

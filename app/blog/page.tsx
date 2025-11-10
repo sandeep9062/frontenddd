@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import { useState, useMemo } from "react";
@@ -59,18 +57,14 @@ const POSTS_PER_PAGE = 9;
 export default function BlogPage() {
   const { data: blogs = [], isLoading, isError } = useGetBlogsQuery();
 
-  // console.log(blogs, "blogs");
-
   const [activeCategory, setActiveCategory] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
 
-  // ✅ Memoized filtering for performance
   const filteredBlogs: Blog[] = useMemo(
-    // ✅ Explicitly type filteredBlogs
     () =>
       activeCategory === "All"
         ? blogs
-        : blogs.filter((b: Blog) => b.category === activeCategory), // ✅ Type b as Blog
+        : blogs.filter((b: Blog) => b.category === activeCategory),
     [activeCategory, blogs]
   );
 
@@ -90,38 +84,37 @@ export default function BlogPage() {
     <>
       <main className="bg-white dark:bg-[#0D1321] text-black dark:text-white ">
         {/* Hero */}
-        <section className="text-center py-12 bg-gradient-to-br from-white to-gray-200 dark:from-[#0D1321] dark:to-[#1a1a1a]">
+        <section className="py-16 text-center bg-gray-50 dark:bg-[#0D1321]/50">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="mb-4 text-4xl font-extrabold md:text-5xl text-navy dark:text-white"
           >
-            Dental Tourism Blog
+            Smile Journeys: The Dental Tourism Blog by Dental Tourism Clinics India
+
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="max-w-xl mx-auto text-gray-600 dark:text-gray-400"
+            className="max-w-2xl mx-auto text-gray-600 dark:text-gray-400"
           >
-            Expert insights, patient success stories, and comprehensive guides
-            to help you make informed decisions about your dental care journey
-            in India.
+            Your go-to resource for trusted guides, clinic insights, cost comparisons, and real stories from patients who traveled to India for world-class dental care.
           </motion.p>
         </section>
 
         {/* Filter */}
-        <div className="flex flex-wrap justify-center gap-3 px-4 mt-10">
+        <div className="flex flex-wrap items-center justify-center gap-4 px-4 mt-12">
           {categories.map((cat) => (
             <motion.button
               key={cat}
               onClick={() => handleCategoryChange(cat)}
               whileTap={{ scale: 0.95 }}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+              className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#D4AF37] ${
                 activeCategory === cat
-                  ? "bg-[#D4AF37] text-black shadow-md"
-                  : "bg-gray-100 dark:bg-[#1a1a1a] text-gray-600 dark:text-gray-300 hover:bg-[#D4AF37]/80 hover:text-black"
+                  ? "bg-[#D4AF37] text-black shadow-lg"
+                  : "bg-white dark:bg-[#1a1a1a] text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#2a2a2a] border border-gray-200 dark:border-gray-700"
               }`}
               aria-pressed={activeCategory === cat}
               aria-label={`Filter by ${cat}`}
@@ -140,7 +133,7 @@ export default function BlogPage() {
 
             {!isError && (
               <>
-                <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                   {paginatedBlogs.map((blog: Blog, i: number) => (
                     <motion.div
                       key={blog._id}
@@ -148,13 +141,10 @@ export default function BlogPage() {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.05, duration: 0.5 }}
                       viewport={{ once: true }}
-                      className="group rounded-xl min-h-[480px] overflow-hidden border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-[#1a1a1a] shadow-sm hover:shadow-lg hover:border-[#D4AF37] transition-all duration-300 flex flex-col"
+                      className="flex flex-col overflow-hidden transition-all duration-300 bg-white border border-gray-200 rounded-lg shadow-sm group dark:bg-[#1a1a1a] dark:border-gray-700 hover:shadow-xl hover:-translate-y-1"
                     >
-                      <Link
-                        href={`/blog/${blog.slug}`}
-                        className="flex flex-col h-full"
-                      >
-                        <div className="relative w-full h-64 overflow-hidden">
+                      <Link href={`/blog/${blog.slug}`} className="flex flex-col h-full">
+                        <div className="relative w-full h-56 overflow-hidden">
                           {blog.image && (
                             <Image
                               src={blog.image}
@@ -164,32 +154,47 @@ export default function BlogPage() {
                               className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
                             />
                           )}
+                          <div className="absolute top-0 left-0 w-full h-full bg-black/20"></div>
+                          <span className="absolute top-4 right-4 bg-[#D4AF37] text-black px-3 py-1 rounded-full text-xs font-semibold">
+                            {blog.category}
+                          </span>
                         </div>
 
-                        <div className="flex flex-col justify-between flex-1 p-4">
+                        <div className="flex flex-col justify-between flex-1 p-5">
                           <div>
-                            <h3 className="text-lg font-semibold text-[#0d1321] dark:text-white mb-1 group-hover:text-[#D4AF37] transition-colors">
+                            <h3 className="mb-2 text-xl font-bold text-gray-900 dark:text-white group-hover:text-[#D4AF37] transition-colors">
                               {blog.title}
                             </h3>
-                            <p className="mb-4 text-sm text-gray-700 dark:text-gray-300 line-clamp-3">
+                            <p className="mb-4 text-sm text-gray-600 dark:text-gray-400 line-clamp-3">
                               {blog.desc}
                             </p>
                           </div>
-                          <div className="flex items-center justify-between mt-auto text-xs text-gray-500 dark:text-gray-400">
-                            <span className="flex items-center gap-1">
-                              <User size={14} /> {blog.author}
-                            </span>
-                            <span className="flex items-center gap-1">
-                              <CalendarDays size={14} />
-                              {new Date(blog.date).toLocaleDateString(
-                                "en-US",
-                                {
-                                  year: "numeric",
-                                  month: "short",
-                                  day: "numeric",
-                                }
+                          <div className="flex items-center justify-between pt-4 mt-auto border-t border-gray-200 dark:border-gray-700">
+                            <div className="flex items-center gap-3">
+                              {blog.authorImage ? (
+                                <Image
+                                  src={blog.authorImage}
+                                  alt={blog.author}
+                                  width={40}
+                                  height={40}
+                                  className="rounded-full"
+                                />
+                              ) : (
+                                <div className="flex items-center justify-center w-10 h-10 text-white bg-gray-500 rounded-full">
+                                  <User size={20} />
+                                </div>
                               )}
-                            </span>
+                              <div>
+                                <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">{blog.author}</p>
+                                <p className="text-xs text-gray-500 dark:text-gray-400">
+                                  {new Date(blog.date).toLocaleDateString("en-US", {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric",
+                                  })}
+                                </p>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </Link>
@@ -205,38 +210,44 @@ export default function BlogPage() {
 
                 {/* Pagination */}
                 {totalPages > 1 && (
-                  <div className="flex items-center justify-center gap-2 mt-12">
+                  <div className="flex items-center justify-center gap-3 mt-16">
                     <button
                       onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
                       disabled={currentPage === 1}
-                      className="px-3 py-2 rounded-lg text-sm font-medium bg-gray-100 dark:bg-[#1a1a1a] text-gray-600 dark:text-gray-300 hover:bg-[#D4AF37]/80 hover:text-black disabled:opacity-50"
+                      className="px-4 py-2 text-sm font-medium transition-colors bg-white border border-gray-300 rounded-lg dark:bg-[#1a1a1a] dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#2a2a2a] disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      Prev
+                      Previous
                     </button>
 
-                    {Array.from({ length: totalPages }, (_, i) => (
-                      <button
-                        key={i}
-                        onClick={() => setCurrentPage(i + 1)}
-                        className={`px-4 py-2 rounded-full text-sm font-medium border transition ${
-                          currentPage === i + 1
-                            ? "bg-[#D4AF37] text-black border-[#D4AF37]"
-                            : "bg-gray-100 dark:bg-[#1a1a1a] text-gray-600 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-[#D4AF37]/80 hover:text-black"
-                        }`}
-                        aria-current={
-                          currentPage === i + 1 ? "page" : undefined
-                        }
-                      >
-                        {i + 1}
-                      </button>
-                    ))}
+                    <div className="items-center hidden gap-2 md:flex">
+                      {Array.from({ length: totalPages }, (_, i) => (
+                        <button
+                          key={i}
+                          onClick={() => setCurrentPage(i + 1)}
+                          className={`w-10 h-10 rounded-lg text-sm font-medium transition ${
+                            currentPage === i + 1
+                              ? "bg-[#D4AF37] text-black"
+                              : "bg-white dark:bg-[#1a1a1a] text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#2a2a2a]"
+                          }`}
+                          aria-current={
+                            currentPage === i + 1 ? "page" : undefined
+                          }
+                        >
+                          {i + 1}
+                        </button>
+                      ))}
+                    </div>
+                    
+                    <span className="text-sm text-gray-600 md:hidden dark:text-gray-400">
+                      Page {currentPage} of {totalPages}
+                    </span>
 
                     <button
                       onClick={() =>
                         setCurrentPage((p) => Math.min(p + 1, totalPages))
                       }
                       disabled={currentPage === totalPages}
-                      className="px-3 py-2 rounded-lg text-sm font-medium bg-gray-100 dark:bg-[#1a1a1a] text-gray-600 dark:text-gray-300 hover:bg-[#D4AF37]/80 hover:text-black disabled:opacity-50"
+                      className="px-4 py-2 text-sm font-medium transition-colors bg-white border border-gray-300 rounded-lg dark:bg-[#1a1a1a] dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#2a2a2a] disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       Next
                     </button>

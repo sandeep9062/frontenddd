@@ -1,28 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, Variants } from "framer-motion";
 import toast from "react-hot-toast";
-
-const sectionVariants: Variants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 70,
-      damping: 15,
-      when: "beforeChildren",
-      staggerChildren: 0.2,
-    },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" } },
-};
 
 const Newsletter = () => {
   const [email, setEmail] = useState("");
@@ -48,7 +27,7 @@ const Newsletter = () => {
       }
 
       toast.success(data.message);
-      setEmail(""); // Reset after successful submission
+      setEmail(""); 
     } catch (err) {
       if (err instanceof Error) {
         toast.error(err.message);
@@ -61,36 +40,21 @@ const Newsletter = () => {
   };
 
   return (
-    <motion.section
-      className="w-full transition-colors duration-300"
-      variants={sectionVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
-    >
+    <section className="w-full transition-colors duration-300">
       <div className="w-full max-w-full px-2 pb-10 mx-0 mt-4 sm:max-w-5xl sm:mx-auto sm:px-4">
-        <motion.div
-          className="w-full bg-[#2C73D2] rounded-2xl shadow-lg py-8 sm:py-12 px-2 sm:px-4 md:px-10 mb-12 flex flex-col items-center"
-          variants={itemVariants}
-        >
-          <motion.h2
-            className="mb-4 text-xl font-extrabold text-center text-white sm:text-2xl md:text-4xl sm:mb-6"
-            variants={itemVariants}
-          >
+        <div className="w-full bg-[#2C73D2] rounded-2xl shadow-lg py-8 sm:py-12 px-2 sm:px-4 md:px-10 mb-12 flex flex-col items-center">
+          <h2 className="mb-4 text-xl font-extrabold text-center text-white sm:text-2xl md:text-4xl sm:mb-6">
             Join Our Mailing List
-          </motion.h2>
-          <motion.p
-            className="mb-4 text-base text-center text-white sm:text-lg sm:mb-8"
-            variants={itemVariants}
-          >
+          </h2>
+
+          <p className="mb-4 text-base text-center text-white sm:text-lg sm:mb-8">
             Subscribe to get the latest updates on dental care tips, clinic
             openings, and special offers.
-          </motion.p>
+          </p>
 
-          <motion.form
+          <form
             onSubmit={handleSubscribe}
             className="flex flex-col items-center w-full max-w-2xl gap-3 md:flex-row sm:gap-4"
-            variants={itemVariants}
           >
             <input
               type="email"
@@ -108,10 +72,10 @@ const Newsletter = () => {
             >
               {loading ? "Subscribing..." : "Subscribe"}
             </button>
-          </motion.form>
-        </motion.div>
+          </form>
+        </div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 

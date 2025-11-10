@@ -5,7 +5,13 @@ import Pagination from "../product/Pagination";
 import { Product } from "@/app/types";
 import ProductCard from "./ProductCard";
 
-const ProductListPage = ({ products }: { products: Product[] }) => {
+interface ProductListPageProps {
+  products: Product[];
+  onCompare: (product: Product) => void;
+  selectedForComparison: Product[];
+}
+
+const ProductListPage: React.FC<ProductListPageProps> = ({ products, onCompare, selectedForComparison }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
 
@@ -21,8 +27,13 @@ const ProductListPage = ({ products }: { products: Product[] }) => {
     <div className="px-4 py-8 sm:px-6 lg:px-8">
       {/* Product Grid */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
-        {currentProducts.map((product, index) => (
-          <ProductCard key={index} product={product} />
+        {currentProducts.map((product) => (
+          <ProductCard
+            key={product._id}
+            product={product}
+            onCompare={onCompare}
+            isSelected={selectedForComparison.some((p) => p._id === product._id)}
+          />
         ))}
       </div>
 

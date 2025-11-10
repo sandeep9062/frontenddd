@@ -11,8 +11,8 @@ const ProductSort: React.FC<SortByProps> = ({ sortValue, onChange }) => {
   const options = [
     { label: "Sort by", value: "" },
     { label: "Newest", value: "newest" },
-    { label: "Price (low to high)", value: "priceLowHigh" },
-    { label: "Price (high to low)", value: "priceHighLow" },
+    // { label: "Price (low to high)", value: "priceLowHigh" },
+    // { label: "Price (high to low)", value: "priceHighLow" },
     { label: "Name A-Z", value: "nameAZ" },
     { label: "Name Z-A", value: "nameZA" },
   ];

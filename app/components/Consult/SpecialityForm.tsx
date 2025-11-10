@@ -225,7 +225,7 @@ const SpecialityForm: React.FC = () => {
                     onChange={(e) => setSpeciality(e.target.value)}
                   >
                     <option value="">Select a speciality</option>
-                    {specialities.map((s) => (
+                    {specialities.sort().map((s) => (
                       <option key={s} value={s}>
                         {s}
                       </option>

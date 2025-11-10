@@ -30,7 +30,7 @@ const faqs: FAQ[] = [
   },
   {
     q: "What are the consultation fees?",
-    a: "Fees vary depending on the dentist and type of consultation. You can check the pricing details before booking. We offer competitive rates starting from ₹299 for basic consultations.",
+    a: "Fees vary depending on the dentist and type of consultation. You can check the pricing details before booking. We offer competitive rates starting from ₹ 399/- for basic consultations.",
   },
 ];
 
@@ -113,25 +113,7 @@ const ConsultFAQSection: React.FC = () => {
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        {/* <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-[#2C73D2] to-[#008E97] rounded-2xl p-8 shadow-xl">
-            <h3 className="mb-4 text-2xl font-bold text-white sm:text-3xl">
-              Still have questions?
-            </h3>
-            <p className="mb-6 text-lg text-blue-100">
-              Our support team is here to help you 24/7
-            </p>
-            <div className="flex flex-col justify-center gap-4 sm:flex-row">
-              <button className="px-8 py-3 bg-white text-[#2C73D2] font-bold rounded-xl hover:bg-gray-50 transition-colors shadow-lg">
-                Contact Support
-              </button>
-              <button className="px-8 py-3 border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-[#2C73D2] transition-colors">
-                Live Chat
-              </button>
-            </div>
-          </div>
-        </div> */}
+       
       </div>
     </div>
   );

@@ -12,7 +12,10 @@ import {
 } from "lucide-react";
 import { useGetBlogBySlugQuery } from "../../../services/blogsApi";
 import Newsletter from "@/app/components/NewsLetter";
-import { Spin } from "antd";
+
+interface BlogDetailPageParams {
+  slug: string;
+}
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -27,7 +30,7 @@ const itemVariants: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
-export default function BlogDetailPage({ params }: any) {
+export default function BlogDetailPage({ params }: { params: BlogDetailPageParams }) {
   const { slug } = params;
 
   const {
@@ -41,7 +44,7 @@ export default function BlogDetailPage({ params }: any) {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen text-xl text-gray-500 dark:text-gray-400">
-        <Spin size="large" tip="Loading blog..." />
+       
       </div>
     );
   }

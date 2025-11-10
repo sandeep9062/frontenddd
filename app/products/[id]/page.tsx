@@ -1,131 +1,22 @@
-"use client";
-import { useGetProductByIdQuery } from "@/services/productsApi";
-import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import { Product, ProductImage } from "../../types";
+import { Metadata } from 'next';
+import React from "react";
+import ProductDetailClient from './ProductDetailClient';
 
-const Page = () => {
-  const { id } = useParams();
-  console.log(id, "check-product-id");
-  const [selectedImage, setSelectedImage] = useState("");
-  const { data, error, isLoading } = useGetProductByIdQuery(id as string);
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const { id } = params;
+  // In a real app, you'd fetch this data from your API
+  // For now, we'll create a placeholder.
+  // const product = await fetch(`https://.../products/${id}`).then(res => res.json());
 
-  console.log(data, "check-product-details");
+  return {
+    title: `Product Details: ${id}`, // Replace with product.name
+    description: `Learn more about the uses, advantages, and disadvantages of ${id}.`, // Replace with product.description
+    keywords: ['dental products', 'dental materials', id],
+  };
+}
 
-  const product = data as Product;
-
-  useEffect(() => {
-    if (product?.images && product.images.length > 0) {
-      setSelectedImage(product.images[0].url);
-    }
-  }, [product]);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error loading product</div>;
-  }
-
-  return (
-    <div className="container p-8 mx-auto">
-      <div className="flex flex-col md:flex-row">
-        <div className="md:w-1/2">
-          <div className="mb-4">
-            {selectedImage && (
-              <img
-                src={selectedImage}
-                alt={product?.name}
-                className="w-full rounded-lg"
-              />
-            )}
-          </div>
-          <div className="flex space-x-2">
-            {product?.images?.map((image: ProductImage) => (
-              <img
-                key={image.url}
-                src={image.url}
-                alt={product?.name}
-                className={`w-20 h-20 rounded-lg cursor-pointer ${
-                  selectedImage === image.url ? "border-2 border-blue-500" : ""
-                }`}
-                onClick={() => setSelectedImage(image.url)}
-              />
-            ))}
-          </div>
-        </div>
-        <div className="mt-8 md:w-1/2 md:mt-0 md:ml-8">
-          <div className="p-6 bg-white rounded-lg shadow-md">
-            <h1 className="text-3xl font-bold">{product?.name}</h1>
-            <p className="mt-2 text-xl text-gray-600">{product?.brand}</p>
-            <p className="mt-4 text-lg">{product?.description}</p>
-            <div className="flex items-center mt-4">
-              <p className="text-2xl font-bold">₹{product?.price}</p>
-              {product?.discountPrice && (
-                <p className="ml-4 text-xl text-gray-500 line-through">
-                  ₹{product?.discountPrice}
-                </p>
-              )}
-            </div>
-            <div className="mt-6">
-              <h2 className="text-xl font-semibold">Product Details</h2>
-              <div className="grid grid-cols-1 mt-4 gap-y-2 sm:grid-cols-2">
-                <p>
-                  <span className="font-bold">Category:</span>{" "}
-                  {product?.category}
-                </p>
-                {product?.subcategory && (
-                  <p>
-                    <span className="font-bold">Subcategory:</span>{" "}
-                    {product?.subcategory}
-                  </p>
-                )}
-                <p>
-                  <span className="font-bold">Composition:</span>{" "}
-                  {product?.composition}
-                </p>
-                <p>
-                  <span className="font-bold">Dosage:</span> {product?.dosage}
-                </p>
-                <p>
-                  <span className="font-bold">Prescription Required:</span>{" "}
-                  {product?.prescriptionRequired ? "Yes" : "No"}
-                </p>
-                <p>
-                  <span className="font-bold">In Stock:</span>{" "}
-                  {product?.stockCount}
-                </p>
-                <p>
-                  <span className="font-bold">Expiry Date:</span>{" "}
-                  {product?.expiryDate}
-                </p>
-                <p>
-                  <span className="font-bold">Manufacturing Date:</span>{" "}
-                  {product?.manufacturingDate}
-                </p>
-                <p>
-                  <span className="font-bold">Manufacturer:</span>{" "}
-                  {product?.manufacturer}
-                </p>
-                <p>
-                  <span className="font-bold">Storage Conditions:</span>{" "}
-                  {product?.storageConditions}
-                </p>
-                <p>
-                  <span className="font-bold">Weight:</span> {product?.weight}
-                </p>
-                <p>
-                  <span className="font-bold">Rating:</span> {product?.rating} (
-                  {product?.numReviews} reviews)
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+const Page = ({ params }: { params: { id: string } }) => {
+  return <ProductDetailClient id={params.id} />;
 };
 
 export default Page;

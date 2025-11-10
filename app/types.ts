@@ -12,6 +12,9 @@ export interface Product {
   category: string;
   subcategory?: string;
   description?: string;
+  uses?: string;
+  advantages?: string[];
+  disadvantages?: string[];
   composition?: string;
   dosage?: string;
   prescriptionRequired?: boolean;

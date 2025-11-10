@@ -252,3 +252,28 @@
   color: white; 
   /* ... other styles */
 }
+
+.mySwiper .swiper-button-next,
+.mySwiper .swiper-button-prev {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+  z-index: 10;
+}
+
+.mySwiper .swiper-button-next:hover,
+.mySwiper .swiper-button-prev:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.mySwiper .swiper-button-next::after,
+.mySwiper .swiper-button-prev::after {
+  font-size: 14px;
+  font-weight: bold;
+}
