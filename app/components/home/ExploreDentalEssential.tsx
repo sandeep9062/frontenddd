@@ -46,8 +46,8 @@ const ExploreDentalEssential = () => {
     <section className="w-full px-2 py-6 pb-10 mx-0 mt-6 mb-4 overflow-x-hidden bg-gradient-to-r from-blue-50 to-indigo-100 rounded-2xl max-w-y-50full sm:max-w-7xl sm:mx-auto sm:px-4">
       {/* Header */}
       <div className="mb-4 text-center sm:mb-6">
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#2C73D2] mb-1 sm:mb-2 font-[Poppins]">
-          Explore Dental Essentials
+        <h2 className="text-4xl sm:text-2xl md:text-3xl font-bold text-[#2C73D2] mb-1 sm:mb-2 font-[Poppins]">
+          Explore India’s Trusted Oral Care Essentials
         </h2>
         <p className="text-base text-gray-700 sm:text-lg md:text-lg">
           Quality dental products for your oral health needs.
