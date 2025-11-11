@@ -472,7 +472,7 @@ const FixMyTeeth = () => {
           <h1 className="text-4xl font-extrabold text-gray-900 sm:text-6xl">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
           
-            </span>Fix My Teeth Cost in India | Transparent Dental Price Estimates
+            Fix My Teeth Cost in India | Transparent Dental Price Estimates</span>
           </h1>
           <p className="max-w-2xl mx-auto mt-4 text-lg text-gray-600">
             {t("forms.treatmentPlanDesc")}
