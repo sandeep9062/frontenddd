@@ -210,7 +210,7 @@ const Page = () => {
       )}
 
       {/* CTA Section */}
-      <section className="py-16 mt-12 bg-blue-50">
+      {/* <section className="py-16 mt-12 bg-blue-50">
         <div className="container px-4 mx-auto text-center sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">
             Want a personalized treatment plan using these materials?
@@ -224,7 +224,7 @@ const Page = () => {
             </Link>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };
