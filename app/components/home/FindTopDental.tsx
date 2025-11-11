@@ -61,47 +61,68 @@ const FindTopDental: React.FC<FindTopDentalProps> = ({
       className={`w-full max-w-full mx-0 sm:max-w-7xl sm:mx-auto py-8 px-4 ${sectionSpacing}`}
     >
       <div className="flex flex-col items-center w-full p-6 shadow-xl bg-gradient-to-r from-blue-50 to-indigo-100 rounded-3xl sm:p-10">
-        <div className="flex flex-row items-center justify-center">
-          <h2 className="mb-2 text-3xl font-bold text-center text-[#2C73D2] sm:text-4xl md:text-5xl">
+        <div className="flex flex-row items-center justify-center gap-3">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-[#2C73D2]">
             Find Top Dental Clinics in{" "}
           </h2>
-          <span className="mb-5 text-7xl sm:text-7xl md:text-7xl">🇮🇳</span>
+          <span className="text-5xl sm:text-6xl md:text-7xl">🇮🇳</span>
         </div>
+
         <p className="max-w-2xl mb-8 text-center text-gray-600 text-md sm:text-lg">
           Book appointments with India’s Finest Clinics – Verified, Rated and
           Recommended. Where Clinical Skill Meets Patient Trust.
         </p>
 
         {/* Search Bar */}
-        <form
-          className="flex flex-col items-center w-full max-w-3xl gap-4 mb-10 md:flex-row"
-          onSubmit={(e) => e.preventDefault()}
-        >
-          <div className="relative flex-grow w-full">
-            <input
-              type="text"
-              placeholder="Search by Clinic Name or State"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full px-5 py-3 text-lg text-gray-700 placeholder-gray-500 bg-white border-2 border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-            <div className="absolute inset-y-0 right-0 flex items-center pr-4">
-              <Search className="w-6 h-6 text-gray-400" />
-            </div>
-          </div>
-          <select
-            value={selectedState}
-            onChange={(e) => setSelectedState(e.target.value)}
-            className="w-full px-5 py-3 text-lg text-gray-700 bg-white border-2 border-gray-300 rounded-full shadow-sm md:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          >
-            <option value="">All States/UTs</option>
-            {uniqueStates.map((state: string) => (
-              <option key={state} value={state}>
-                {state}
-              </option>
-            ))}
-          </select>
-        </form>
+      <form
+  className="flex flex-col items-center justify-center w-full max-w-4xl gap-4 mx-auto mb-10 md:flex-row"
+  onSubmit={(e) => e.preventDefault()}
+>
+  {/* Search Input */}
+  <div className="relative flex-grow w-full md:w-2/3">
+    <input
+      type="text"
+      placeholder="Search by Clinic Name or State"
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+      className="w-full px-5 py-3 pl-6 pr-12 text-lg text-gray-700 placeholder-gray-500 bg-white border-2 border-gray-200 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#2C73D2] transition-all"
+    />
+    <div className="absolute inset-y-0 flex items-center pointer-events-none right-4">
+      <Search className="w-6 h-6 text-gray-400" />
+    </div>
+  </div>
+
+  {/* Custom Dropdown */}
+  <div className="relative w-full md:w-auto">
+    <select
+      value={selectedState}
+      onChange={(e) => setSelectedState(e.target.value)}
+      className="w-full appearance-none px-5 py-3 text-lg text-gray-700 bg-white border-2 border-gray-200 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#2C73D2] transition-all pr-12"
+    >
+      <option value="">All States / UTs</option>
+      {uniqueStates.map((state: string) => (
+        <option key={state} value={state}>
+          {state}
+        </option>
+      ))}
+    </select>
+
+    {/* Custom Arrow Icon */}
+    <div className="absolute inset-y-0 flex items-center pointer-events-none right-5">
+      <svg
+        className="w-5 h-5 text-gray-500"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        viewBox="0 0 24 24"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+      </svg>
+    </div>
+  </div>
+</form>
+
+
 
         {/* Slider */}
         <div className="w-full">

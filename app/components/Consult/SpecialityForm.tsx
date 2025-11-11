@@ -199,7 +199,7 @@ const SpecialityForm: React.FC = () => {
           {/* Header */}
           <div className="mb-10 text-center">
             <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#008E97] to-[#2C73D2] text-white rounded-full text-sm font-semibold mb-4">
-              🩺 Specialist Search
+              🦷 Specialist Search
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#008E97] to-[#2C73D2] mb-4">
               Find a Specialist Dentist

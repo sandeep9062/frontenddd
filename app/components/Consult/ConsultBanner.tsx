@@ -136,17 +136,17 @@ const HeroBanner: React.FC<HeroBannerProps> = ({ consultBannerImg }) => {
                 <Image
                   src={consultBannerImg}
                   alt="Online Dental Consultation"
-                  className="object-cover w-full max-w-md shadow-2xl lg:max-w-lg rounded-3xl"
+                  className="object-contain w-full max-w-md "
                   width={500}
                   height={500}
                 />
                 {/* Floating Elements */}
-                <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-[#F4A300] to-[#FF6B35] rounded-full flex items-center justify-center shadow-lg animate-pulse">
-                  <span className="text-2xl">🦷</span>
-                </div>
-                <div className="absolute flex items-center justify-center w-12 h-12 bg-white rounded-full shadow-lg -bottom-4 -left-4">
+                {/* <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-[#F4A300] to-[#FF6B35] rounded-full flex items-center justify-center shadow-lg animate-pulse">
+                  <span className="text-2xl"></span>
+                </div> */}
+                {/* <div className="absolute flex items-center justify-center w-12 h-12 bg-white rounded-full shadow-lg -bottom-4 -left-4">
                   <span className="text-lg">💊</span>
-                </div>
+                </div> */}
               </div>
             ) : (
               <div className="relative flex items-center justify-center w-full max-w-md border shadow-2xl lg:max-w-lg h-80 lg:h-96 bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-sm rounded-3xl border-white/20">

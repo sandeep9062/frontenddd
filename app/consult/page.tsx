@@ -61,7 +61,7 @@ const ConsultPage: React.FC = () => {
             </p>
 
             {/* Loading Steps */}
-            <div className="flex justify-center space-x-2 mt-6">
+            <div className="flex justify-center mt-6 space-x-2">
               <div className="w-2 h-2 bg-[#2C73D2] rounded-full animate-bounce"></div>
               <div
                 className="w-2 h-2 bg-[#008E97] rounded-full animate-bounce"

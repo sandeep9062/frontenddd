@@ -20,7 +20,7 @@ const MaldoniteSpinner = () => {
         {/* Company name and tagline aligned like the image */}
         <div className="text-left">
           <h1 className="text-3xl font-bold text-white sm:text-5xl">
-            Dental Tourism
+            Dental Tourism Clinics India
           </h1>
         </div>
       </div>

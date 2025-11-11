@@ -1041,7 +1041,7 @@ const ConsultDentistOnline: React.FC<ConsultDentistOnlineProps> = ({
                       <div className="px-6 pb-6">
                         <Link
                           href={`/consult/${dentist._id}`}
-                          className="block w-full px-4 py-3 text-sm font-bold text-white transition-all duration-300 bg-blue-600 rounded-lg hover:bg-blue-700"
+                          className="block w-full px-4 py-3 text-sm font-bold text-white transition-all duration-300 rounded-lg bg-gradient-to-r from-[#2C73D2] to-[#008F9B] group-hover:from-[#008F9B] group-hover:to-[#2C73D2]"
                         >
                           Consult Now
                         </Link>
