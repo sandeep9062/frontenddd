@@ -218,10 +218,10 @@ const BookAnAppointment: React.FC = () => {
   };
 
   return (
-    <section className="w-full px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8 bg-gray-50">
+    <section className="w-full px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8 bg-gray-50 rounded-2xl">
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-          Find the Right Dental Specialist
+        <h2 className="text-3xl font-extrabold  text-[#2C73D2] sm:text-4xl">
+          Find the Right Dental Specialist — Fast!
         </h2>
         <p className="mt-4 text-lg text-gray-600">
           Book an in-clinic consultation with an experienced dentist.
@@ -271,14 +271,13 @@ const BookAnAppointment: React.FC = () => {
                             </div>
                             <button
                               onClick={() => setSelectedSpecialist(spec)}
-                              className="w-full px-4 py-2 mt-4 text-sm font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                              className="w-full px-4 py-2 mt-4 text-sm font-semibold text-white rounded-lg shadow-md  bg-gradient-to-r from-[#2C73D2] to-[#008F9B] group-hover:from-[#008F9B] group-hover:to-[#2C73D2]"
                             >
                               View Details
                             </button>
                             <button
                               onClick={() => handleBookNow(spec)}
-                              className="w-full px-4 py-2 mt-2 text-sm font-semibold text-white bg-gradient-to-r from-[#2C73D2] to-[#0052D4] rounded-lg shadow-md hover:from-[#0052D4] hover:to-[#2C73D2] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300"
-                            >
+                              className="w-full px-4 py-2 mt-2 text-sm font-semibold text-white rounded-lg shadow-md bg-gradient-to-r from-[#F4A300] to-[#2C73D2] hover:from-[#2C73D2] hover:to-[#F4A300]  ">
                               Book Now
                             </button>
                           </div>

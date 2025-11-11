@@ -13,7 +13,7 @@ const sliderProblems = [
   { name: "Bad Breath" },
   { name: "Biting Down Hard" },
   { name: "Bleeding Gums" },
-  { name: "Bone up your smile" },//Adding Bone to the Socket
+  { name: "Bone up your smile" }, //Adding Bone to the Socket
   { name: "Braces Adjustment" },
   { name: "Burning Mouth" },
   { name: "Children’s Dentistry" },
@@ -795,7 +795,9 @@ interface ConsultDentistOnlineProps {
   sectionSpacing?: string;
 }
 
-const ConsultDentistOnline: React.FC<ConsultDentistOnlineProps> = ({ sectionSpacing = "" }) => {
+const ConsultDentistOnline: React.FC<ConsultDentistOnlineProps> = ({
+  sectionSpacing = "",
+}) => {
   const { t, i18n } = useTranslation();
   const [problemsPerSlide, setProblemsPerSlide] = useState(4);
   const [problemSliderIndex, setProblemSliderIndex] = useState(0);
@@ -875,17 +877,16 @@ const ConsultDentistOnline: React.FC<ConsultDentistOnlineProps> = ({ sectionSpac
   };
 
   return (
-    <section
-      className={`w-full bg-gray-50 py-12 sm:py-16 ${sectionSpacing}`}
-    >
+    <section className={`w-full bg-gray-50 py-12 sm:py-16 ${sectionSpacing}`}>
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-10 text-center">
-          <h2 className="mb-4 text-3xl font-extrabold text-gray-900 sm:text-4xl md:text-5xl">
-            Consult a Dentist <span className="text-blue-600">Online</span>
+          <h2 className="mb-4 text-3xl font-extrabold text-[#2C73D2] sm:text-4xl md:text-5xl">
+            Consult Dentist Online
           </h2>
           <p className="max-w-3xl mx-auto text-lg text-gray-600">
-            Get private and secure online consultations with our team of verified and experienced dental specialists.
+            Get private and secure online consultations with our team of
+            verified and experienced dental specialists.
           </p>
         </div>
 
@@ -919,7 +920,7 @@ const ConsultDentistOnline: React.FC<ConsultDentistOnlineProps> = ({ sectionSpac
                   className="flex-shrink-0 w-full p-2"
                   style={{ width: `${100 / problemsPerSlide}%` }}
                 >
-                  <div className="flex flex-col w-full h-full overflow-hidden transition-shadow duration-300 bg-white border-t-4 border-blue-500 shadow-md group rounded-2xl hover:shadow-xl">
+                  <div className="flex flex-col w-full h-full overflow-hidden transition-shadow duration-300 bg-white border-t-4 border-[#F4A300] shadow-md group rounded-2xl hover:shadow-xl">
                     <div className="flex flex-col items-center flex-shrink-0 p-6 text-center">
                       <Image
                         src={problem.image}
@@ -935,9 +936,9 @@ const ConsultDentistOnline: React.FC<ConsultDentistOnlineProps> = ({ sectionSpac
                     <div className="flex-grow px-6 pt-2 pb-4">
                       <ul className="space-y-2 text-sm text-gray-600 list-disc list-inside">
                         {Array.isArray(problem.points) ? (
-                          problem.points.slice(0, 3).map((point, i) => (
-                            <li key={i}>{point}</li>
-                          ))
+                          problem.points
+                            .slice(0, 3)
+                            .map((point, i) => <li key={i}>{point}</li>)
                         ) : (
                           <li>{problem.points}</li>
                         )}
@@ -946,7 +947,7 @@ const ConsultDentistOnline: React.FC<ConsultDentistOnlineProps> = ({ sectionSpac
                     <div className="p-5 bg-gray-50">
                       <button
                         onClick={() => handleConsultNowClick(problem.name)}
-                        className="flex items-center justify-center w-full px-6 py-3 text-sm font-semibold text-white transition-all duration-300 transform bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 hover:scale-105 sm:text-base"
+                        className="flex items-center justify-center w-full px-6 py-3 text-sm font-semibold text-white transition-all duration-300 transform rounded-lg shadow-md sm:text-base bg-gradient-to-r from-[#2C73D2] to-[#008F9B] group-hover:from-[#008F9B] group-hover:to-[#2C73D2]"
                       >
                         Consult Now
                       </button>
@@ -995,7 +996,10 @@ const ConsultDentistOnline: React.FC<ConsultDentistOnlineProps> = ({ sectionSpac
               {loading ? (
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   {Array.from({ length: 3 }).map((_, i) => (
-                    <div key={i} className="p-5 bg-white border border-gray-200 rounded-xl animate-pulse">
+                    <div
+                      key={i}
+                      className="p-5 bg-white border border-gray-200 rounded-xl animate-pulse"
+                    >
                       <div className="w-24 h-24 mx-auto mb-4 bg-gray-200 rounded-full"></div>
                       <div className="w-3/4 h-6 mx-auto mb-3 bg-gray-200 rounded"></div>
                       <div className="w-1/2 h-4 mx-auto mb-4 bg-gray-200 rounded"></div>
@@ -1029,7 +1033,9 @@ const ConsultDentistOnline: React.FC<ConsultDentistOnlineProps> = ({ sectionSpac
                           {dentist.specialization?.join(", ")}
                         </p>
                         <p className="text-xs text-gray-500">
-                          {dentist.experienceYears ? `${dentist.experienceYears} years experience` : ''}
+                          {dentist.experienceYears
+                            ? `${dentist.experienceYears} years experience`
+                            : ""}
                         </p>
                       </div>
                       <div className="px-6 pb-6">

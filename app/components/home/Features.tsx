@@ -14,7 +14,7 @@ const getFeatures = (t: any) => [
   },
   {
     image: "/Dental Implants.png",
-    title: t("features.trustedClinics"),
+    title: "Trusted Smile, Local Care",
     desc: t("features.trustedClinicsDesc"),
     link: "/dental-clinics",
   },
@@ -51,7 +51,7 @@ const Feature: React.FC<FeatureProps> = ({ sectionSpacing = "" }) => {
           </h2>
           <p className="max-w-3xl mx-auto mt-4 text-lg text-gray-700">
             Explore trusted dental clinics, book video consultations, locate
-            scan centers, and find nearby labs — all in one place.
+            scan centers, and find nearby blood test labs — all in one place.
           </p>
         </div>
 
@@ -74,7 +74,8 @@ const Feature: React.FC<FeatureProps> = ({ sectionSpacing = "" }) => {
                 {feature.title}
               </h3>
               <p className="mb-6 text-base text-gray-700">{feature.desc}</p>
-              <div className="w-full px-6 py-3 mt-auto text-lg font-semibold text-white transition-all duration-300 rounded-lg shadow-md bg-gradient-to-r from-[#2C73D2] to-[#008F9B] group-hover:from-[#008F9B] group-hover:to-[#2C73D2]">
+              <div className="w-full px-6 py-3 mt-auto text-lg font-semibold text-white transition-all duration-300 rounded-lg shadow-md
+               bg-gradient-to-r from-[#2C73D2] to-[#008F9B] group-hover:from-[#008F9B] group-hover:to-[#2C73D2]">
                Book Now
               </div>
             </Link>

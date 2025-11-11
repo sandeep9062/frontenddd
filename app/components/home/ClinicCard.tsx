@@ -25,10 +25,7 @@ const ClinicCard: React.FC<ClinicCardProps> = ({ clinic }) => {
   const [isOffersModalOpen, setIsOffersModalOpen] = useState(false);
   const whatsappNumber = clinic.whatsapp?.replace(/\D/g, "") || "";
 
-
-
-
-  console.log(clinic,"clinic-datat")
+  console.log(clinic, "clinic-datat");
 
   return (
     <div className="flex-shrink-0 w-full max-w-sm p-4 overflow-hidden transition-transform duration-300 bg-white border border-gray-200 shadow-lg rounded-2xl hover:shadow-xl hover:-translate-y-1">
@@ -78,7 +75,7 @@ const ClinicCard: React.FC<ClinicCardProps> = ({ clinic }) => {
           <div className="mb-4">
             <button
               onClick={() => setIsOffersModalOpen(true)}
-              className="w-full px-4 py-2 text-sm font-semibold text-white bg-teal-500 rounded-lg hover:bg-teal-600"
+              className="w-full px-4 py-2 text-sm font-semibold text-white rounded-lg bg-gradient-to-r from-[#2C73D2] to-[#008F9B] group-hover:from-[#008F9B] group-hover:to-[#2C73D2]"
             >
               View Offers
             </button>
@@ -111,7 +108,7 @@ const ClinicCard: React.FC<ClinicCardProps> = ({ clinic }) => {
 
         <a
           href={`/book-appointment?clinicId=${clinic._id}`}
-          className="flex items-center justify-center w-full gap-2 px-4 py-2 mb-3 font-semibold text-center text-white transition-colors duration-300 bg-blue-600 rounded-lg hover:bg-blue-700"
+          className="flex items-center justify-center w-full gap-2 px-4 py-2 mb-3 font-semibold text-center text-white transition-colors duration-300 rounded-lg bg-gradient-to-r from-[#F4A300] to-[#2C73D2] hover:from-[#2C73D2] hover:to-[#F4A300]  "
         >
           <FaBook />
           <span>Book Appointment</span>

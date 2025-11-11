@@ -8,7 +8,7 @@ import { useGetProductsQuery } from "@/services/productsApi";
 import { Product } from "../types";
 import { categories } from "../data/categories";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from 'next/link';
+import Link from "next/link";
 
 const SkeletonCard = () => (
   <div className="w-full p-4 bg-white border border-gray-200 rounded-lg shadow-sm">
@@ -25,7 +25,9 @@ const Page = () => {
   const { data, error, isLoading } = useGetProductsQuery({});
   const [sortValue, setSortValue] = useState("");
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
-  const [selectedForComparison, setSelectedForComparison] = useState<Product[]>([]);
+  const [selectedForComparison, setSelectedForComparison] = useState<Product[]>(
+    []
+  );
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -126,7 +128,9 @@ const Page = () => {
             Explore Dental Products & Materials 🦷
           </h1>
           <p className="max-w-2xl mx-auto mt-6 text-lg text-gray-600">
-            Learn about the latest tools, materials, and technologies used in modern dentistry — their uses, benefits, and limitations. Empowering patients and clinics with informed choices.
+            Learn about the latest tools, materials, and technologies used in
+            modern dentistry — their uses, benefits, and limitations. Empowering
+            patients and clinics with informed choices.
           </p>
           <div className="max-w-md mx-auto mt-8">
             <input
@@ -192,8 +196,7 @@ const Page = () => {
                     No products found
                   </h3>
                   <p className="mt-2 text-gray-600">
-                    Try adjusting your filters to find what you're looking
-                    for.
+                    Try adjusting your filters to find what you're looking for.
                   </p>
                 </motion.div>
               )}
@@ -205,7 +208,10 @@ const Page = () => {
       {/* Comparison Section */}
       {selectedForComparison.length === 2 && (
         <div className="container px-4 mx-auto sm:px-6 lg:px-8">
-          <ProductComparison product1={selectedForComparison[0]} product2={selectedForComparison[1]} />
+          <ProductComparison
+            product1={selectedForComparison[0]}
+            product2={selectedForComparison[1]}
+          />
         </div>
       )}
 
