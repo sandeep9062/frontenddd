@@ -31,7 +31,8 @@ const ExploreDentalEssential = () => {
     return () => window.removeEventListener("resize", updateProductsPerSlide);
   }, []);
 
-  const productMaxIndex = products.length > 0 ? Math.ceil(products.length / productsPerSlide) - 1 : 0;
+  const productMaxIndex =
+    products.length > 0 ? Math.ceil(products.length / productsPerSlide) - 1 : 0;
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -42,7 +43,7 @@ const ExploreDentalEssential = () => {
   }
 
   return (
-    <section className="w-full px-2 py-6 pb-10 mx-0 mt-6 mb-4 overflow-x-hidden bg-gray-100 rounded-2xl max-w-y-50full sm:max-w-7xl sm:mx-auto sm:px-4">
+    <section className="w-full px-2 py-6 pb-10 mx-0 mt-6 mb-4 overflow-x-hidden bg-gradient-to-r from-blue-50 to-indigo-100 rounded-2xl max-w-y-50full sm:max-w-7xl sm:mx-auto sm:px-4">
       {/* Header */}
       <div className="mb-4 text-center sm:mb-6">
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#2C73D2] mb-1 sm:mb-2 font-[Poppins]">
@@ -57,9 +58,7 @@ const ExploreDentalEssential = () => {
       <div className="flex items-center justify-center w-full">
         {/* Previous Button */}
         <button
-          onClick={() =>
-            setProductSliderIndex((prev) => Math.max(prev - 1, 0))
-          }
+          onClick={() => setProductSliderIndex((prev) => Math.max(prev - 1, 0))}
           className="p-2 rounded-full bg-white shadow-lg hover:bg-[#2C73D2] hover:text-white transition border-2 border-[#2C73D2] z-10 mx-2 disabled:opacity-50 hidden sm:block"
           disabled={productSliderIndex === 0}
           aria-label="Previous Product"
@@ -88,11 +87,15 @@ const ExploreDentalEssential = () => {
               >
                 <div className="flex flex-col bg-white rounded-lg shadow-md p-4 border border-gray-200 h-[400px] transition-transform transform hover:scale-105">
                   <div className="w-full text-left">
-                    <p className="h-5 text-sm text-gray-500 truncate">{product.category}</p>
+                    <p className="h-5 text-sm text-gray-500 truncate">
+                      {product.category}
+                    </p>
                   </div>
                   <div className="flex items-center justify-center flex-grow my-4">
                     <Image
-                      src={product.images[0]?.url || "/default-product-image.png"}
+                      src={
+                        product.images[0]?.url || "/default-product-image.png"
+                      }
                       alt={product.name}
                       width={150}
                       height={150}
@@ -122,9 +125,7 @@ const ExploreDentalEssential = () => {
         {/* Next Button */}
         <button
           onClick={() =>
-            setProductSliderIndex((prev) =>
-              Math.min(prev + 1, productMaxIndex)
-            )
+            setProductSliderIndex((prev) => Math.min(prev + 1, productMaxIndex))
           }
           className="p-2 rounded-full bg-white shadow-lg hover:bg-[#2C73D2] hover:text-white transition border-2 border-[#2C73D2] z-10 mx-2 disabled:opacity-50 hidden sm:block"
           disabled={productSliderIndex >= productMaxIndex}
