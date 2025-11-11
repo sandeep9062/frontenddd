@@ -125,7 +125,7 @@ const Page = () => {
       <section className="py-16 text-center bg-white shadow-sm">
         <div className="container px-4 mx-auto sm:px-6 lg:px-8">
           <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
-            Explore Dental Products & Materials 🦷
+         Explore India's Trusted Oral Care Essentials
           </h1>
           <p className="max-w-2xl mx-auto mt-6 text-lg text-gray-600">
             Learn about the latest tools, materials, and technologies used in
