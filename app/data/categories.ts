@@ -46,7 +46,7 @@ export const categories = [
     ],
   },
   {
-    name: "Tounge Cleaner",
+    name: "Tongue Cleaner",
     items: [
       "Copper Tongue Cleaners",
       "Disposable Tongue Cleaners",
