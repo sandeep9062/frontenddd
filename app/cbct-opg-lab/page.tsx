@@ -70,7 +70,7 @@ const CbctOpgLabList: React.FC = () => {
         <div className="px-6 py-8 mx-auto max-w-7xl">
           <div className="mb-8 text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-[#6548ee] mb-4">
-              CBCT & OPG Labs
+              CBCT & OPG Centers
             </h1>
             <p className="max-w-lg mx-auto text-lg text-gray-600">
               Find the best CBCT and OPG diagnostic centers near you.

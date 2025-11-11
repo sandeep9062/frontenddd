@@ -71,7 +71,7 @@ const BloodTestLabList: React.FC = () => {
       <div className="mx-auto max-w-7xl">
         <div className="mb-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-[#5a38e5] mb-2">
-            Find a Diagnostic Lab Near You
+            Find a Blood Test Lab Near You
           </h1>
           <p className="text-lg text-gray-600">
             Search for blood test and diagnostic centers across India.
