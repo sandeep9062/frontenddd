@@ -92,7 +92,7 @@ const FindTopDental: React.FC<FindTopDentalProps> = ({
           <select
             value={selectedState}
             onChange={(e) => setSelectedState(e.target.value)}
-            className="w-full px-3 py-3 text-lg text-gray-700 bg-white border-2 border-gray-300 rounded-full shadow-sm px-2-5 md:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-5 py-3 text-lg text-gray-700 bg-white border-2 border-gray-300 rounded-full shadow-sm md:w-auto focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           >
             <option value="">All States/UTs</option>
             {uniqueStates.map((state: string) => (

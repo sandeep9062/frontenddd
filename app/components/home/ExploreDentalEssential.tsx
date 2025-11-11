@@ -42,7 +42,7 @@ const ExploreDentalEssential = () => {
   }
 
   return (
-    <section className="w-full max-w-full px-2 pb-10 mx-0 mt-4 mb-4 overflow-x-hidden sm:max-w-7xl sm:mx-auto sm:px-4">
+    <section className="w-full px-2 py-6 pb-10 mx-0 mt-6 mb-4 overflow-x-hidden bg-gray-100 rounded-2xl max-w-y-50full sm:max-w-7xl sm:mx-auto sm:px-4">
       {/* Header */}
       <div className="mb-4 text-center sm:mb-6">
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#2C73D2] mb-1 sm:mb-2 font-[Poppins]">
