@@ -331,7 +331,12 @@ const steps = [
     icon: "📍",
     color: "bg-green-500",
   },
-  { number: 3, title: "Upload Photos and X-Rays", icon: "📷", color: "bg-purple-500" },
+  {
+    number: 3,
+    title: "Upload Photos and X-Rays",
+    icon: "📷",
+    color: "bg-purple-500",
+  },
   {
     number: 4,
     title: "Pay ₹149/- (approx. $1.80)",
@@ -691,6 +696,7 @@ const FixMyTeeth = () => {
                   <div className="mt-8">
                     <h4 className="mb-4 text-lg font-semibold text-gray-800">
                       Upload Photos and X-Rays (Drag & Drop file size upto 60mb)
+                    </h4>
                     <div
                       {...getRootProps()}
                       className={`p-10 text-center border-2 border-dashed rounded-xl cursor-pointer transition-colors ${
