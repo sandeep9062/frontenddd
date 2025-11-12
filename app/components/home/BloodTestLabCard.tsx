@@ -69,7 +69,7 @@ const BloodTestLabCard: React.FC<BloodTestLabCardProps> = ({ lab }) => {
 
         <a
           href={`/book-appointment?labId=${lab._id}&type=blood-test`}
-          className="flex items-center justify-center w-full gap-2 px-4 py-2 mb-3 font-semibold text-center text-white transition-colors duration-300 bg-blue-600 rounded-lg hover:bg-blue-700"
+          className="flex items-center justify-center w-full gap-2 px-4 py-2 mb-3 font-semibold text-center text-white transition-colors duration-300 rounded-lg bg-gradient-to-r from-[#F4A300] to-[#2C73D2] hover:from-[#2C73D2] hover:to-[#F4A300]"
         >
           <FaBook />
           <span>Book Now</span>

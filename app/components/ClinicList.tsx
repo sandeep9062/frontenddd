@@ -140,7 +140,7 @@ const ClinicList: React.FC<ClinicListProps> = ({ type = "clinic" }) => {
 
   return (
     <div className="w-full min-h-screen bg-gray-50">
-      <div className="px-4 py-12 text-white bg-gradient-to-r from-blue-500 to-teal-400 sm:px-6 lg:px-8">
+      <div className="px-4 py-12 text-white sm:px-6 lg:px-8 bg-gradient-to-r from-[#F4A300] to-[#2C73D2] hover:from-[#2C73D2] hover:to-[#F4A300]">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="mb-4 text-4xl font-extrabold leading-tight sm:text-5xl">
             {type === "cbct"

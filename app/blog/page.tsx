@@ -90,9 +90,17 @@ export default function BlogPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="mb-4 text-4xl font-extrabold md:text-5xl text-navy dark:text-white"
+            style={{
+              background:
+                "linear-gradient(135deg, #FF9933 0%, #00529B 50%, #138808 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              filter: "drop-shadow(1px 1px 2px rgba(0,0,0,0.2))",
+            }}
           >
-            Smile Journeys: The Dental Tourism Blog by Dental Tourism Clinics India
-
+            Smile Journeys: The Dental Tourism Blog by Dental Tourism Clinics
+            India
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
@@ -100,7 +108,9 @@ export default function BlogPage() {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="max-w-2xl mx-auto text-gray-600 dark:text-gray-400"
           >
-            Your go-to resource for trusted guides, clinic insights, cost comparisons, and real stories from patients who traveled to India for world-class dental care.
+            Your go-to resource for trusted guides, clinic insights, cost
+            comparisons, and real stories from patients who traveled to India
+            for world-class dental care.
           </motion.p>
         </section>
 
@@ -143,7 +153,10 @@ export default function BlogPage() {
                       viewport={{ once: true }}
                       className="flex flex-col overflow-hidden transition-all duration-300 bg-white border border-gray-200 rounded-lg shadow-sm group dark:bg-[#1a1a1a] dark:border-gray-700 hover:shadow-xl hover:-translate-y-1"
                     >
-                      <Link href={`/blog/${blog.slug}`} className="flex flex-col h-full">
+                      <Link
+                        href={`/blog/${blog.slug}`}
+                        className="flex flex-col h-full"
+                      >
                         <div className="relative w-full h-56 overflow-hidden">
                           {blog.image && (
                             <Image
@@ -185,13 +198,18 @@ export default function BlogPage() {
                                 </div>
                               )}
                               <div>
-                                <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">{blog.author}</p>
+                                <p className="text-sm font-semibold text-gray-800 dark:text-gray-200">
+                                  {blog.author}
+                                </p>
                                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                                  {new Date(blog.date).toLocaleDateString("en-US", {
-                                    year: "numeric",
-                                    month: "long",
-                                    day: "numeric",
-                                  })}
+                                  {new Date(blog.date).toLocaleDateString(
+                                    "en-US",
+                                    {
+                                      year: "numeric",
+                                      month: "long",
+                                      day: "numeric",
+                                    }
+                                  )}
                                 </p>
                               </div>
                             </div>
@@ -237,7 +255,7 @@ export default function BlogPage() {
                         </button>
                       ))}
                     </div>
-                    
+
                     <span className="text-sm text-gray-600 md:hidden dark:text-gray-400">
                       Page {currentPage} of {totalPages}
                     </span>

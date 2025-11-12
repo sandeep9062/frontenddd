@@ -24,7 +24,9 @@ const Hero: React.FC = () => {
           <div className="flex flex-col w-full gap-4 sm:flex-row sm:justify-center">
             <Link
               href="/dental-clinics"
-              className="w-full px-8 py-3 text-lg font-semibold text-center text-white transition rounded-md shadow-lg bg-gradient-to-r from-[#F4A300] to-[#2C73D2] hover:from-[#2C73D2] hover:to-[#F4A300] sm:min-w-[280px]"
+              className="w-full px-8 py-3 text-lg font-semibold text-center text-white transition rounded-md shadow-lg 
+              bg-gradient-to-r from-[#F4A300] to-[#2C73D2] hover:from-[#2C73D2] hover:to-[#F4A300]
+               sm:min-w-[280px]"
             >
               Explore Best Dental Clinics of India
             </Link>

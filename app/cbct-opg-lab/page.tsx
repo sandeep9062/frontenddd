@@ -81,11 +81,8 @@ const CbctOpgLabList: React.FC = () => {
           </div>
 
           {/* Enhanced Filters */}
-          <div className="bg-gradient-to-r from-[#6548ee] to-[#ff9800] p-6 rounded-2xl shadow-lg">
-            <div className="flex items-center gap-2 mb-4">
-              <Filter className="w-5 h-5 text-white" />
-              <h3 className="text-lg font-semibold text-white">Filter Labs</h3>
-            </div>
+          <div className="bg-gradient-to-r from-[#2C73D2] to-[#ff9800] p-6 rounded-2xl shadow-lg">
+            
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
               <div className="relative">
                 <Search className="absolute w-5 h-5 text-gray-400 transform -translate-y-1/2 left-3 top-1/2" />

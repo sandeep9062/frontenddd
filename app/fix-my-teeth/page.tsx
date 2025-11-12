@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../store/authSlice";
 import allStatesAndUTs from "../data/allStatesAndUTs";
 import FAQSection from "../components/FAQSection";
-import ContactOptions from "../components/ContactOptions";
+
 import { useSubmitFixMyTeethCaseMutation } from "../../services/fixMyTeethApi";
 import Button from "../components/Button";
 import Modal from "../components/Modal";
@@ -470,9 +470,19 @@ const FixMyTeeth = () => {
         {/* Header */}
         <header className="mb-12 text-center">
           <h1 className="text-4xl font-extrabold text-gray-900 sm:text-6xl">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
-          
-            Fix My Teeth Cost in India | Transparent Dental Price Estimates</span>
+            <span
+              style={{
+                background:
+                  "linear-gradient(135deg, #FF9933 0%, #00529B 50%, #138808 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                filter: "drop-shadow(1px 1px 2px rgba(0,0,0,0.2))",
+              }}
+              className="text-transparent bg-clip-text "
+            >
+              Fix My Teeth Cost in India | Transparent Dental Price Estimates
+            </span>
           </h1>
           <p className="max-w-2xl mx-auto mt-4 text-lg text-gray-600">
             {t("forms.treatmentPlanDesc")}
@@ -499,7 +509,10 @@ const FixMyTeeth = () => {
                 Tell us your dental issues, and our specialists will craft a
                 custom treatment plan with tranparent pricing in just 24 hours.
               </p>
-              <Button onClick={() => setShowQuoteForm(!showQuoteForm)}>
+              <Button
+                className=" mt-4 p-0 bg-gradient-to-r from-[#F4A300] to-[#2C73D2] hover:from-[#2C73D2] hover:to-[#F4A300]"
+                onClick={() => setShowQuoteForm(!showQuoteForm)}
+              >
                 {showQuoteForm ? t("forms.hideForm") : t("forms.startNow")}
               </Button>
             </div>
@@ -595,7 +608,10 @@ const FixMyTeeth = () => {
                     ))}
                   </div>
                 </div>
-                <Button onClick={handleModalClose} className="w-full mt-6">
+                <Button
+                  onClick={handleModalClose}
+                  className="w-full mt-6 bg-gradient-to-r from-[#F4A300] to-[#2C73D2] hover:from-[#2C73D2] hover:to-[#F4A300]"
+                >
                   Done
                 </Button>
               </Modal>
@@ -738,7 +754,7 @@ const FixMyTeeth = () => {
                   </div>
                   <Button
                     type="submit"
-                    className={`w-full mt-8 ${
+                    className={`w-full mt-8 bg-gradient-to-r from-[#F4A300] to-[#2C73D2] hover:from-[#2C73D2] hover:to-[#F4A300]${
                       isSubmitting ? "opacity-50 cursor-not-allowed" : ""
                     }`}
                     disabled={isSubmitting}
@@ -754,7 +770,87 @@ const FixMyTeeth = () => {
         </main>
 
         <FAQSection />
-        <ContactOptions />
+        {/* Contact Information */}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div className="p-6 text-center bg-white shadow-lg rounded-xl">
+            <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full">
+              <svg
+                className="w-8 h-8 text-[#2C73D2]"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
+            </div>
+            <h3 className="mb-2 text-lg font-semibold text-gray-800">
+              Email Support
+            </h3>
+            <p className="mb-3 text-sm text-gray-600">Get help via email</p>
+            <a
+              href="mailto:info@dentaltourismclinicsindia.com"
+              className="text-[#2C73D2] font-medium hover:underline break-words text-[15px]"
+            >
+              info@dentaltourismclinicsindia.com
+            </a>
+          </div>
+
+          <div className="p-6 text-center bg-white shadow-lg rounded-xl">
+            <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-green-100 rounded-full">
+              <svg
+                className="w-8 h-8 text-green-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                />
+              </svg>
+            </div>
+            <h3 className="mb-2 text-lg font-semibold text-gray-800">
+              Phone Support
+            </h3>
+            <p className="mb-3 text-sm text-gray-600">Call us directly</p>
+            <a
+              href="tel:+911234567890"
+              className=" text-[15px] text-green-600 hover:underline"
+            >
+              +91 7087117423
+            </a>
+          </div>
+
+          <div className="p-6 text-center bg-white shadow-lg rounded-xl">
+            <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-purple-100 rounded-full">
+              <svg
+                className="w-8 h-8 text-purple-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </div>
+            <h3 className="mb-2 text-lg font-semibold text-gray-800">
+              Response Time
+            </h3>
+            <p className="mb-3 text-sm text-gray-600">How quickly we respond</p>
+            <p className="text-[15px] text-purple-600">Within 24 hours</p>
+          </div>
+        </div>
       </div>
     </div>
   );

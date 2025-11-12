@@ -14,7 +14,7 @@ const faqs: FAQItem[] = [
       "Simply select your dental problems and preferred location. Our expert dentists will review your case and provide a detailed treatment plan within 24 hours.",
   },
   {
-    question: "Is the ₹149/- fee refundable?",
+    question: "Is the ₹149/- (approx. $1.80) fee refundable?",
     answer:
       "The consultation fee is non-refundable, but it will be adjusted against your final treatment cost if you proceed with any of our partner clinics.",
   },

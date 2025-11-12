@@ -188,11 +188,11 @@ export default function BookAppointmentPage() {
   // Show loading state while fetching clinic details
   if (clinicLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-[#E8F0FF] to-[#F7FAFF] py-10 px-4 flex justify-center">
-        <div className="w-full max-w-5xl bg-white shadow-2xl rounded-2xl p-8 border border-[#E0E7FF] flex items-center justify-center">
+      <div className="flex items-center justify-center min-h-screen px-4 py-10 bg-gray-50">
+        <div className="flex items-center justify-center w-full max-w-5xl p-8 bg-white border border-gray-200 shadow-2xl rounded-2xl">
           <div className="flex flex-col items-center gap-4">
-            <Loader2 className="w-8 h-8 animate-spin text-[#2056AE]" />
-            <p className="text-[#2056AE] font-semibold">
+            <Loader2 className="w-8 h-8 text-teal-600 animate-spin" />
+            <p className="font-semibold text-teal-600">
               Loading clinic details...
             </p>
           </div>
@@ -202,16 +202,16 @@ export default function BookAppointmentPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#E8F0FF] to-[#F7FAFF] py-10 px-4 flex justify-center">
+    <div className="flex justify-center min-h-screen px-4 py-10 bg-gray-50">
       <motion.div
-        className="w-full max-w-5xl bg-white shadow-2xl rounded-2xl p-8 border border-[#E0E7FF]"
+        className="w-full max-w-5xl p-8 bg-white border border-gray-200 shadow-2xl rounded-2xl"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
       >
         {/* Header */}
         <div className="flex flex-col items-start justify-between mb-6 sm:flex-row sm:items-center">
-          <h1 className="text-2xl sm:text-3xl font-bold text-[#2056AE] mb-3 sm:mb-0">
+          <h1 className="mb-3 text-2xl font-bold text-teal-700 sm:text-3xl sm:mb-0">
             Book{" "}
             {serviceType === "cbct-opg-lab"
               ? "CBCT/OPG Lab"
@@ -224,7 +224,7 @@ export default function BookAppointmentPage() {
             Call us:{" "}
             <a
               href={`tel:${currentClinic.phone}`}
-              className="text-[#2056AE] font-semibold"
+              className="font-semibold text-teal-600"
             >
               {currentClinic.phone}
             </a>
@@ -232,7 +232,7 @@ export default function BookAppointmentPage() {
         </div>
 
         {/* Comprehensive Clinic Info */}
-        <div className="bg-[#F8FAFF] p-6 rounded-xl shadow mb-8">
+        <div className="p-6 mb-8 bg-gray-100 shadow rounded-xl">
           {/* Clinic Image */}
           {currentClinic.img && (
             <div className="mb-6">
@@ -248,18 +248,18 @@ export default function BookAppointmentPage() {
           <div className="flex flex-col justify-between gap-4 mb-6 sm:flex-row sm:items-start">
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2">
-                <h2 className="text-2xl font-bold text-[#2056AE]">
+                <h2 className="text-2xl font-bold text-teal-700">
                   {currentClinic.name}
                 </h2>
                 {currentClinic.isActive && (
-                  <span className="flex items-center gap-1 px-2 py-1 text-xs font-semibold text-green-700 bg-green-100 rounded-full">
+                  <span className="flex items-center gap-1 px-2 py-1 text-xs font-semibold text-teal-800 bg-teal-100 rounded-full">
                     <Shield size={12} />
                     Active
                   </span>
                 )}
               </div>
               <div className="flex items-center gap-1 text-gray-600">
-                <MapPin size={16} className="text-[#2056AE]" />
+                <MapPin size={16} className="text-teal-600" />
                 <span className="font-medium">
                   {currentClinic.location}, {currentClinic.state}
                 </span>
@@ -284,7 +284,7 @@ export default function BookAppointmentPage() {
                   {currentClinic.rating} ({currentClinic.reviews} reviews)
                 </span>
               </div>
-              <div className="text-2xl font-bold text-[#2056AE]">
+              <div className="text-2xl font-bold text-teal-700">
                 ₹ {currentClinic.fee}
               </div>
               <div className="text-sm text-gray-500">Appointment Fee</div>
@@ -294,17 +294,17 @@ export default function BookAppointmentPage() {
           {/* Contact Information */}
           <div className="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
             <div className="space-y-3">
-              <h3 className="text-lg font-semibold text-[#2056AE] mb-3">
+              <h3 className="mb-3 text-lg font-semibold text-teal-700">
                 Contact Information
               </h3>
 
               <div className="flex items-center gap-3">
-                <Phone size={18} className="text-[#2056AE]" />
+                <Phone size={18} className="text-teal-600" />
                 <div>
                   <p className="text-sm text-gray-600">Phone</p>
                   <a
                     href={`tel:${currentClinic.phone}`}
-                    className="font-semibold text-[#2056AE] hover:underline"
+                    className="font-semibold text-teal-600 hover:underline"
                   >
                     {currentClinic.phone}
                   </a>
@@ -312,12 +312,12 @@ export default function BookAppointmentPage() {
               </div>
 
               <div className="flex items-center gap-3">
-                <Mail size={18} className="text-[#2056AE]" />
+                <Mail size={18} className="text-teal-600" />
                 <div>
                   <p className="text-sm text-gray-600">Email</p>
                   <a
                     href={`mailto:${currentClinic.email}`}
-                    className="font-semibold text-[#2056AE] hover:underline"
+                    className="font-semibold text-teal-600 hover:underline"
                   >
                     {currentClinic.email}
                   </a>
@@ -346,20 +346,20 @@ export default function BookAppointmentPage() {
             </div>
 
             <div className="space-y-3">
-              <h3 className="text-lg font-semibold text-[#2056AE] mb-3">
+              <h3 className="mb-3 text-lg font-semibold text-teal-700">
                 Online Presence
               </h3>
 
               {currentClinic.website && (
                 <div className="flex items-center gap-3">
-                  <Globe size={18} className="text-[#2056AE]" />
+                  <Globe size={18} className="text-teal-600" />
                   <div>
                     <p className="text-sm text-gray-600">Website</p>
                     <a
                       href={currentClinic.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1 font-semibold text-[#2056AE] hover:underline"
+                      className="flex items-center gap-1 font-semibold text-teal-600 hover:underline"
                     >
                       Visit Website
                       <ExternalLink size={14} />
@@ -408,7 +408,7 @@ export default function BookAppointmentPage() {
 
           {/* Specialties and Services */}
           <div className="mb-6">
-            <h3 className="text-lg font-semibold text-[#2056AE] mb-3">
+            <h3 className="mb-3 text-lg font-semibold text-teal-700">
               Specialties & Services
             </h3>
             <div className="flex flex-wrap gap-2">
@@ -416,7 +416,7 @@ export default function BookAppointmentPage() {
                 (specialty: string, index: number) => (
                   <span
                     key={index}
-                    className="px-3 py-1 text-sm font-medium text-[#2056AE] bg-blue-100 rounded-full"
+                    className="px-3 py-1 text-sm font-medium text-teal-800 bg-teal-100 rounded-full"
                   >
                     {specialty}
                   </span>
@@ -428,7 +428,7 @@ export default function BookAppointmentPage() {
           {/* Offers and Promotions */}
           {currentClinic.offers && currentClinic.offers.length > 0 && (
             <div className="mb-6">
-              <h3 className="text-lg font-semibold text-[#2056AE] mb-3">
+              <h3 className="mb-3 text-lg font-semibold text-teal-700">
                 Current Offers
               </h3>
               <div className="space-y-2">
@@ -436,14 +436,14 @@ export default function BookAppointmentPage() {
                   currentClinic.offers.map((offer: string, index: number) => (
                     <div
                       key={index}
-                      className="flex items-center gap-2 p-3 text-sm font-medium text-green-700 rounded-lg bg-green-50"
+                      className="flex items-center gap-2 p-3 text-sm font-medium text-green-800 bg-green-100 rounded-lg"
                     >
                       <Award size={16} className="text-green-600" />
                       {offer}
                     </div>
                   ))
                 ) : (
-                  <div className="flex items-center gap-2 p-3 text-sm font-medium text-green-700 rounded-lg bg-green-50">
+                  <div className="flex items-center gap-2 p-3 text-sm font-medium text-green-800 bg-green-100 rounded-lg">
                     <Award size={16} className="text-green-600" />
                     {currentClinic.offers}
                   </div>
@@ -456,7 +456,7 @@ export default function BookAppointmentPage() {
           <div className="grid grid-cols-1 gap-4 pt-4 border-t border-gray-200 md:grid-cols-3">
             <div className="text-center">
               <div className="flex items-center justify-center gap-2 mb-1">
-                <User size={16} className="text-[#2056AE]" />
+                <User size={16} className="text-teal-600" />
                 <span className="text-sm font-semibold text-gray-700">
                   Doctor
                 </span>
@@ -468,7 +468,7 @@ export default function BookAppointmentPage() {
 
             <div className="text-center">
               <div className="flex items-center justify-center gap-2 mb-1">
-                <Clock3 size={16} className="text-[#2056AE]" />
+                <Clock3 size={16} className="text-teal-600" />
                 <span className="text-sm font-semibold text-gray-700">
                   Established
                 </span>
@@ -480,7 +480,7 @@ export default function BookAppointmentPage() {
 
             <div className="text-center">
               <div className="flex items-center justify-center gap-2 mb-1">
-                <Shield size={16} className="text-[#2056AE]" />
+                <Shield size={16} className="text-teal-600" />
                 <span className="text-sm font-semibold text-gray-700">
                   Status
                 </span>
@@ -498,23 +498,23 @@ export default function BookAppointmentPage() {
         <div className="grid gap-8 md:grid-cols-2">
           {/* Date & Time */}
           <div>
-            <h3 className="text-lg font-semibold text-[#2056AE] mb-2">
+            <h3 className="mb-2 text-lg font-semibold text-teal-700">
               Select Date
             </h3>
-            <div className="bg-[#F8FAFF] p-4 rounded-xl border border-gray-200 mb-4">
+            <div className="p-4 mb-4 bg-gray-100 border border-gray-200 rounded-xl">
               <div className="flex items-center gap-2 mb-2 font-medium text-gray-700">
-                <CalendarDays className="text-[#2056AE]" /> Choose Date
+                <CalendarDays className="text-teal-600" /> Choose Date
               </div>
               <DatePicker
                 selected={selectedDate}
                 onChange={(date) => setSelectedDate(date)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2056AE]"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                 dateFormat="dd/MM/yyyy"
                 minDate={new Date()}
               />
             </div>
 
-            <h3 className="text-lg font-semibold text-[#2056AE] mb-2">
+            <h3 className="mb-2 text-lg font-semibold text-teal-700">
               Available Time Slots
             </h3>
             <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
@@ -524,8 +524,8 @@ export default function BookAppointmentPage() {
                   onClick={() => setSelectedSlot(slot)}
                   className={`py-2 rounded-lg text-sm font-medium border transition ${
                     selectedSlot === slot
-                      ? "bg-[#2056AE] text-white border-[#2056AE]"
-                      : "border-gray-300 hover:bg-[#F0F5FF]"
+                      ? " text-white  bg-gradient-to-r from-[#2C73D2] to-[#008F9B] group-hover:from-[#008F9B] group-hover:to-[#2C73D2]"
+                      : "border-gray-300 hover:bg-teal-50"
                   }`}
                 >
                   {slot}
@@ -536,7 +536,7 @@ export default function BookAppointmentPage() {
 
           {/* Patient Info */}
           <div>
-            <h3 className="text-lg font-semibold text-[#2056AE] mb-4">
+            <h3 className="mb-4 text-lg font-semibold text-teal-700">
               Patient Information
             </h3>
             <div className="space-y-4">
@@ -549,7 +549,7 @@ export default function BookAppointmentPage() {
                   placeholder="Enter full name"
                   value={patientName}
                   onChange={(e) => setPatientName(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2056AE]"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                 />
               </div>
 
@@ -562,7 +562,7 @@ export default function BookAppointmentPage() {
                   placeholder="10-digit number"
                   value={patientPhone}
                   onChange={(e) => setPatientPhone(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2056AE]"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                 />
               </div>
             </div>
@@ -570,7 +570,7 @@ export default function BookAppointmentPage() {
             <button
               onClick={handleBooking}
               disabled={loading}
-              className="mt-6 w-full bg-[#2056AE] text-white py-3 rounded-xl font-semibold shadow hover:bg-[#184a9b] disabled:bg-gray-300 transition flex items-center justify-center gap-2"
+              className="flex items-center justify-center w-full gap-2 py-3 mt-6 font-semibold text-white transition shadow rounded-xl disabled:bg-gray-300  bg-gradient-to-r from-[#2C73D2] to-[#008F9B] group-hover:from-[#008F9B] group-hover:to-[#2C73D2]"
             >
               {loading && <Loader2 className="w-5 h-5 animate-spin" />}
               {loading ? "Booking..." : "Book Appointment"}

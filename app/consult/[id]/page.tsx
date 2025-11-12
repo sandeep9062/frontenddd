@@ -177,7 +177,7 @@ const ConsultNowPage: React.FC = () => {
                     {dentist.user?.name}
                   </h1>
                   <div className="mt-4">
-                    <span className="inline-block px-4 py-2 text-lg font-bold text-white bg-blue-500 rounded-full shadow-md">
+                    <span className="inline-block px-4 py-2 text-lg font-bold text-white   bg-gradient-to-r from-[#2C73D2] to-[#008F9B] group-hover:from-[#008F9B] group-hover:to-[#2C73D2] rounded-full shadow-md">
                       {dentist.specialization?.join(", ")}
                     </span>
                   </div>
@@ -401,7 +401,7 @@ const ConsultNowPage: React.FC = () => {
                         onClick={() => setSelectedSlot(slot)}
                         className={`py-2 rounded-lg text-sm font-medium border transition ${
                           selectedSlot === slot
-                            ? "bg-[#2056AE] text-white border-[#2056AE]"
+                            ? " text-white  bg-gradient-to-r from-[#2C73D2] to-[#008F9B] group-hover:from-[#008F9B] group-hover:to-[#2C73D2] border-[#2056AE]"
                             : "border-gray-300 hover:bg-[#F0F5FF]"
                         }`}
                       >
@@ -430,7 +430,7 @@ const ConsultNowPage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isBooking}
-                  className="w-full px-6 py-4 text-lg font-semibold text-white transition-transform transform bg-blue-600 border border-transparent rounded-lg shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 hover:scale-105 disabled:bg-gray-400 disabled:cursor-not-allowed"
+                  className="w-full px-6 py-4 text-lg font-semibold text-white transition-transform transform border border-transparent rounded-lg shadow-sm   bg-gradient-to-r from-[#2C73D2] to-[#008F9B] group-hover:from-[#008F9B] group-hover:to-[#2C73D2] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 hover:scale-105 disabled:bg-gray-400 disabled:cursor-not-allowed"
                 >
                   {isBooking ? "Booking..." : "Request Consultation"}
                 </button>

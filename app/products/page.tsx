@@ -124,7 +124,19 @@ const Page = () => {
       {/* Hero Section */}
       <section className="py-16 text-center bg-white shadow-sm">
         <div className="container px-4 mx-auto sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
+          <h1 
+          
+           style={{
+              background:
+                "linear-gradient(135deg, #FF9933 0%, #00529B 50%, #138808 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              filter: "drop-shadow(1px 1px 2px rgba(0,0,0,0.2))",
+            }}
+          
+          
+          className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
          Explore India's Trusted Oral Care Essentials
           </h1>
           <p className="max-w-2xl mx-auto mt-6 text-lg text-gray-600">
@@ -215,22 +227,7 @@ const Page = () => {
         </div>
       )}
 
-      {/* CTA Section */}
-      {/* <section className="py-16 mt-12 bg-blue-50">
-        <div className="container px-4 mx-auto text-center sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-extrabold tracking-tight text-gray-900">
-            Want a personalized treatment plan using these materials?
-          </h2>
-          <p className="max-w-2xl mx-auto mt-4 text-lg text-gray-600">
-            Get your detailed quote for just ₹149 — within 24 hours.
-          </p>
-          <div className="mt-8">
-            <Link href="/quote" className="inline-block px-8 py-4 text-lg font-semibold text-white bg-blue-600 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-              Get My Plan
-            </Link>
-          </div>
-        </div>
-      </section> */}
+      
     </div>
   );
 };
