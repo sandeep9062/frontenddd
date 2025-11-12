@@ -99,7 +99,7 @@ export default function BlogPage() {
               filter: "drop-shadow(1px 1px 2px rgba(0,0,0,0.2))",
             }}
           >
-            Smile Journeys: The Dental Tourism Blog by Dental Tourism Clinics
+            Smile Journeys: The Dental Tourism Clinics
             India
           </motion.h1>
           <motion.p
