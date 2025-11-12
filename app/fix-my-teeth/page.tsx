@@ -321,17 +321,17 @@ const dentalProblems = [
 const steps = [
   {
     number: 1,
-    title: "Select Tooth & Problems",
+    title: "Select Tooth Number & Dental Problems",
     icon: "🦷",
     color: "bg-blue-500",
   },
   {
     number: 2,
-    title: "Select Preferred Location",
+    title: "Select Preferred Dental Clinic Location",
     icon: "📍",
     color: "bg-green-500",
   },
-  { number: 3, title: "Upload Photos", icon: "📷", color: "bg-purple-500" },
+  { number: 3, title: "Upload Photos and X-Rays", icon: "📷", color: "bg-purple-500" },
   {
     number: 4,
     title: "Pay ₹149/- (approx. $1.80)",
@@ -340,7 +340,7 @@ const steps = [
   },
   {
     number: 5,
-    title: "Receive Report in 24 hrs",
+    title: "Receive Dental Treatment Estimate Cost",
     icon: "📄",
     color: "bg-red-500",
   },
@@ -481,11 +481,14 @@ const FixMyTeeth = () => {
               }}
               className="text-transparent bg-clip-text "
             >
-              Fix My Teeth Cost in India | Transparent Dental Price Estimates
+              Fix My Teeth Cost in India - Transparent Dental Price Estimates
             </span>
           </h1>
+
           <p className="max-w-2xl mx-auto mt-4 text-lg text-gray-600">
-            {t("forms.treatmentPlanDesc")}
+            Compare approximate treatment costs from two Indian dental clinics.
+            Please note, we do not offer video consultations or direct
+            appointments through this page.
           </p>
         </header>
 
@@ -502,12 +505,12 @@ const FixMyTeeth = () => {
                   className="object-cover"
                 />
               </div>
-              <h2 className="mt-6 text-3xl font-bold text-gray-900">
+              <h2 className="mt-6 text-3xl font-bold text-[#2C73D2] ">
                 Smile Smarter - Expert Dental Plan for ₹ 149/- (approx. $1.80)
               </h2>
               <p className="mt-4 text-lg text-gray-600">
                 Tell us your dental issues, and our specialists will craft a
-                custom treatment plan with tranparent pricing in just 24 hours.
+                custom treatment plan with transparent pricing in just 24 hours.
               </p>
               <Button
                 className=" mt-4 p-0 bg-gradient-to-r from-[#F4A300] to-[#2C73D2] hover:from-[#2C73D2] hover:to-[#F4A300]"
@@ -687,8 +690,7 @@ const FixMyTeeth = () => {
                   {/* Dropzone for Image Uploads */}
                   <div className="mt-8">
                     <h4 className="mb-4 text-lg font-semibold text-gray-800">
-                      Upload Photos (Drag & Drop)
-                    </h4>
+                      Upload Photos and X-Rays (Drag & Drop file size upto 60mb)
                     <div
                       {...getRootProps()}
                       className={`p-10 text-center border-2 border-dashed rounded-xl cursor-pointer transition-colors ${
@@ -702,7 +704,7 @@ const FixMyTeeth = () => {
                         <p className="text-blue-600">Drop the files here ...</p>
                       ) : (
                         <p className="text-gray-500">
-                          Drag & drop some files here, or click to select files
+                          Drag & drop files here, or click to select files
                         </p>
                       )}
                     </div>
