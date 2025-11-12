@@ -4,8 +4,7 @@ import Link from "next/link";
 import { motion, Variants } from "framer-motion";
 import {
   CalendarDays,
-  Eye,
-  ThumbsUp,
+ 
   Clock,
   ArrowLeft,
   User,
