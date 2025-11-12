@@ -89,7 +89,7 @@ export default function BlogPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-4 text-4xl font-extrabold md:text-5xl text-navy dark:text-white"
+            className="mb-6 text-4xl font-extrabold md:text-5xl text-navy dark:text-white"
             style={{
               background:
                 "linear-gradient(135deg, #FF9933 0%, #00529B 50%, #138808 100%)",
@@ -105,7 +105,7 @@ export default function BlogPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="max-w-2xl mx-auto text-gray-600 dark:text-gray-400"
+            className="max-w-3xl mx-auto text-gray-600 dark:text-gray-400"
           >
             Your go-to resource for trusted guides, clinic insights, cost
             comparisons, and real stories from patients who traveled to India
