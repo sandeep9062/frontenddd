@@ -72,7 +72,7 @@ export default function AuthForm({ type }: { type: "login" | "register" }) {
   };
 
   return (
-    <div className="w-full max-w-md p-6 mx-auto mt-12 bg-white shadow rounded-2xl">
+    <div className="w-full max-w-md p-6 mx-auto mt-16 mb-16 bg-white shadow rounded-2xl">
       <div className="flex justify-center mb-6">
         <Image src="/logo.png" alt="Logo" width={100} height={100} />
       </div>

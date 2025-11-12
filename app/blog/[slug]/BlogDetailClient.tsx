@@ -36,14 +36,6 @@ export default function BlogDetailClient({ slug }: { slug: string }) {
     skip: !slug,
   });
 
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen text-xl text-gray-500 dark:text-gray-400">
-        <Spin size="large" tip="Loading blog..." />
-      </div>
-    );
-  }
-
   if (isError || !blog) {
     return (
       <div className="flex items-center justify-center min-h-screen px-6 text-center">
@@ -76,7 +68,7 @@ export default function BlogDetailClient({ slug }: { slug: string }) {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="min-h-screen bg-white dark:bg-[#0D1321] py-4 sm:py-24 px-4 md:px-8"
+        className="min-h-screen px-4 py-4 bg-white sm:py-24 md:px-8"
       >
         <div className="max-w-6xl mx-auto">
           {/* Back to Blog List Button */}
@@ -93,7 +85,7 @@ export default function BlogDetailClient({ slug }: { slug: string }) {
           {/* Title */}
           <motion.h1
             variants={itemVariants}
-            className="mb-6 text-4xl font-extrabold text-gray-800 md:text-5xl dark:text-white"
+            className="mb-6 text-4xl font-extrabold text-[#2C73D2] md:text-5xl"
           >
             {title}
           </motion.h1>
@@ -103,7 +95,7 @@ export default function BlogDetailClient({ slug }: { slug: string }) {
             variants={itemVariants}
             className="flex flex-wrap items-center gap-4 mb-8 text-sm text-gray-600 dark:text-gray-400"
           >
-            <span className="flex items-center gap-1 font-semibold text-gray-800 dark:text-white">
+            <span className="flex items-center gap-1 font-semibold text-[#2C73D2]">
               {authorImage && (
                 <Image
                   src={authorImage}
@@ -126,7 +118,7 @@ export default function BlogDetailClient({ slug }: { slug: string }) {
             <span className="flex items-center gap-1">
               <Clock size={16} /> {readTime || 5} min read
             </span>
-            
+
             {status && (
               <span
                 className={`px-2 py-1 rounded-full text-xs font-semibold uppercase ${

@@ -78,7 +78,7 @@ export default function BlogDetailPage({ params }: any) {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="min-h-screen  bg-white dark:bg-[#0D1321] py-6 sm:py-4 px-4 md:px-8"
+        className="min-h-screen px-4 py-6 bg-white sm:py-4 md:px-8"
       >
         <div className="max-w-6xl mx-auto">
           {/* Back to Blog List Button */}
@@ -95,7 +95,7 @@ export default function BlogDetailPage({ params }: any) {
           {/* Title */}
           <motion.h1
             variants={itemVariants}
-            className="mb-6 text-4xl font-extrabold text-gray-800 md:text-5xl dark:text-white"
+            className="mb-6 text-4xl font-extrabold text-[#2C73D2] md:text-5xl dark:text-white"
           >
             {title}
           </motion.h1>

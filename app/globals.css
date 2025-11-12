@@ -277,3 +277,8 @@
   font-size: 14px;
   font-weight: bold;
 }
+
+button,
+a {
+  cursor: pointer;
+}

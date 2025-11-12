@@ -105,7 +105,7 @@ export default function BlogPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="max-w-3xl mx-auto text-gray-600 dark:text-gray-400"
+            className="mx-auto text-xl text-gray-600 max-w-7xl dark:text-gray-400"
           >
             Your go-to resource for trusted guides, clinic insights, cost
             comparisons, and real stories from patients who traveled to India

@@ -55,7 +55,10 @@ const HelpSupport: React.FC = () => {
         throw new Error(response.message || "An unknown error occurred.");
       }
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : "Failed to send message. Please try again.";
+      const message =
+        err instanceof Error
+          ? err.message
+          : "Failed to send message. Please try again.";
       toast.error(message, {
         id: toastId,
       });
@@ -152,14 +155,14 @@ const HelpSupport: React.FC = () => {
                   required
                 >
                   <option value="">Select a subject</option>
-                  <option value="general-inquiry">General Inquiry</option>
-                  <option value="technical-support">Technical Support</option>
                   <option value="appointment-help">Appointment Help</option>
-                  <option value="billing-question">Billing Question</option>
+                  <option value="billing-question">Payment Query</option>
                   <option value="clinic-information">Clinic Information</option>
-                  <option value="feedback">Feedback</option>
                   <option value="complaint">Complaint</option>
+                  <option value="feedback">Feedback</option>
+                  <option value="general-inquiry">General Inquiry</option>
                   <option value="other">Other</option>
+                  <option value="technical-support">Technical Support</option>
                 </select>
               </div>
             </div>
@@ -299,9 +302,7 @@ const HelpSupport: React.FC = () => {
             <h3 className="mb-2 text-lg font-semibold text-gray-800">
               Response Time
             </h3>
-            <p className="mb-3 text-sm text-gray-600">
-              How quickly we respond
-            </p>
+            <p className="mb-3 text-sm text-gray-600">How quickly we respond</p>
             <p className="text-[15px] text-purple-600">Within 24 hours</p>
           </div>
         </div>

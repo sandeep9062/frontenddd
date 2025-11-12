@@ -34,8 +34,8 @@ const FloatingSocialButtons: React.FC = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed z-50 flex flex-col items-end -translate-y-1/2 right-4 top-1/2">
-      <div className="flex flex-col space-y-3 animate-slideUp">
+    <div className="fixed z-50 flex flex-row items-center justify-center w-full bottom-4 md:w-auto md:flex-col md:items-end md:right-4 md:top-1/2 md:-translate-y-1/2 md:bottom-auto">
+      <div className="flex flex-row p-2 space-x-3 bg-white bg-opacity-75 rounded-full md:flex-col md:space-y-3 md:space-x-0 md:bg-transparent md:p-0 animate-slideUp">
         {/* WhatsApp Button */}
         <a
           href={socialLinks.whatsapp}
