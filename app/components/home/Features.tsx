@@ -11,24 +11,28 @@ const getFeatures = (t: any) => [
     title: t("features.instantConsultation"),
     desc: t("features.instantConsultationDesc"),
     link: "/consult",
+    bgColor: "bg-blue-100",
   },
   {
     image: "/Dental Implants.png",
     title: "Trusted Smile, Local Care",
     desc: t("features.trustedClinicsDesc"),
     link: "/dental-clinics",
+    bgColor: "bg-green-100",
   },
   {
     image: "/3d teeth.png",
     title: t("features.dentalScans"),
     desc: t("features.dentalScansDesc"),
     link: "/cbct-opg-lab",
+    bgColor: "bg-purple-100",
   },
   {
     image: "/Affordable Treatment.png",
     title: t("features.bloodTest"),
     desc: t("features.bloodTestDesc"),
     link: "/blood-test",
+    bgColor: "bg-rose-100",
   },
 ];
 
@@ -61,13 +65,15 @@ const Feature: React.FC<FeatureProps> = ({ sectionSpacing = "" }) => {
             <Link
               key={idx}
               href={feature.link || "#"}
-              className="group flex flex-col items-center p-8 text-center transition-all duration-300 bg-white shadow-lg rounded-2xl hover:scale-105 hover:shadow-xl border-2 border-transparent hover:border-[#2C73D2]"
+              className="group flex flex-col items-center p-8 text-center transition-all duration-300 bg-white shadow-md rounded-2xl hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-[#2C73D2]"
             >
-              <div className="flex items-center justify-center w-32 h-32 mb-6">
+              <div
+                className={`flex items-center justify-center w-24 h-24 mb-6 rounded-full shadow-md ${feature.bgColor}`}
+              >
                 <img
                   src={feature.image}
                   alt={feature.title}
-                  className="object-contain h-32"
+                  className="object-contain w-16 h-16"
                 />
               </div>
               <h3 className="text-xl font-bold text-[#2C73D2] mb-3">

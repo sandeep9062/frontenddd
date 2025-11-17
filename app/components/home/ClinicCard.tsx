@@ -119,7 +119,7 @@ const ClinicCard: React.FC<ClinicCardProps> = ({ clinic }) => {
             href={clinic.website || "#"}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center flex-1 py-2 text-center text-gray-600 transition-colors duration-300 bg-gray-100 rounded-lg hover:bg-gray-200"
+            className="flex items-center justify-center flex-1 py-2 text-center text-blue-600 transition-colors duration-300 bg-blue-100 rounded-lg hover:bg-blue-200"
             aria-label="Website"
           >
             <FaGlobe size={20} />
@@ -128,7 +128,7 @@ const ClinicCard: React.FC<ClinicCardProps> = ({ clinic }) => {
             href={whatsappNumber ? `https://wa.me/${whatsappNumber}` : "#"}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center flex-1 py-2 text-center text-white transition-colors duration-300 bg-green-500 rounded-lg hover:bg-green-600"
+            className="flex items-center justify-center flex-1 py-2 text-center text-green-600 transition-colors duration-300 bg-green-100 rounded-lg hover:bg-green-200"
             aria-label="WhatsApp"
           >
             <FaWhatsapp size={20} />
@@ -137,7 +137,7 @@ const ClinicCard: React.FC<ClinicCardProps> = ({ clinic }) => {
             href={clinic.mapUrl || "#"}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center flex-1 py-2 text-center text-gray-600 transition-colors duration-300 bg-gray-100 rounded-lg hover:bg-gray-200"
+            className="flex items-center justify-center flex-1 py-2 text-center text-red-600 transition-colors duration-300 bg-red-100 rounded-lg hover:bg-red-200"
             aria-label="Location"
           >
             <FaMapMarkerAlt size={20} />
@@ -146,7 +146,7 @@ const ClinicCard: React.FC<ClinicCardProps> = ({ clinic }) => {
             href={clinic.instagram || "#"}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center flex-1 py-2 text-center text-white transition-colors duration-300 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
+            className="flex items-center justify-center flex-1 py-2 text-center text-pink-600 transition-colors duration-300 bg-pink-100 rounded-lg hover:bg-pink-200"
             aria-label="Instagram"
           >
             <FaInstagram size={20} />

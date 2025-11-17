@@ -74,55 +74,59 @@ const FindTopDental: React.FC<FindTopDentalProps> = ({
         </p>
 
         {/* Search Bar */}
-      <form
-  className="flex flex-col items-center justify-center w-full max-w-4xl gap-4 mx-auto mb-10 md:flex-row"
-  onSubmit={(e) => e.preventDefault()}
->
-  {/* Search Input */}
-  <div className="relative flex-grow w-full md:w-2/3">
-    <input
-      type="text"
-      placeholder="Search by Clinic Name or State"
-      value={search}
-      onChange={(e) => setSearch(e.target.value)}
-      className="w-full px-5 py-3 pl-6 pr-12 text-lg text-gray-700 placeholder-gray-500 bg-white border-2 border-gray-200 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#2C73D2] transition-all"
-    />
-    <div className="absolute inset-y-0 flex items-center pointer-events-none right-4">
-      <Search className="w-6 h-6 text-gray-400" />
-    </div>
-  </div>
+        <form
+          className="flex flex-col items-center justify-center w-full max-w-4xl gap-4 mx-auto mb-10 md:flex-row"
+          onSubmit={(e) => e.preventDefault()}
+        >
+          {/* Search Input */}
+          <div className="relative flex-grow w-full md:w-2/3">
+            <input
+              type="text"
+              placeholder="Search by Clinic Name or State"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full px-5 py-3 pl-6 pr-12 text-lg text-gray-700 placeholder-gray-500 bg-white border-2 border-gray-200 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#2C73D2] transition-all"
+            />
+            <div className="absolute inset-y-0 flex items-center right-4">
+              <div className="p-2 bg-blue-100 rounded-full">
+                <Search className="w-6 h-6 text-blue-600" />
+              </div>
+            </div>
+          </div>
 
-  {/* Custom Dropdown */}
-  <div className="relative w-full md:w-auto">
-    <select
-      value={selectedState}
-      onChange={(e) => setSelectedState(e.target.value)}
-      className="w-full appearance-none px-5 py-3 text-lg text-gray-700 bg-white border-2 border-gray-200 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#2C73D2] transition-all pr-12"
-    >
-      <option value="">All States / UTs</option>
-      {uniqueStates.map((state: string) => (
-        <option key={state} value={state}>
-          {state}
-        </option>
-      ))}
-    </select>
+          {/* Custom Dropdown */}
+          <div className="relative w-full md:w-auto">
+            <select
+              value={selectedState}
+              onChange={(e) => setSelectedState(e.target.value)}
+              className="w-full appearance-none px-5 py-3 text-lg text-gray-700 bg-white border-2 border-gray-200 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-[#2C73D2] transition-all pr-12"
+            >
+              <option value="">All States / UTs</option>
+              {uniqueStates.map((state: string) => (
+                <option key={state} value={state}>
+                  {state}
+                </option>
+              ))}
+            </select>
 
-    {/* Custom Arrow Icon */}
-    <div className="absolute inset-y-0 flex items-center pointer-events-none right-5">
-      <svg
-        className="w-5 h-5 text-gray-500"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        viewBox="0 0 24 24"
-      >
-        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-      </svg>
-    </div>
-  </div>
-</form>
-
-
+            {/* Custom Arrow Icon */}
+            <div className="absolute inset-y-0 flex items-center pointer-events-none right-5">
+              <svg
+                className="w-5 h-5 text-blue-600"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </div>
+          </div>
+        </form>
 
         {/* Slider */}
         <div className="w-full">

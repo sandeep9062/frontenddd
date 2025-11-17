@@ -26,10 +26,10 @@ const CbctOpgLabList: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100">
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 via-green-50 to-teal-100">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-[#6548ee] mx-auto mb-4"></div>
-          <div className="text-2xl font-bold text-[#6548ee]">
+          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-[#2C73D2] mx-auto mb-4"></div>
+          <div className="text-2xl font-bold text-[#2C73D2]">
             Loading CBCT & OPG Labs...
           </div>
           <div className="mt-2 text-gray-600">
@@ -64,12 +64,12 @@ const CbctOpgLabList: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-green-50 to-teal-100">
       {/* Header Section */}
       <div className="bg-white shadow-lg">
         <div className="px-6 py-8 mx-auto max-w-7xl">
           <div className="mb-8 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-[#6548ee] mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-[#2C73D2] mb-4">
               CBCT & OPG Centers
             </h1>
             <p className="max-w-lg mx-auto text-lg text-gray-600">
@@ -81,7 +81,7 @@ const CbctOpgLabList: React.FC = () => {
           </div>
 
           {/* Enhanced Filters */}
-          <div className="bg-gradient-to-r from-[#2C73D2] to-[#ff9800] p-6 rounded-2xl shadow-lg">
+          <div className="bg-gradient-to-r from-[#2C73D2] to-[#008F9B] p-6 rounded-2xl shadow-lg">
             
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
               <div className="relative">

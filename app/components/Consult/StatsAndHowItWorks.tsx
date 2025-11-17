@@ -25,14 +25,14 @@ const HowItWorks: Step[] = [
   {
     icon: (
       <div className="relative">
-        <div className="w-16 h-16 bg-gradient-to-br from-[#2C73D2] to-[#008E97] rounded-2xl flex items-center justify-center shadow-lg">
+        <div className="flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full shadow-lg">
           <svg
             width="32"
             height="32"
             fill="none"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
-            className="text-white"
+            className="text-blue-600"
           >
             <path
               d="M8 5v14l11-7L8 5z"
@@ -43,7 +43,7 @@ const HowItWorks: Step[] = [
             />
           </svg>
         </div>
-        <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-[#F4A300] to-[#FF6B35] rounded-full flex items-center justify-center text-white text-xs font-bold">
+        <div className="absolute flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-blue-600 rounded-full -top-2 -right-2">
           1
         </div>
       </div>
@@ -55,14 +55,14 @@ const HowItWorks: Step[] = [
   {
     icon: (
       <div className="relative">
-        <div className="w-16 h-16 bg-gradient-to-br from-[#008E97] to-[#2C73D2] rounded-2xl flex items-center justify-center shadow-lg">
+        <div className="flex items-center justify-center w-16 h-16 bg-green-100 rounded-full shadow-lg">
           <svg
             width="32"
             height="32"
             fill="none"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
-            className="text-white"
+            className="text-green-600"
           >
             <path
               d="M17 8h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2"
@@ -80,7 +80,7 @@ const HowItWorks: Step[] = [
             />
           </svg>
         </div>
-        <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-[#F4A300] to-[#FF6B35] rounded-full flex items-center justify-center text-white text-xs font-bold">
+        <div className="absolute flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-green-600 rounded-full -top-2 -right-2">
           2
         </div>
       </div>
@@ -92,10 +92,10 @@ const HowItWorks: Step[] = [
   {
     icon: (
       <div className="relative">
-        <div className="w-16 h-16 bg-gradient-to-br from-[#2C73D2] to-[#008E97] rounded-2xl flex items-center justify-center shadow-lg">
-          <div className="text-white text-xl font-bold">Rx</div>
+        <div className="flex items-center justify-center w-16 h-16 bg-purple-100 rounded-full shadow-lg">
+          <div className="text-xl font-bold text-purple-600">Rx</div>
         </div>
-        <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-[#F4A300] to-[#FF6B35] rounded-full flex items-center justify-center text-white text-xs font-bold">
+        <div className="absolute flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-purple-600 rounded-full -top-2 -right-2">
           3
         </div>
       </div>
@@ -193,20 +193,20 @@ const StatsAndHowItWorks: React.FC = () => {
         ref={howItWorksRef}
         className="w-full py-20 bg-gradient-to-br from-white via-gray-50 to-blue-50"
       >
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
+        <div className="px-4 mx-auto max-w-7xl">
+          <div className="mb-16 text-center">
             <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#2C73D2] to-[#008E97] text-white rounded-full text-sm font-semibold mb-6">
               🔄 Process
             </div>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#2C73D2] to-[#008E97] mb-6">
               How it works
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="max-w-3xl mx-auto text-xl text-gray-600">
               Get expert dental care in just three simple steps
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:gap-12">
             {HowItWorks.map((step, index) => (
               <div
                 key={step.text}
@@ -220,14 +220,14 @@ const StatsAndHowItWorks: React.FC = () => {
                   <div className="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-[#2C73D2] to-[#008E97] transform translate-x-4"></div>
                 )}
 
-                <div className="mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="mb-6 transition-transform duration-300 group-hover:scale-110">
                   {step.icon}
                 </div>
 
                 <h3 className="text-xl font-bold text-[#15396A] mb-3 group-hover:text-[#2C73D2] transition-colors">
                   {step.text}
                 </h3>
-                <p className="text-gray-600 leading-relaxed max-w-xs">
+                <p className="max-w-xs leading-relaxed text-gray-600">
                   {step.description}
                 </p>
               </div>
@@ -244,9 +244,9 @@ const StatsAndHowItWorks: React.FC = () => {
         {/* Background Pattern */}
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
 
-        <div className="relative max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+        <div className="relative px-4 mx-auto max-w-7xl">
+          <div className="mb-12 text-center">
+            <h3 className="mb-4 text-3xl font-bold text-white sm:text-4xl">
               Trusted by Thousands
             </h3>
             <p className="text-xl text-blue-100">
@@ -254,7 +254,7 @@ const StatsAndHowItWorks: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-16">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:gap-16">
             {stats.map((stat, index) => (
               <div
                 key={stat.label}
@@ -263,7 +263,7 @@ const StatsAndHowItWorks: React.FC = () => {
                 }`}
                 style={{ animationDelay: `${index * 200}ms` }}
               >
-                <div className="mb-4 text-6xl group-hover:scale-110 transition-transform duration-300">
+                <div className="mb-4 text-6xl transition-transform duration-300 group-hover:scale-110">
                   {stat.icon}
                 </div>
                 <div className="text-center">
@@ -275,7 +275,7 @@ const StatsAndHowItWorks: React.FC = () => {
                       trigger={startAnim}
                     />
                   </div>
-                  <div className="text-lg sm:text-xl font-semibold text-white group-hover:text-blue-100 transition-colors">
+                  <div className="text-lg font-semibold text-white transition-colors sm:text-xl group-hover:text-blue-100">
                     {stat.label}
                   </div>
                 </div>

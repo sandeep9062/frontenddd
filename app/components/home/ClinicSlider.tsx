@@ -37,7 +37,7 @@ const ClinicSlider: React.FC<ClinicSliderProps> = ({ clinics }) => {
       <div className="flex items-center justify-between">
         <button
           onClick={prevSlide}
-          className="absolute left-0 z-10 p-2 text-blue-600 transition-all duration-300 -translate-y-1/2 bg-white border-2 border-blue-600 rounded-full shadow-lg top-1/2 hover:bg-blue-600 hover:text-white focus:outline-none"
+          className="absolute left-0 z-10 p-2 text-blue-600 transition-all duration-300 -translate-y-1/2 bg-blue-100 border-2 border-transparent rounded-full shadow-lg top-1/2 hover:bg-blue-600 hover:text-white focus:outline-none"
           aria-label="Previous Slide"
         >
           <FaChevronLeft size={24} />
@@ -75,7 +75,7 @@ const ClinicSlider: React.FC<ClinicSliderProps> = ({ clinics }) => {
 
         <button
           onClick={nextSlide}
-          className="absolute right-0 z-10 p-2 text-blue-600 transition-all duration-300 -translate-y-1/2 bg-white border-2 border-blue-600 rounded-full shadow-lg top-1/2 hover:bg-blue-600 hover:text-white focus:outline-none"
+          className="absolute right-0 z-10 p-2 text-blue-600 transition-all duration-300 -translate-y-1/2 bg-blue-100 border-2 border-transparent rounded-full shadow-lg top-1/2 hover:bg-blue-600 hover:text-white focus:outline-none"
           aria-label="Next Slide"
         >
           <FaChevronRight size={24} />

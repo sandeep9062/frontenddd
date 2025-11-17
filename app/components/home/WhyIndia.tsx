@@ -8,24 +8,28 @@ const WhyIndia: React.FC = () => {
 
   const reasons = [
     {
-      title:"Affordable Dental Treatments",
+      title: "Affordable Dental Treatments",
       desc: t("whyIndia.affordableTreatmentsDesc"),
       img: "/Affordable Treatment.png",
+      bgColor: "bg-amber-100",
     },
     {
       title: t("whyIndia.expertDentists"),
       desc: t("whyIndia.expertDentistsDesc"),
       img: "/Expert Dentist.png",
+      bgColor: "bg-blue-100",
     },
     {
       title: t("whyIndia.tourismDental"),
       desc: t("whyIndia.tourismDentalDesc"),
       img: "/Tourism.png",
+      bgColor: "bg-green-100",
     },
     {
       title: t("whyIndia.topClinics"),
       desc: t("whyIndia.topClinicsDesc"),
       img: "../Assisted Travel Plans.png",
+      bgColor: "bg-purple-100",
     },
   ];
 
@@ -44,13 +48,17 @@ const WhyIndia: React.FC = () => {
           {reasons.map((reason, idx) => (
             <div
               key={idx}
-              className="flex flex-col items-center p-6 text-center transition-transform transform bg-white border-t-4 border-[#F4A300] rounded-2xl shadow-lg hover:scale-105"
+              className="flex flex-col items-center p-6 text-center transition-transform transform bg-white shadow-lg rounded-2xl hover:scale-105"
             >
-              <img
-                src={reason.img}
-                alt={reason.title}
-                className="object-contain w-32 h-32 mb-4"
-              />
+              <div
+                className={`flex items-center justify-center w-24 h-24 mb-6 rounded-full shadow-md ${reason.bgColor}`}
+              >
+                <img
+                  src={reason.img}
+                  alt={reason.title}
+                  className="object-contain w-16 h-16"
+                />
+              </div>
               <h3 className="text-lg font-bold text-[#2C73D2] mb-2">
                 {reason.title}
               </h3>

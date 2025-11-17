@@ -90,7 +90,7 @@ const CbctOpgLabCard: React.FC<CbctOpgLabCardProps> = ({ lab }) => {
             href={lab.website || "#"}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center flex-1 py-2 text-center text-gray-600 transition-colors duration-300 bg-gray-100 rounded-lg hover:bg-gray-200"
+            className="flex items-center justify-center flex-1 py-2 text-center text-blue-600 transition-colors duration-300 bg-blue-100 rounded-lg hover:bg-blue-200"
             aria-label="Website"
           >
             <FaGlobe size={20} />
@@ -99,7 +99,7 @@ const CbctOpgLabCard: React.FC<CbctOpgLabCardProps> = ({ lab }) => {
             href={whatsappNumber ? `https://wa.me/${whatsappNumber}` : "#"}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center flex-1 py-2 text-center text-white transition-colors duration-300 bg-green-500 rounded-lg hover:bg-green-600"
+            className="flex items-center justify-center flex-1 py-2 text-center text-green-600 transition-colors duration-300 bg-green-100 rounded-lg hover:bg-green-200"
             aria-label="WhatsApp"
           >
             <FaWhatsapp size={20} />
@@ -108,7 +108,7 @@ const CbctOpgLabCard: React.FC<CbctOpgLabCardProps> = ({ lab }) => {
             href={lab.mapUrl || "#"}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center flex-1 py-2 text-center text-gray-600 transition-colors duration-300 bg-gray-100 rounded-lg hover:bg-gray-200"
+            className="flex items-center justify-center flex-1 py-2 text-center text-red-600 transition-colors duration-300 bg-red-100 rounded-lg hover:bg-red-200"
             aria-label="Location"
           >
             <FaMapMarkerAlt size={20} />

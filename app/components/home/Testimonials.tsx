@@ -13,55 +13,56 @@ import { useTranslation } from "react-i18next";
 // Use your local testimonials array
 const testimonials = [
   {
-    text: "I found the best dentist in my city through this platform. The reviews were very helpful!",
+    text: "I found the best dentist in my city through this platform.\nThe reviews were very helpful and the comparison feature made it easy to shortlist the right clinic for me. The entire booking process felt smooth and trustworthy!",
     name: "Priya Sharma",
     type: "National",
     img: "/Priya Sharma.png",
     rating: 5,
   },
   {
-    text: "Very easy to use and the clinic staff were very professional. Will use again!",
+    text: "Very easy to use and the clinic staff were extremely professional.\nI liked how I could check availability instantly and confirm my appointment in seconds. Will definitely use this service again for future dental needs!",
     name: "Amit Patel",
     type: "National",
     img: "/Amit Patel.png",
     rating: 4.5,
   },
   {
-    text: "Excellent service and support. I felt confident booking my appointment from abroad.",
+    text: "Excellent service and support throughout.\nAs an international patient, I felt confident booking my appointment from abroad. The platform provided clear details about procedures, costs, and clinic ratings, which helped a lot.",
     name: "Maria Garcia",
     type: "International",
     img: "/Maria Garcia.png",
     rating: 5,
   },
   {
-    text: "I was able to compare clinics and book an appointment in minutes. The process was smooth and transparent.",
+    text: "I was able to compare multiple clinics and book an appointment in minutes.\nThe process was smooth, transparent, and the clinic followed up quickly with all the details. Highly recommended for anyone seeking reliable dental care abroad.",
     name: "Sophie Dubois",
     type: "International",
     img: "/Sophie Dubois.png",
     rating: 4.5,
   },
   {
-    text: "Great platform for finding trusted dentists. The user interface is very friendly.",
+    text: "Great platform for finding trusted dentists.\nThe user interface is clean and friendly, and I appreciated the verified reviews which helped me choose a clinic confidently. My experience at the clinic was just as good as promised.",
     name: "Rahul Verma",
     type: "National",
     img: "/Rahul Verma.png",
     rating: 4,
   },
   {
-    text: "I appreciate the detailed reviews and easy booking system. Made my dental trip to India stress-free!",
+    text: "I appreciate the detailed reviews and the easy booking system.\nIt made my dental trip to India stress-free! The platform also provided helpful information about procedures and estimated costs so there were no surprises.",
     name: "Elena Rossi",
     type: "International",
     img: "/Elena Rossi.png",
     rating: 5,
   },
   {
-    text: "Booking a dental appointment for my parents was never this easy. Thank you!",
+    text: "Booking a dental appointment for my parents was never this easy.\nThe reminders, clear instructions, and quick confirmation made the entire experience comfortable for them. Thank you for such a helpful service!",
     name: "Neha Gupta",
     type: "National",
     img: "/Neha Gupta.png",
     rating: 4,
   },
 ];
+
 
 // Helper function to render star ratings
 const renderStars = (rating: number) => {
