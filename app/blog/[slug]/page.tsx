@@ -2,13 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, Variants } from "framer-motion";
-import {
-  CalendarDays,
- 
-  Clock,
-  ArrowLeft,
-  User,
-} from "lucide-react";
+import { CalendarDays, Clock, ArrowLeft, User } from "lucide-react";
 import { useGetBlogBySlugQuery } from "../../../services/blogsApi";
 import Newsletter from "@/app/components/NewsLetter";
 import { Spin } from "antd";
@@ -127,8 +121,7 @@ export default function BlogDetailPage({ params }: any) {
             <span className="flex items-center gap-1">
               <Clock size={16} /> {readTime || 5} min read
             </span>
-            
-            
+
             {status && (
               <span
                 className={`px-2 py-1 rounded-full text-xs font-semibold uppercase ${
