@@ -541,7 +541,7 @@ const FixMyTeeth = () => {
           {showQuoteForm && (
             <section className="pt-10 mt-10 border-t border-gray-200">
               {/* Teeth Selector */}
-              <div className="flex flex-col items-center justify-center p-8 bg-gray-50 rounded-2xl">
+              <div className="flex flex-col items-center justify-center p-8 bg-white rounded-2xl">
                 <div className="flex p-1 mb-8 bg-gray-200 rounded-full">
                   {["adult", "kid"].map((type) => (
                     <button
